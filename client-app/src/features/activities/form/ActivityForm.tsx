@@ -1,12 +1,12 @@
-import { title } from 'process'
-import React from 'react'
-import { Segment, Form, Button } from 'semantic-ui-react'
-import { Activity } from '../../../app/models/activity'
+import { title } from 'process';
+import React from 'react';
+import { Segment, Form, Button } from 'semantic-ui-react';
+import { Activity } from '../../../app/models/activity';
 
 interface Props {
-  activity: Activity | undefined
-  closeForm: () => void
-  createOrEdit: (activity: Activity) => void
+  activity: Activity | undefined;
+  closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
 }
 
 export default function ActivityForm({
@@ -22,17 +22,17 @@ export default function ActivityForm({
     date: '',
     city: '',
     venue: '',
-  }
+  };
 
-  const [activity, setActivity] = React.useState(initialState)
+  const [activity, setActivity] = React.useState(initialState);
 
   function handleSubmit() {
-    createOrEdit(activity)
+    createOrEdit(activity);
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, value } = event.target
-    setActivity({ ...activity, [name]: value })
+    const { name, value } = event.target;
+    setActivity({ ...activity, [name]: value });
   }
   return (
     <Segment clearing>
@@ -77,5 +77,5 @@ export default function ActivityForm({
         <Button onClick={closeForm} floated='right' type='submit' content='Cancel' />
       </Form>
     </Segment>
-  )
+  );
 }
