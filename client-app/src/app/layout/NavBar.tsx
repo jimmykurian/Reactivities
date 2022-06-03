@@ -1,8 +1,8 @@
-import React from 'react'
-import { Button, Container, Menu } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Container, Menu } from 'semantic-ui-react';
 
 interface Props {
-  openForm: () => void
+  openForm: () => void;
 }
 
 export default function NavBar({ openForm }: Props) {
@@ -19,5 +19,5 @@ export default function NavBar({ openForm }: Props) {
         </Menu.Item>
       </Container>
     </Menu>
-  )
+  );
 }
