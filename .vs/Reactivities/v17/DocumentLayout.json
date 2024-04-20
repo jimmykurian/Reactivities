@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kuria\\source\\repos\\Reactivities\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2105A7C0-B24F-4980-A4D5-52D7C7C32C25}|Domain\\Domain.csproj|c:\\users\\kuria\\source\\repos\\reactivities\\domain\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2105A7C0-B24F-4980-A4D5-52D7C7C32C25}|Domain\\Domain.csproj|solutionrelative:domain\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Activity.cs",
+              "DocumentMoniker": "C:\\Users\\kuria\\source\\repos\\Reactivities\\Domain\\Activity.cs",
+              "RelativeDocumentMoniker": "Domain\\Activity.cs",
+              "ToolTip": "C:\\Users\\kuria\\source\\repos\\Reactivities\\Domain\\Activity.cs",
+              "RelativeToolTip": "Domain\\Activity.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T18:23:24.776Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
