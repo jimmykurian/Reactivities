@@ -10,8 +10,8 @@ namespace API.Controllers
     /// Base API controller for common API functionalities.
     /// </summary>
     [ApiController]
-    [Route("[api/controller]")]
-    public class BaseApiController : Controller
+    [Route("api/[controller]")]
+    public class BaseApiController : ControllerBase
     {
     }
 }
