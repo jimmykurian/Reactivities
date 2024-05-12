@@ -8,5 +8,3 @@ describe('App', () => {
     expect(headingElement).toBeInTheDocument();
   });
 });
-
-// TEST
