@@ -2,6 +2,8 @@
 // Copyright (c) Jimmy Kurian. All rights reserved.
 // </copyright>
 
+using Application.Activities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -25,6 +27,8 @@ builder.Services.AddCors(opt =>
         policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
     });
 });
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(List.Handler).Assembly));
 
 var app = builder.Build();
 
