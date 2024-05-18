@@ -19,6 +19,6 @@ namespace API.Controllers
         /// <summary>
         /// Gets the Mediator instance.
         /// </summary>
-        protected IMediator Mediator => this.mediator ??= this.HttpContext.RequestServices.GetService<IMediator>();
+        protected internal IMediator Mediator => this.mediator ??= this.HttpContext.RequestServices.GetService<IMediator>();
     }
 }
