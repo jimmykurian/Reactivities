@@ -46,7 +46,7 @@ namespace API.Controllers.Tests
         /// <summary>
         /// Tests that GetActivities returns a list of activities.
         /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns> 
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
         public async Task GetActivities_ShouldReturnListOfActivities()
         {
