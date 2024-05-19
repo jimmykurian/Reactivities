@@ -29,11 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Persistence\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Service\API\API.csproj" />
     <ProjectReference Include="..\Service\Application\Application.csproj" />
     <ProjectReference Include="..\Service\Domain\Domain.csproj" />
