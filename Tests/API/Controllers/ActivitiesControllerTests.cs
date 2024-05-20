@@ -70,21 +70,26 @@ namespace API.Controllers.Tests
         }
 
         /// <summary>
-        /// Tests that GetActivity returns an Ok result.
+        /// Tests that GetActivity returns the correct activity.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
-        public async Task GetActivity_ShouldReturnOk()
+        public async Task GetActivity_ShouldReturnActivity()
         {
             // Arrange
             var activityId = Guid.NewGuid();
+            var activity = new Activity { Id = activityId, Title = "Activity" };
+            this.mediatorMock!
+                .Setup(m => m.Send(It.IsAny<Details.Query>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(activity);
 
             // Act
             var result = await this.controller!.GetActivity(activityId);
 
             // Assert
-            var okResult = result.Result as OkResult;
-            Assert.IsNotNull(okResult);
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Value);
+            Assert.AreEqual(activity, result.Value);
         }
     }
 }
