@@ -33,5 +33,18 @@ namespace API.Controllers
         {
             return await this.Mediator.Send(new Details.Query { Id = id });
         }
+
+        /// <summary>
+        /// Creates a new activity.
+        /// </summary>
+        /// <param name="activity">The activity to be created.</param>
+        /// <returns>An <see cref="ActionResult"/> representing the result of the action.</returns>
+        [HttpPost]
+        public async Task<ActionResult> CreateActivity(Activity activity)
+        {
+            await this.Mediator.Send(new Create.Command { Activity = activity });
+
+            return this.Ok();
+        }
     }
 }

@@ -91,5 +91,26 @@ namespace API.Controllers.Tests
             Assert.IsNotNull(result.Value);
             Assert.AreEqual(activity, result.Value);
         }
+
+        /// <summary>
+        /// Tests that CreateActivity returns Ok.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task CreateActivity_ShouldReturnOk()
+        {
+            // Arrange
+            var activity = new Activity { Id = Guid.NewGuid(), Title = "New Activity" };
+            this.mediatorMock!
+                .Setup(m => m.Send(It.IsAny<Create.Command>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(Unit.Value));
+
+            // Act
+            var result = await this.controller!.CreateActivity(activity);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(OkResult));
+        }
     }
 }
