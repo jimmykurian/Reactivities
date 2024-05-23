@@ -46,5 +46,20 @@ namespace API.Controllers
 
             return this.Ok();
         }
+
+        /// <summary>
+        /// Edits an existing activity.
+        /// </summary>
+        /// <param name="id">The ID of the activity to be edited.</param>
+        /// <param name="activity">The updated activity details.</param>
+        /// <returns>An <see cref="IActionResult"/> representing the result of the action.</returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditActivity(Guid id, Activity activity)
+        {
+            activity.Id = id;
+            await this.Mediator.Send(new Edit.Command { Activity = activity });
+
+            return this.Ok();
+        }
     }
 }

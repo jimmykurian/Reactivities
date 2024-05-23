@@ -2,7 +2,7 @@
 // Copyright (c) Jimmy Kurian. All rights reserved.
 // </copyright>
 
-namespace API.Controllers.Tests
+namespace API.Controllers
 {
     using MediatR;
     using Microsoft.AspNetCore.Http;

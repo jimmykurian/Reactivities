@@ -2,7 +2,7 @@
 // Copyright (c) Jimmy Kurian. All rights reserved.
 // </copyright>
 
-namespace API.Controllers.Tests
+namespace API.Controllers
 {
     using Application.Activities;
     using Domain;
@@ -107,6 +107,27 @@ namespace API.Controllers.Tests
 
             // Act
             var result = await this.controller!.CreateActivity(activity);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(OkResult));
+        }
+
+        /// <summary>
+        /// Tests that EditActivity returns Ok.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task EditActivity_ShouldReturnOk()
+        {
+            // Arrange
+            var activity = new Activity { Id = Guid.NewGuid(), Title = "Updated Activity" };
+            this.mediatorMock!
+                .Setup(m => m.Send(It.IsAny<Edit.Command>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(Unit.Value));
+
+            // Act
+            var result = await this.controller!.EditActivity(activity.Id, activity);
 
             // Assert
             Assert.IsNotNull(result);

@@ -2,7 +2,7 @@
 // Copyright (c) Jimmy Kurian. All rights reserved.
 // </copyright>
 
-namespace Persistence.Tests
+namespace Persistence
 {
     using Domain;
     using Microsoft.EntityFrameworkCore;

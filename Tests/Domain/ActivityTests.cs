@@ -2,7 +2,7 @@
 // Copyright (c) Jimmy Kurian. All rights reserved.
 // </copyright>
 
-namespace Domain.Tests
+namespace Domain
 {
     /// <summary>
     /// Unit tests for the <see cref="Activity"/> class.
