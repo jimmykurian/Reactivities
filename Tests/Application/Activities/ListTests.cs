@@ -2,7 +2,7 @@
 // Copyright (c) Jimmy Kurian. All rights reserved.
 // </copyright>
 
-namespace Application.Activities.Tests
+namespace Application.Activities
 {
     using Domain;
     using Microsoft.EntityFrameworkCore;
