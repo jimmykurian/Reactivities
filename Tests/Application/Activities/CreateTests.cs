@@ -4,9 +4,12 @@
 
 namespace Application.Activities
 {
+    using Bogus;
     using Domain;
+    using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
     using Persistence;
+    using static Application.Activities.Create;
 
     /// <summary>
     /// Unit tests for the <see cref="Create"/> class.
@@ -15,7 +18,8 @@ namespace Application.Activities
     public class CreateTests
     {
         private DataContext? context;
-        private Create.Handler? handler;
+        private Handler? handler;
+        private Faker<Activity>? faker;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -28,17 +32,17 @@ namespace Application.Activities
                 .Options;
 
             this.context = new DataContext(options);
-            this.handler = new Create.Handler(this.context);
-        }
+            this.handler = new Handler(this.context);
 
-        /// <summary>
-        /// Cleans up the test environment after each test.
-        /// </summary>
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            this.context?.Database.EnsureDeleted();
-            this.context?.Dispose();
+            // Initialize the Faker instance for Activity
+            this.faker = new Faker<Activity>()
+                .RuleFor(a => a.Id, f => f.Random.Guid())
+                .RuleFor(a => a.Title, f => f.Lorem.Sentence())
+                .RuleFor(a => a.Date, f => f.Date.Future())
+                .RuleFor(a => a.Description, f => f.Lorem.Paragraph())
+                .RuleFor(a => a.Category, f => f.Commerce.Categories(1)[0])
+                .RuleFor(a => a.City, f => f.Address.City())
+                .RuleFor(a => a.Venue, f => f.Address.StreetAddress());
         }
 
         /// <summary>
@@ -49,30 +53,26 @@ namespace Application.Activities
         public async Task Handle_ShouldAddNewActivity()
         {
             // Arrange
-            var activity = new Activity
-            {
-                Id = Guid.NewGuid(),
-                Title = "New Activity",
-                Date = DateTime.UtcNow,
-                Description = "This is a new activity.",
-                Category = "Test Category",
-                City = "Test City",
-                Venue = "Test Venue",
-            };
-            var command = new Create.Command { Activity = activity };
+            var activity = this.faker!.Generate();
+            var command = new Command { Activity = activity };
 
             // Act
             await this.handler!.Handle(command, CancellationToken.None);
 
             // Assert
             var addedActivity = await this.context!.Activities.FindAsync(activity.Id);
-            Assert.IsNotNull(addedActivity);
-            Assert.AreEqual(activity.Title, addedActivity!.Title);
-            Assert.AreEqual(activity.Date, addedActivity.Date);
-            Assert.AreEqual(activity.Description, addedActivity.Description);
-            Assert.AreEqual(activity.Category, addedActivity.Category);
-            Assert.AreEqual(activity.City, addedActivity.City);
-            Assert.AreEqual(activity.Venue, addedActivity.Venue);
+            addedActivity.Should().NotBeNull();
+            addedActivity.Should().BeEquivalentTo(activity, options => options.Excluding(a => a.Id));
+        }
+
+        /// <summary>
+        /// Cleans up the test environment after each test.
+        /// </summary>
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            this.context?.Database.EnsureDeleted();
+            this.context?.Dispose();
         }
     }
 }
