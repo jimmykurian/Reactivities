@@ -4,18 +4,23 @@
 
 namespace Application.Activities
 {
+    using Bogus;
     using Domain;
+    using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
     using Persistence;
+    using static Application.Activities.List;
 
     /// <summary>
-    /// Unit tests for the <see cref="List.Handler"/> class.
+    /// Unit tests for the <see cref="List"/> class.
     /// </summary>
     [TestClass]
     public class ListTests
     {
         private DataContext? context;
-        private List.Handler? handler;
+        private Handler? handler;
+        private Faker<Activity>? faker;
+        private List<Activity>? seededActivities;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -28,12 +33,21 @@ namespace Application.Activities
                 .Options;
 
             this.context = new DataContext(options);
-            this.handler = new List.Handler(this.context);
+            this.handler = new Handler(this.context);
+
+            // Initialize the Faker instance for Activity
+            this.faker = new Faker<Activity>()
+                .RuleFor(a => a.Id, f => f.Random.Guid())
+                .RuleFor(a => a.Title, f => f.Lorem.Sentence())
+                .RuleFor(a => a.Date, f => f.Date.Future())
+                .RuleFor(a => a.Description, f => f.Lorem.Paragraph())
+                .RuleFor(a => a.Category, f => f.Commerce.Categories(1)[0])
+                .RuleFor(a => a.City, f => f.Address.City())
+                .RuleFor(a => a.Venue, f => f.Address.StreetAddress());
 
             // Seed the in-memory database with test data
-            this.context.Activities.AddRange(
-                new Activity { Id = Guid.NewGuid(), Title = "Activity 1" },
-                new Activity { Id = Guid.NewGuid(), Title = "Activity 2" });
+            this.seededActivities = this.faker.Generate(2);
+            this.context.Activities.AddRange(this.seededActivities);
             this.context.SaveChanges();
         }
 
@@ -45,13 +59,14 @@ namespace Application.Activities
         public async Task Handle_ShouldReturnListOfActivities()
         {
             // Act
-            var result = await this.handler!.Handle(new List.Query(), CancellationToken.None);
+            var result = await this.handler!.Handle(new Query(), CancellationToken.None);
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual("Activity 1", result[0].Title);
-            Assert.AreEqual("Activity 2", result[1].Title);
+            result.Should().NotBeNull();
+            result.Should().HaveCount(this.seededActivities!.Count);
+            result.Should().BeEquivalentTo(this.seededActivities, options => options
+                .Excluding(activity => activity.Id)
+                .ComparingByMembers<Activity>());
         }
 
         /// <summary>

@@ -4,8 +4,12 @@
 
 namespace Application.Activities
 {
+    using AutoMapper;
+    using Bogus;
     using Domain;
+    using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
+    using Moq;
     using Persistence;
     using static Application.Activities.Edit;
 
@@ -17,6 +21,8 @@ namespace Application.Activities
     {
         private DataContext? context;
         private Handler? handler;
+        private Mock<IMapper>? mapperMock;
+        private Faker<Activity>? faker;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -29,30 +35,23 @@ namespace Application.Activities
                 .Options;
 
             this.context = new DataContext(options);
-            this.handler = new Handler(this.context);
+            this.mapperMock = new Mock<IMapper>();
+            this.handler = new Handler(this.context, this.mapperMock.Object);
+
+            // Initialize the Faker instance for Activity
+            this.faker = new Faker<Activity>()
+                .RuleFor(a => a.Id, f => f.Random.Guid())
+                .RuleFor(a => a.Title, f => f.Lorem.Sentence())
+                .RuleFor(a => a.Date, f => f.Date.Future())
+                .RuleFor(a => a.Description, f => f.Lorem.Paragraph())
+                .RuleFor(a => a.Category, f => f.Commerce.Categories(1)[0])
+                .RuleFor(a => a.City, f => f.Address.City())
+                .RuleFor(a => a.Venue, f => f.Address.StreetAddress());
 
             // Seed the in-memory database with test data
-            this.context.Activities.Add(new Activity
-            {
-                Id = Guid.NewGuid(),
-                Title = "Existing Activity",
-                Date = DateTime.UtcNow,
-                Description = "Description",
-                Category = "Category",
-                City = "City",
-                Venue = "Venue",
-            });
+            var existingActivity = this.faker.Generate();
+            this.context.Activities.Add(existingActivity);
             this.context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Cleans up the test environment after each test.
-        /// </summary>
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            this.context!.Database.EnsureDeleted();
-            this.context.Dispose();
         }
 
         /// <summary>
@@ -64,25 +63,40 @@ namespace Application.Activities
         {
             // Arrange
             var existingActivity = await this.context!.Activities.FirstAsync();
-            var updatedActivity = new Activity
-            {
-                Id = existingActivity.Id,
-                Title = "Updated Activity",
-                Date = existingActivity.Date,
-                Description = existingActivity.Description,
-                Category = existingActivity.Category,
-                City = existingActivity.City,
-                Venue = existingActivity.Venue,
-            };
+            var updatedActivity = this.faker!.Clone().Generate();
+            updatedActivity.Id = existingActivity.Id;
             var command = new Command { Activity = updatedActivity };
+
+            this.mapperMock!
+                .Setup(m => m.Map(It.IsAny<Activity>(), It.IsAny<Activity>()))
+                .Callback((Activity src, Activity dest) =>
+                {
+                    dest.Title = src.Title;
+                    dest.Date = src.Date;
+                    dest.Description = src.Description;
+                    dest.Category = src.Category;
+                    dest.City = src.City;
+                    dest.Venue = src.Venue;
+                });
 
             // Act
             await this.handler!.Handle(command, CancellationToken.None);
 
             // Assert
             var activity = await this.context.Activities.FindAsync(existingActivity.Id);
-            Assert.IsNotNull(activity);
-            Assert.AreEqual("Updated Activity", activity.Title);
+            activity.Should().NotBeNull();
+            activity.Should().BeEquivalentTo(updatedActivity, options => options
+                .Excluding(a => a.Id));
+        }
+
+        /// <summary>
+        /// Cleans up the test environment after each test.
+        /// </summary>
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            this.context!.Database.EnsureDeleted();
+            this.context.Dispose();
         }
     }
 }

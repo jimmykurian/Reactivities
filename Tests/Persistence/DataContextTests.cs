@@ -4,7 +4,9 @@
 
 namespace Persistence
 {
+    using Bogus;
     using Domain;
+    using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
@@ -15,6 +17,7 @@ namespace Persistence
     {
         private DbContextOptions<DataContext>? options;
         private DataContext? context;
+        private Faker<Activity>? faker;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -27,16 +30,16 @@ namespace Persistence
                 .Options;
 
             this.context = new DataContext(this.options);
-        }
 
-        /// <summary>
-        /// Cleans up the test environment after each test.
-        /// </summary>
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            this.context?.Database.EnsureDeleted();
-            this.context?.Dispose();
+            // Initialize the Faker instance for Activity
+            this.faker = new Faker<Activity>()
+                .RuleFor(a => a.Id, f => f.Random.Guid())
+                .RuleFor(a => a.Title, f => f.Lorem.Sentence())
+                .RuleFor(a => a.Date, f => f.Date.Future())
+                .RuleFor(a => a.Description, f => f.Lorem.Paragraph())
+                .RuleFor(a => a.Category, f => f.Commerce.Categories(1)[0])
+                .RuleFor(a => a.City, f => f.Address.City())
+                .RuleFor(a => a.Venue, f => f.Address.StreetAddress());
         }
 
         /// <summary>
@@ -47,16 +50,7 @@ namespace Persistence
         public async Task ActivitiesDbSet_ShouldAddAndRetrieveActivity()
         {
             // Arrange
-            var activity = new Activity
-            {
-                Id = Guid.NewGuid(),
-                Title = "Test Activity",
-                Date = DateTime.UtcNow,
-                Description = "This is a test activity.",
-                Category = "Test Category",
-                City = "Test City",
-                Venue = "Test Venue",
-            };
+            var activity = this.faker!.Generate();
 
             // Act
             this.context!.Activities.Add(activity);
@@ -65,14 +59,18 @@ namespace Persistence
             var retrievedActivity = await this.context.Activities.FindAsync(activity.Id);
 
             // Assert
-            Assert.IsNotNull(retrievedActivity);
-            Assert.AreEqual(activity.Id, retrievedActivity!.Id);
-            Assert.AreEqual(activity.Title, retrievedActivity.Title);
-            Assert.AreEqual(activity.Date, retrievedActivity.Date);
-            Assert.AreEqual(activity.Description, retrievedActivity.Description);
-            Assert.AreEqual(activity.Category, retrievedActivity.Category);
-            Assert.AreEqual(activity.City, retrievedActivity.City);
-            Assert.AreEqual(activity.Venue, retrievedActivity.Venue);
+            retrievedActivity.Should().NotBeNull();
+            retrievedActivity.Should().BeEquivalentTo(activity, options => options.Excluding(a => a.Id));
+        }
+
+        /// <summary>
+        /// Cleans up the test environment after each test.
+        /// </summary>
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            this.context?.Database.EnsureDeleted();
+            this.context?.Dispose();
         }
     }
 }

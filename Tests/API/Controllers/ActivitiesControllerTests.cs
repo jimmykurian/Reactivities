@@ -5,7 +5,9 @@
 namespace API.Controllers
 {
     using Application.Activities;
+    using Bogus;
     using Domain;
+    using FluentAssertions;
     using MediatR;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -20,6 +22,7 @@ namespace API.Controllers
     {
         private Mock<IMediator>? mediatorMock;
         private ActivitiesController? controller;
+        private Faker<Activity>? faker;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -41,6 +44,16 @@ namespace API.Controllers
                     },
                 },
             };
+
+            // Initialize the Faker instance for Activity
+            this.faker = new Faker<Activity>()
+                .RuleFor(a => a.Id, f => f.Random.Guid())
+                .RuleFor(a => a.Title, f => f.Lorem.Sentence())
+                .RuleFor(a => a.Date, f => f.Date.Future())
+                .RuleFor(a => a.Description, f => f.Lorem.Paragraph())
+                .RuleFor(a => a.Category, f => f.Commerce.Categories(1)[0])
+                .RuleFor(a => a.City, f => f.Address.City())
+                .RuleFor(a => a.Venue, f => f.Address.StreetAddress());
         }
 
         /// <summary>
@@ -51,11 +64,7 @@ namespace API.Controllers
         public async Task GetActivities_ShouldReturnListOfActivities()
         {
             // Arrange
-            var activities = new List<Activity>
-            {
-                new Activity { Id = Guid.NewGuid(), Title = "Activity 1" },
-                new Activity { Id = Guid.NewGuid(), Title = "Activity 2" },
-            };
+            var activities = this.faker!.Generate(2);
             this.mediatorMock!
                 .Setup(m => m.Send(It.IsAny<List.Query>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(activities);
@@ -64,9 +73,8 @@ namespace API.Controllers
             var result = await this.controller!.GetActivities();
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.Value);
-            Assert.AreEqual(activities, result.Value);
+            result.Should().NotBeNull();
+            result.Value.Should().BeEquivalentTo(activities);
         }
 
         /// <summary>
@@ -77,19 +85,17 @@ namespace API.Controllers
         public async Task GetActivity_ShouldReturnActivity()
         {
             // Arrange
-            var activityId = Guid.NewGuid();
-            var activity = new Activity { Id = activityId, Title = "Activity" };
+            var activity = this.faker!.Generate();
             this.mediatorMock!
                 .Setup(m => m.Send(It.IsAny<Details.Query>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(activity);
 
             // Act
-            var result = await this.controller!.GetActivity(activityId);
+            var result = await this.controller!.GetActivity(activity.Id);
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.Value);
-            Assert.AreEqual(activity, result.Value);
+            result.Should().NotBeNull();
+            result.Value.Should().BeEquivalentTo(activity);
         }
 
         /// <summary>
@@ -100,7 +106,7 @@ namespace API.Controllers
         public async Task CreateActivity_ShouldReturnOk()
         {
             // Arrange
-            var activity = new Activity { Id = Guid.NewGuid(), Title = "New Activity" };
+            var activity = this.faker!.Generate();
             this.mediatorMock!
                 .Setup(m => m.Send(It.IsAny<Create.Command>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Unit.Value));
@@ -109,8 +115,8 @@ namespace API.Controllers
             var result = await this.controller!.CreateActivity(activity);
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+            result.Should().NotBeNull();
+            result.Should().BeOfType<OkResult>();
         }
 
         /// <summary>
@@ -121,7 +127,7 @@ namespace API.Controllers
         public async Task EditActivity_ShouldReturnOk()
         {
             // Arrange
-            var activity = new Activity { Id = Guid.NewGuid(), Title = "Updated Activity" };
+            var activity = this.faker!.Generate();
             this.mediatorMock!
                 .Setup(m => m.Send(It.IsAny<Edit.Command>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Unit.Value));
@@ -130,8 +136,8 @@ namespace API.Controllers
             var result = await this.controller!.EditActivity(activity.Id, activity);
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+            result.Should().NotBeNull();
+            result.Should().BeOfType<OkResult>();
         }
     }
 }

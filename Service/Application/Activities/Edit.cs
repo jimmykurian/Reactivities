@@ -4,6 +4,7 @@
 
 namespace Application.Activities
 {
+    using AutoMapper;
     using Domain;
     using MediatR;
     using Persistence;
@@ -30,14 +31,17 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext context;
+            private readonly IMapper mapper;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler"/> class.
             /// </summary>
             /// <param name="context">The data context.</param>
-            public Handler(DataContext context)
+            /// <param name="mapper">The AutoMapper context.</param>
+            public Handler(DataContext context, IMapper mapper)
             {
                 this.context = context;
+                this.mapper = mapper;
             }
 
             /// <summary>
@@ -51,8 +55,7 @@ namespace Application.Activities
             {
                 var activity = await this.context.Activities.FindAsync(request.Activity.Id);
 
-                // TODO: Replace with AutoMapper to map the properties of full object.
-                activity.Title = request.Activity.Title ?? activity.Title;
+                this.mapper.Map(request.Activity, activity);
 
                 await this.context.SaveChangesAsync(cancellationToken);
             }

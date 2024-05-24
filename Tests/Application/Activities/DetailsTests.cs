@@ -4,10 +4,12 @@
 
 namespace Application.Activities
 {
+    using Bogus;
     using Domain;
-    using global::Application.Activities;
+    using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
     using Persistence;
+    using static Application.Activities.Details;
 
     /// <summary>
     /// Unit tests for the <see cref="Details"/> class.
@@ -16,7 +18,8 @@ namespace Application.Activities
     public class DetailsTests
     {
         private DataContext? context;
-        private Details.Handler? handler;
+        private Handler? handler;
+        private Faker<Activity>? faker;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -29,23 +32,22 @@ namespace Application.Activities
                 .Options;
 
             this.context = new DataContext(options);
-            this.handler = new Details.Handler(this.context);
+            this.handler = new Handler(this.context);
+
+            // Initialize the Faker instance for Activity
+            this.faker = new Faker<Activity>()
+                .RuleFor(a => a.Id, f => f.Random.Guid())
+                .RuleFor(a => a.Title, f => f.Lorem.Sentence())
+                .RuleFor(a => a.Date, f => f.Date.Future())
+                .RuleFor(a => a.Description, f => f.Lorem.Paragraph())
+                .RuleFor(a => a.Category, f => f.Commerce.Categories(1)[0])
+                .RuleFor(a => a.City, f => f.Address.City())
+                .RuleFor(a => a.Venue, f => f.Address.StreetAddress());
 
             // Seed the in-memory database with test data
-            this.context.Activities.AddRange(
-                new Activity { Id = Guid.NewGuid(), Title = "Activity 1" },
-                new Activity { Id = Guid.NewGuid(), Title = "Activity 2" });
+            var activities = this.faker.Generate(2);
+            this.context.Activities.AddRange(activities);
             this.context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Cleans up the test environment after each test.
-        /// </summary>
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            this.context?.Database.EnsureDeleted();
-            this.context?.Dispose();
         }
 
         /// <summary>
@@ -56,19 +58,18 @@ namespace Application.Activities
         public async Task Handle_ShouldReturnCorrectActivity()
         {
             // Arrange
-            var activity = new Activity { Id = Guid.NewGuid(), Title = "Activity 3" };
+            var activity = this.faker!.Generate();
             this.context!.Activities.Add(activity);
             await this.context.SaveChangesAsync();
 
-            var query = new Details.Query { Id = activity.Id };
+            var query = new Query { Id = activity.Id };
 
             // Act
             var result = await this.handler!.Handle(query, CancellationToken.None);
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(activity.Id, result.Id);
-            Assert.AreEqual(activity.Title, result.Title);
+            result.Should().NotBeNull();
+            result.Should().BeEquivalentTo(activity, options => options.Excluding(a => a.Id));
         }
 
         /// <summary>
@@ -79,13 +80,23 @@ namespace Application.Activities
         public async Task Handle_ShouldReturnNullWhenActivityDoesNotExist()
         {
             // Arrange
-            var query = new Details.Query { Id = Guid.NewGuid() };
+            var query = new Query { Id = Guid.NewGuid() };
 
             // Act
             var result = await this.handler!.Handle(query, CancellationToken.None);
 
             // Assert
-            Assert.IsNull(result);
+            result.Should().BeNull();
+        }
+
+        /// <summary>
+        /// Cleans up the test environment after each test.
+        /// </summary>
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            this.context?.Database.EnsureDeleted();
+            this.context?.Dispose();
         }
     }
 }

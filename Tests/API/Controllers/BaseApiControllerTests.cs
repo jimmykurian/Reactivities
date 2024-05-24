@@ -4,6 +4,7 @@
 
 namespace API.Controllers
 {
+    using FluentAssertions;
     using MediatR;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -59,8 +60,8 @@ namespace API.Controllers
             var mediator = this.controller!.Mediator;
 
             // Assert
-            Assert.IsNotNull(mediator);
-            Assert.AreEqual(this.mediatorMock!.Object, mediator);
+            mediator.Should().NotBeNull();
+            mediator.Should().BeSameAs(this.mediatorMock!.Object);
         }
 
         /// <summary>
