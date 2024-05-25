@@ -20,13 +20,13 @@ Please delete options that are not relevant.
 - [ ] End to End Tests
 - [ ] Manual Tests
 
-**Test Configuration**:
+**Test Configuration**
 * Firmware version: N/A
 * Hardware: N/A
 * Toolchain: N/A
 * SDK: N/A
 
-# Checklist:
+# Checklist
 
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
