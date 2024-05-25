@@ -1,0 +1,14 @@
+# .github/labeler.yml
+# Example configuration for the labeler action
+
+Service:
+  - 'Service/**/*'
+
+Tests:
+  - 'Tests/**/*'
+
+Client-App:
+  - 'client-app/**/*'
+
+CI/CD:
+  - '.github/workflows/**/*'
