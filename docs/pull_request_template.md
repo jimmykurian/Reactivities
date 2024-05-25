@@ -2,7 +2,7 @@
 
 [Insert Description Here.]
 
-Fixes #36 
+Resolves #[Link Github Issue here]
 
 ## Type of change
 
