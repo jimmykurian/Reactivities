@@ -56,8 +56,22 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditActivity(Guid id, Activity activity)
         {
+            // TODO: Add Null check and exception handling for activity object.
             activity.Id = id;
             await this.Mediator.Send(new Edit.Command { Activity = activity });
+
+            return this.Ok();
+        }
+
+        /// <summary>
+        /// Deletes an existing activity.
+        /// </summary>
+        /// <param name="id">The ID of the activity to be deleted.</param>
+        /// <returns>An <see cref="IActionResult"/> representing the result of the action.</returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteActivity(Guid id)
+        {
+            await this.Mediator.Send(new Delete.Command { Id = id });
 
             return this.Ok();
         }
