@@ -139,5 +139,26 @@ namespace API.Controllers
             result.Should().NotBeNull();
             result.Should().BeOfType<OkResult>();
         }
+
+        /// <summary>
+        /// Tests that DeleteActivity returns Ok.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task DeleteActivity_ShouldReturnOk()
+        {
+            // Arrange
+            var activityId = Guid.NewGuid();
+            this.mediatorMock!
+                .Setup(m => m.Send(It.IsAny<Delete.Command>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(Unit.Value));
+
+            // Act
+            var result = await this.controller!.DeleteActivity(activityId);
+
+            // Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<OkResult>();
+        }
     }
 }
