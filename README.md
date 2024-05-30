@@ -4,6 +4,9 @@
 
 Reactivities is a comprehensive project that includes both backend and frontend components for managing activities. The backend is built with .NET Core, while the frontend is a React TypeScript project using Vite.
 
+![Line Coverage](https://github.com/jimmykurian/Reactivities/raw/main/coverage-report/badge_linecoverage.svg)
+![Branch Coverage](https://github.com/jimmykurian/Reactivities/raw/main/coverage-report/badge_branchcoverage.svg)
+
 ## Table of Contents
 
 - [Installation](#installation)

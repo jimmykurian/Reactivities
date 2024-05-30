@@ -37,3 +37,10 @@ jobs:
       with:
         name: coverage-report
         path: ./coverage-report
+    - name: Upload coverage badges
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-badges
+        path: |
+          ./coverage-report/badge_linecoverage.svg
+          ./coverage-report/badge_branchcoverage.svg
