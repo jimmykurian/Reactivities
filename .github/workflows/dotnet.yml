@@ -1,6 +1,5 @@
 ## This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
@@ -29,12 +28,15 @@ jobs:
       
     - name: Test
       run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=Tests/TestResults/
-
+      
+    - name: List coverage files
+      run: find Tests/TestResults/ -name '*.xml'
+      
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./Tests/TestResults/**/coverage.cobertura.xml
+        files: Tests/TestResults/**/*.xml
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: true
