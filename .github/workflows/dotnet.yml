@@ -28,15 +28,15 @@ jobs:
       
     - name: Test
       run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=Tests/TestResults/
-      
+
     - name: List coverage files
-      run: find Tests/TestResults/ -name '*.xml'
-      
+      run: find Tests/TestResults/ -name '*.cobertura.xml'
+
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: Tests/TestResults/**/*.xml
+        files: Tests/TestResults/**/*.cobertura.xml
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: true
