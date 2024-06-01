@@ -31,26 +31,11 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
       
-    - name: Ensure coverage directory exists
-      run: mkdir -p ./coverage-report
-
-    - name: ReportGenerator
-      uses: danielpalme/ReportGenerator-GitHub-Action@5.3.4
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
       with:
-        reports: '**/coverage.cobertura.xml'
-        targetdir: './coverage-report'
-        reporttypes: 'Html;Badges'
-        
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-report
-        path: ./coverage-report
-
-    - name: Upload coverage badges
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-badges
-        path: |
-          ./coverage-report/badge_linecoverage.svg
-          ./coverage-report/badge_branchcoverage.svg
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./Tests/TestResults/**/*.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true

@@ -2,8 +2,7 @@
 
 Reactivities is a comprehensive project that includes both backend and frontend components for managing activities. The backend is built with .NET Core, while the frontend is a React TypeScript project using Vite.
 
-![Line Coverage](https://github.com/jimmykurian/Reactivities/actions/runs/{RUN_ID}/artifacts/coverage-badges/badge_linecoverage.svg)
-![Branch Coverage](https://github.com/jimmykurian/Reactivities/actions/runs/{RUN_ID}/artifacts/coverage-badges/badge_branchcoverage.svg)
+[![codecov](https://codecov.io/github/jimmykurian/Reactivities/graph/badge.svg?token=ZSNTXXSG04)](https://codecov.io/github/jimmykurian/Reactivities)
 
 ## Table of Contents
 
