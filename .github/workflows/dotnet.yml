@@ -43,5 +43,4 @@ jobs:
         verbose: true
         directory: './'
         env_vars: OS,PWD,NAME
-        path_to_upload: Tests/TestResults
         extra_args: "-d -v"
