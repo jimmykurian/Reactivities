@@ -31,9 +31,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
       
-    - name: Ensure coverage directory exists
-      run: mkdir -p ./coverage-report
-
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
