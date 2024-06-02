@@ -1,4 +1,4 @@
-name: CI Workflow (.NET Build & Node Build)
+name: CI Workflow
 
 on:
   push:
@@ -31,8 +31,8 @@ jobs:
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       run: |
-        bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
-        --partial -l CSharp -r Tests/TestResults/coverage.cobertura.xml
+        COV_FILE=$(find Tests/TestResults/ -name 'coverage.cobertura.xml')
+        bash <(curl -Ls https://coverage.codacy.com/get.sh) report --partial -l CSharp -r $COV_FILE
         bash <(curl -Ls https://coverage.codacy.com/get.sh) final
 
   build-node:
@@ -80,6 +80,5 @@ jobs:
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       run: |
-        bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
-        --partial -l TypeScript -r client-app/coverage/lcov.info
+        bash <(curl -Ls https://coverage.codacy.com/get.sh) report --partial -l TypeScript -r client-app/coverage/lcov.info
         bash <(curl -Ls https://coverage.codacy.com/get.sh) final
