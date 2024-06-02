@@ -10,4 +10,8 @@ export default {
     },
   
     setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+    collectCoverage: true,
+    coverageDirectory: "coverage",
+    coverageReporters: ["lcov", "text", "text-summary"],
+    coveragePathIgnorePatterns: [ "/node_modules/", "<rootDir>/path/to/ignore/"],
   };
