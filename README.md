@@ -2,6 +2,9 @@
 
 Reactivities is a comprehensive project that includes both backend and frontend components for managing activities. The backend is built with .NET Core, while the frontend is a React TypeScript project using Vite.
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d27897bc49284302a7c4792711c02ca9)](https://app.codacy.com/gh/jimmykurian/Reactivities/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/d27897bc49284302a7c4792711c02ca9)](https://app.codacy.com/gh/jimmykurian/Reactivities/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+
 ## Table of Contents
 
 - [Installation](#installation)
