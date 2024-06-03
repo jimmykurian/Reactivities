@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ignore coverage directories
+coverage/*
+coverage/lcov-report/*

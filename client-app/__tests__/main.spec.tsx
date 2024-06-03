@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from '../src/App';
+import App from '../src/app/layout/App';
 
 // Mock ReactDOM.createRoot and its render method
 const mockRender = jest.fn();
