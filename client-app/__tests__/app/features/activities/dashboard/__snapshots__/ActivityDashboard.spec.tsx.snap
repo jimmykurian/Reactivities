@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityDashboard matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ten wide column"
+  >
+    <div
+      class="ui list"
+      role="list"
+    >
+      <div
+        class="item"
+        role="listitem"
+      >
+        Fixed Title 1
+      </div>
+      <div
+        class="item"
+        role="listitem"
+      >
+        Fixed Title 2
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

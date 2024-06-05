@@ -12,13 +12,16 @@ jest.mock('react-dom/client', () => ({
 
 describe('main.tsx', () => {
   it('renders the App component', async () => {
+    // Arrange
     const root = document.createElement('div');
     root.id = 'root';
     document.body.appendChild(root);
 
+    // Act
     // Dynamically import the main module
     await import('../src/main');
 
+    // Assert
     expect(root).toBeInTheDocument();
     expect(ReactDOM.createRoot).toHaveBeenCalledWith(root);
     expect(mockRender).toHaveBeenCalledWith(
@@ -29,6 +32,7 @@ describe('main.tsx', () => {
   });
 
   afterEach(() => {
+    // Cleanup
     jest.clearAllMocks(); // Clear mocks to avoid state leakage between tests
   });
 });
