@@ -10,16 +10,96 @@ exports[`ActivityDashboard matches snapshot 1`] = `
       role="list"
     >
       <div
-        class="item"
-        role="listitem"
+        class="ui segment"
       >
-        Fixed Title 1
-      </div>
-      <div
-        class="item"
-        role="listitem"
-      >
-        Fixed Title 2
+        <div
+          class="ui divided items"
+        >
+          <div
+            class="item"
+          >
+            <div
+              class="content"
+            >
+              <a
+                class="header"
+              >
+                Fixed Title 1
+              </a>
+              <div
+                class="meta"
+              >
+                2023-12-31T23:59:59.000Z
+              </div>
+              <div
+                class="description"
+              >
+                <div>
+                  Fixed description 1
+                </div>
+                <div>
+                  Fixed city 1, Fixed venue 1
+                </div>
+              </div>
+              <div
+                class="extra"
+              >
+                <button
+                  class="ui blue right floated button"
+                >
+                  View
+                </button>
+                <div
+                  class="ui basic label"
+                >
+                  Fixed category 1
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="item"
+          >
+            <div
+              class="content"
+            >
+              <a
+                class="header"
+              >
+                Fixed Title 2
+              </a>
+              <div
+                class="meta"
+              >
+                2024-01-01T23:59:59.000Z
+              </div>
+              <div
+                class="description"
+              >
+                <div>
+                  Fixed description 2
+                </div>
+                <div>
+                  Fixed city 2, Fixed venue 2
+                </div>
+              </div>
+              <div
+                class="extra"
+              >
+                <button
+                  class="ui blue right floated button"
+                >
+                  View
+                </button>
+                <div
+                  class="ui basic label"
+                >
+                  Fixed category 2
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
