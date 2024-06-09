@@ -50,7 +50,6 @@ namespace Application.Activities
             /// <param name="request">The command request.</param>
             /// <param name="cancellationToken">The cancellation token.</param>
             /// <returns>A task that represents the asynchronous operation.</returns>
-            /// <exception cref="KeyNotFoundException">Thrown when the activity is not found.</exception>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = await this.context.Activities.FindAsync(request.Activity.Id);
