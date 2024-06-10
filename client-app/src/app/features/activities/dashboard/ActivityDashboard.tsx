@@ -6,6 +6,7 @@
 import { Grid, List } from 'semantic-ui-react';
 import { Activity } from '../../../models/activity';
 import ActivityList from './ActivityList';
+import ActivityDetails from '../details/ActivityDetails';
 
 /**
  * Props interface for the ActivityDashboard component.
@@ -28,6 +29,8 @@ export interface Props {
  * This component serves as the dashboard to display a list of activities.
  * It uses the `Grid.Column` component from Semantic UI to structure the layout
  * and the `List` component to contain the `ActivityList` component.
+ * The `ActivityDetails` component is conditionally rendered to display details
+ * of the first activity in the list.
  *
  * @example
  * ```tsx
@@ -39,12 +42,17 @@ export interface Props {
  * <ActivityDashboard activities={activities} />
  * ```
  */
-export default function ActivityDashboard({ activities }: Props) {
+export default function ActivityDashboard({ activities }: Props): JSX.Element {
   return (
-    <Grid.Column width="10">
-      <List>
-        <ActivityList activities={activities} />
-      </List>
-    </Grid.Column>
+    <Grid>
+      <Grid.Column width="10">
+        <List>
+          <ActivityList activities={activities} />
+        </List>
+      </Grid.Column>
+      <Grid.Column width="6">
+        {activities[0] && <ActivityDetails activity={activities[0]} />}
+      </Grid.Column>
+    </Grid>
   );
 }
