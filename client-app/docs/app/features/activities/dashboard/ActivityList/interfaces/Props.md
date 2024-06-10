@@ -20,4 +20,4 @@ Array of activities to be displayed.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:16](https://github.com/jimmykurian/Reactivities/blob/4ab199bddea0052df810fe9ea0493ff906b43566/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L16)
+[app/features/activities/dashboard/ActivityList.tsx:16](https://github.com/jimmykurian/Reactivities/blob/a0f275a8cd60ebcdc3f7b728918122de0a884171/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L16)

@@ -6,7 +6,7 @@
 
 # Function: default()
 
-> **default**(`props`): `Element`
+> **default**(`props`): `JSX.Element`
 
 ActivityDashboard component.
 
@@ -18,7 +18,7 @@ The properties passed to the component.
 
 ## Returns
 
-`Element`
+`JSX.Element`
 
 The rendered ActivityDashboard component.
 
@@ -29,6 +29,8 @@ The rendered ActivityDashboard component.
 This component serves as the dashboard to display a list of activities.
 It uses the `Grid.Column` component from Semantic UI to structure the layout
 and the `List` component to contain the `ActivityList` component.
+The `ActivityDetails` component is conditionally rendered to display details
+of the first activity in the list.
 
 ## Example
 
@@ -43,4 +45,4 @@ const activities = [
 
 ## Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:42](https://github.com/jimmykurian/Reactivities/blob/4ab199bddea0052df810fe9ea0493ff906b43566/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L42)
+[app/features/activities/dashboard/ActivityDashboard.tsx:45](https://github.com/jimmykurian/Reactivities/blob/a0f275a8cd60ebcdc3f7b728918122de0a884171/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L45)
