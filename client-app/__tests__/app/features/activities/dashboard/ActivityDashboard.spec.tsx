@@ -49,8 +49,11 @@ describe('ActivityDashboard', () => {
 
     // Act & Assert
     mockActivities.forEach((activity) => {
-      const activityElement = screen.getByText(activity.title);
-      expect(activityElement).toBeInTheDocument();
+      const activityElements = screen.getAllByText(activity.title);
+      expect(activityElements.length).toBeGreaterThan(0);
+      activityElements.forEach((element) =>
+        expect(element).toBeInTheDocument(),
+      );
     });
   });
 

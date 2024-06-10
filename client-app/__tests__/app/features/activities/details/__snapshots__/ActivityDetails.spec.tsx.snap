@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityDetails matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ui fluid card"
+  >
+    <img
+      class="ui image"
+      src="/assets/categoryImages/static-category.jpg"
+    />
+    <div
+      class="content"
+    >
+      <div
+        class="header"
+      >
+        Static Title
+      </div>
+      <div
+        class="meta"
+      >
+        2024-06-12T00:00:00.000Z
+      </div>
+      <div
+        class="description"
+      >
+        This is a static description for testing.
+      </div>
+    </div>
+    <div
+      class="extra content"
+    >
+      <div
+        class="ui two buttons"
+      >
+        <button
+          class="ui blue basic button"
+        >
+          Edit
+        </button>
+        <button
+          class="ui grey basic button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
