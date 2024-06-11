@@ -46,4 +46,4 @@ const activity = {
 
 ## Source
 
-app/features/activities/details/ActivityDetails.tsx:48
+[app/features/activities/details/ActivityDetails.tsx:48](https://github.com/jimmykurian/Reactivities/blob/712c332819aee0d175bbdc912703a26a53d9ae5f/client-app/src/app/features/activities/details/ActivityDetails.tsx#L48)
