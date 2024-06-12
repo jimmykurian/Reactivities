@@ -39,4 +39,4 @@ export default App;
 
 ## Source
 
-[app/layout/NavBar.tsx:32](https://github.com/jimmykurian/Reactivities/blob/712c332819aee0d175bbdc912703a26a53d9ae5f/client-app/src/app/layout/NavBar.tsx#L32)
+[app/layout/NavBar.tsx:32](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/layout/NavBar.tsx#L32)

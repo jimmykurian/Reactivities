@@ -11,12 +11,14 @@ import { Activity } from '../../../models/activity';
  *
  * @interface Props
  * @property {Activity} activity - The activity object containing details of the activity.
+ * @property {() => void} cancelSelectActivity - Function to cancel the selection of the activity.
  */
 export interface Props {
   /**
    * The activity object containing details of the activity.
    */
   activity: Activity;
+  cancelSelectActivity: () => void;
 }
 
 /**
@@ -28,10 +30,11 @@ export interface Props {
  * @remarks
  * This component uses the Semantic UI React library to create a card layout for displaying activity details.
  * It includes an image, title, date, description, and buttons for editing or cancelling the activity.
+ * The `cancelSelectActivity` function is called when the "Cancel" button is clicked.
  *
  * @example
  * Here is an example of how to use the ActivityDetails component:
- * ```
+ * ```tsx
  * const activity = {
  *   id: '1',
  *   title: 'Morning Run',
@@ -42,10 +45,13 @@ export interface Props {
  *   venue: 'Central Park'
  * };
  *
- * <ActivityDetails activity={activity} />
+ * <ActivityDetails activity={activity} cancelSelectActivity={() => console.log('Cancel clicked')} />
  * ```
  */
-export default function ActivityDetails({ activity }: Props): JSX.Element {
+export default function ActivityDetails({
+  activity,
+  cancelSelectActivity,
+}: Props): JSX.Element {
   return (
     <Card fluid>
       <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
@@ -57,7 +63,12 @@ export default function ActivityDetails({ activity }: Props): JSX.Element {
       <Card.Content extra>
         <Button.Group widths="2">
           <Button basic color="blue" content="Edit" />
-          <Button basic color="grey" content="Cancel" />
+          <Button
+            onClick={cancelSelectActivity}
+            basic
+            color="grey"
+            content="Cancel"
+          />
         </Button.Group>
       </Card.Content>
     </Card>

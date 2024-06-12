@@ -6,7 +6,7 @@
 
 # Function: default()
 
-> **default**(`props`): `Element`
+> **default**(`props`): `JSX.Element`
 
 ActivityList component.
 
@@ -18,7 +18,7 @@ The properties passed to the component.
 
 ## Returns
 
-`Element`
+`JSX.Element`
 
 The rendered ActivityList component.
 
@@ -28,6 +28,7 @@ The rendered ActivityList component.
 
 This component maps over an array of activities and displays each one with its details using Semantic UI components.
 Each activity includes a title, date, description, city, venue, and category, along with a "View" button.
+The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
 
 ## Example
 
@@ -37,9 +38,11 @@ const activities = [
   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
 ];
 
-<ActivityList activities={activities} />
+const selectActivity = (id: string) => console.log(id);
+
+<ActivityList activities={activities} selectActivity={selectActivity} />
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityList.tsx:40](https://github.com/jimmykurian/Reactivities/blob/712c332819aee0d175bbdc912703a26a53d9ae5f/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L40)
+[app/features/activities/dashboard/ActivityList.tsx:45](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L45)

@@ -20,4 +20,20 @@ The activity object containing details of the activity.
 
 #### Source
 
-[app/features/activities/details/ActivityDetails.tsx:19](https://github.com/jimmykurian/Reactivities/blob/712c332819aee0d175bbdc912703a26a53d9ae5f/client-app/src/app/features/activities/details/ActivityDetails.tsx#L19)
+[app/features/activities/details/ActivityDetails.tsx:20](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/details/ActivityDetails.tsx#L20)
+
+***
+
+### cancelSelectActivity()
+
+> **cancelSelectActivity**: () => `void`
+
+Function to cancel the selection of the activity.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[app/features/activities/details/ActivityDetails.tsx:21](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/details/ActivityDetails.tsx#L21)

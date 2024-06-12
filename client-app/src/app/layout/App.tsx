@@ -19,8 +19,9 @@ import ActivityDashboard from '../features/activities/dashboard/ActivityDashboar
  *
  * @remarks
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
- * The `useState` hook is used to manage the activities state.
+ * The `useState` hook is used to manage the activities state as well as the selected activity state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
+ * The `handleSelectActivity` and `handleCancelSelectActivity` functions are used to manage the selected activity state.
  *
  * @example
  * ```tsx
@@ -37,6 +38,9 @@ import ActivityDashboard from '../features/activities/dashboard/ActivityDashboar
  */
 function App(): JSX.Element {
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<
+    Activity | undefined
+  >(undefined);
 
   useEffect(() => {
     axios
@@ -46,11 +50,32 @@ function App(): JSX.Element {
       });
   }, []);
 
+  /**
+   * Handles selecting an activity by its ID.
+   *
+   * @param {string} id - The ID of the activity to select.
+   */
+  function handleSelectActivity(id: string) {
+    setSelectedActivity(activities.find((a) => a.id === id));
+  }
+
+  /**
+   * Handles canceling the selection of an activity.
+   */
+  function handleCancelSelectActivity() {
+    setSelectedActivity(undefined);
+  }
+
   return (
     <>
       <NavBar />
       <Container style={{ marginTop: '7em' }}>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard
+          activities={activities}
+          selectedActivity={selectedActivity}
+          selectActivity={handleSelectActivity}
+          cancelSelectActivity={handleCancelSelectActivity}
+        />
       </Container>
     </>
   );

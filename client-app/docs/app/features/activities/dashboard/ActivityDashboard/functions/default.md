@@ -30,7 +30,8 @@ This component serves as the dashboard to display a list of activities.
 It uses the `Grid.Column` component from Semantic UI to structure the layout
 and the `List` component to contain the `ActivityList` component.
 The `ActivityDetails` component is conditionally rendered to display details
-of the first activity in the list.
+of the selected activity. Additionally, the `ActivityForm` component is rendered
+for creating or editing activities.
 
 ## Example
 
@@ -40,9 +41,18 @@ const activities = [
   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
 ];
 
-<ActivityDashboard activities={activities} />
+const selectedActivity = activities[0];
+const selectActivity = (id: string) => console.log(id);
+const cancelSelectActivity = () => console.log('Cancel selection');
+
+<ActivityDashboard
+  activities={activities}
+  selectedActivity={selectedActivity}
+  selectActivity={selectActivity}
+  cancelSelectActivity={cancelSelectActivity}
+/>
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:45](https://github.com/jimmykurian/Reactivities/blob/712c332819aee0d175bbdc912703a26a53d9ae5f/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L45)
+[app/features/activities/dashboard/ActivityDashboard.tsx:62](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L62)
