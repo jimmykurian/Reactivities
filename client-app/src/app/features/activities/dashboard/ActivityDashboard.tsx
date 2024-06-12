@@ -8,14 +8,21 @@ import { Activity } from '../../../models/activity';
 import ActivityList from './ActivityList';
 import ActivityDetails from '../details/ActivityDetails';
 import ActivityForm from '../form/ActivityForm';
+
 /**
  * Props interface for the ActivityDashboard component.
  *
  * @interface Props
  * @property {Activity[]} activities - Array of activities to be displayed.
+ * @property {Activity | undefined} selectedActivity - The currently selected activity.
+ * @property {(id: string) => void} selectActivity - Function to select an activity by ID.
+ * @property {() => void} cancelSelectActivity - Function to cancel the selection of an activity.
  */
 export interface Props {
   activities: Activity[];
+  selectedActivity: Activity | undefined;
+  selectActivity: (id: string) => void;
+  cancelSelectActivity: () => void;
 }
 
 /**
@@ -30,7 +37,8 @@ export interface Props {
  * It uses the `Grid.Column` component from Semantic UI to structure the layout
  * and the `List` component to contain the `ActivityList` component.
  * The `ActivityDetails` component is conditionally rendered to display details
- * of the first activity in the list.
+ * of the selected activity. Additionally, the `ActivityForm` component is rendered
+ * for creating or editing activities.
  *
  * @example
  * ```tsx
@@ -39,19 +47,41 @@ export interface Props {
  *   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
  * ];
  *
- * <ActivityDashboard activities={activities} />
+ * const selectedActivity = activities[0];
+ * const selectActivity = (id: string) => console.log(id);
+ * const cancelSelectActivity = () => console.log('Cancel selection');
+ *
+ * <ActivityDashboard
+ *   activities={activities}
+ *   selectedActivity={selectedActivity}
+ *   selectActivity={selectActivity}
+ *   cancelSelectActivity={cancelSelectActivity}
+ * />
  * ```
  */
-export default function ActivityDashboard({ activities }: Props): JSX.Element {
+export default function ActivityDashboard({
+  activities,
+  selectedActivity,
+  selectActivity,
+  cancelSelectActivity,
+}: Props): JSX.Element {
   return (
     <Grid>
       <Grid.Column width="10">
         <List>
-          <ActivityList activities={activities} />
+          <ActivityList
+            activities={activities}
+            selectActivity={selectActivity}
+          />
         </List>
       </Grid.Column>
       <Grid.Column width="6">
-        {activities[0] && <ActivityDetails activity={activities[0]} />}
+        {selectedActivity && (
+          <ActivityDetails
+            activity={selectedActivity}
+            cancelSelectActivity={cancelSelectActivity}
+          />
+        )}
         <ActivityForm />
       </Grid.Column>
     </Grid>

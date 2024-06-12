@@ -43,9 +43,19 @@ describe('ActivityDashboard', () => {
     },
   ];
 
+  const selectActivity = jest.fn();
+  const cancelSelectActivity = jest.fn();
+
   test('renders the ActivityDashboard component', () => {
     // Arrange
-    render(<ActivityDashboard activities={mockActivities} />);
+    render(
+      <ActivityDashboard
+        activities={mockActivities}
+        selectedActivity={undefined}
+        selectActivity={selectActivity}
+        cancelSelectActivity={cancelSelectActivity}
+      />,
+    );
 
     // Act & Assert
     mockActivities.forEach((activity) => {
@@ -60,7 +70,12 @@ describe('ActivityDashboard', () => {
   test('matches snapshot', () => {
     // Arrange
     const { asFragment } = render(
-      <ActivityDashboard activities={fixedMockActivities} />,
+      <ActivityDashboard
+        activities={fixedMockActivities}
+        selectedActivity={undefined}
+        selectActivity={selectActivity}
+        cancelSelectActivity={cancelSelectActivity}
+      />,
     );
 
     // Act & Assert

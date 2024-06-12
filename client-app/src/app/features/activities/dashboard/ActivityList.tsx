@@ -11,9 +11,11 @@ import { Activity } from '../../../models/activity';
  *
  * @interface Props
  * @property {Activity[]} activities - Array of activities to be displayed.
+ * @property {(id: string) => void} selectActivity - Function to select an activity by ID.
  */
 export interface Props {
   activities: Activity[];
+  selectActivity: (id: string) => void;
 }
 
 /**
@@ -26,6 +28,7 @@ export interface Props {
  * @remarks
  * This component maps over an array of activities and displays each one with its details using Semantic UI components.
  * Each activity includes a title, date, description, city, venue, and category, along with a "View" button.
+ * The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
  *
  * @example
  * ```tsx
@@ -34,10 +37,15 @@ export interface Props {
  *   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
  * ];
  *
- * <ActivityList activities={activities} />
+ * const selectActivity = (id: string) => console.log(id);
+ *
+ * <ActivityList activities={activities} selectActivity={selectActivity} />
  * ```
  */
-export default function ActivityList({ activities }: Props) {
+export default function ActivityList({
+  activities,
+  selectActivity,
+}: Props): JSX.Element {
   return (
     <Segment>
       <Item.Group divided>
@@ -53,7 +61,12 @@ export default function ActivityList({ activities }: Props) {
                 </div>
               </Item.Description>
               <Item.Extra>
-                <Button floated="right" content="View" color="blue" />
+                <Button
+                  onClick={() => selectActivity(activity.id)}
+                  floated="right"
+                  content="View"
+                  color="blue"
+                />
                 <Label basic content={activity.category} />
               </Item.Extra>
             </Item.Content>

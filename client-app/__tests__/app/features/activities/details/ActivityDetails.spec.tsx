@@ -26,10 +26,17 @@ describe('ActivityDetails', () => {
     venue: 'Static Venue',
   };
 
+  const cancelSelectActivity = jest.fn();
+
   test('renders the ActivityDetails component', () => {
     // Arrange
     const mockActivity = generateMockActivity();
-    render(<ActivityDetails activity={mockActivity} />);
+    render(
+      <ActivityDetails
+        activity={mockActivity}
+        cancelSelectActivity={cancelSelectActivity}
+      />,
+    );
 
     // Act & Assert
     expect(screen.getByText(mockActivity.title)).toBeInTheDocument();
@@ -42,7 +49,12 @@ describe('ActivityDetails', () => {
   test('displays the correct image for the activity category', () => {
     // Arrange
     const mockActivity = generateMockActivity();
-    render(<ActivityDetails activity={mockActivity} />);
+    render(
+      <ActivityDetails
+        activity={mockActivity}
+        cancelSelectActivity={cancelSelectActivity}
+      />,
+    );
 
     // Act & Assert
     const imgElement = screen.getByRole('img');
@@ -55,7 +67,10 @@ describe('ActivityDetails', () => {
   test('matches snapshot', () => {
     // Arrange
     const { asFragment } = render(
-      <ActivityDetails activity={staticMockActivity} />,
+      <ActivityDetails
+        activity={staticMockActivity}
+        cancelSelectActivity={cancelSelectActivity}
+      />,
     );
 
     // Act & Assert

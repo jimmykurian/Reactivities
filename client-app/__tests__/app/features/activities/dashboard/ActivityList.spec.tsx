@@ -43,9 +43,16 @@ describe('ActivityList', () => {
     },
   ];
 
+  const selectActivity = jest.fn();
+
   test('renders the ActivityList component', () => {
     // Arrange
-    render(<ActivityList activities={mockActivities} />);
+    render(
+      <ActivityList
+        activities={mockActivities}
+        selectActivity={selectActivity}
+      />,
+    );
 
     // Act & Assert
     mockActivities.forEach((activity) => {
@@ -57,7 +64,10 @@ describe('ActivityList', () => {
   test('matches snapshot', () => {
     // Arrange
     const { asFragment } = render(
-      <ActivityList activities={fixedMockActivities} />,
+      <ActivityList
+        activities={fixedMockActivities}
+        selectActivity={selectActivity}
+      />,
     );
 
     // Act & Assert
