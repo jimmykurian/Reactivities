@@ -12,4 +12,4 @@ A named export to include this file in TypeDoc documentation.
 
 ## Source
 
-[main.tsx:47](https://github.com/jimmykurian/Reactivities/blob/712c332819aee0d175bbdc912703a26a53d9ae5f/client-app/src/main.tsx#L47)
+[main.tsx:47](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/main.tsx#L47)

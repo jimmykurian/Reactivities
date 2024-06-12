@@ -20,4 +20,24 @@ Array of activities to be displayed.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:16](https://github.com/jimmykurian/Reactivities/blob/712c332819aee0d175bbdc912703a26a53d9ae5f/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L16)
+[app/features/activities/dashboard/ActivityList.tsx:17](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L17)
+
+***
+
+### selectActivity()
+
+> **selectActivity**: (`id`) => `void`
+
+Function to select an activity by ID.
+
+#### Parameters
+
+• **id**: `string`
+
+#### Returns
+
+`void`
+
+#### Source
+
+[app/features/activities/dashboard/ActivityList.tsx:18](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L18)
