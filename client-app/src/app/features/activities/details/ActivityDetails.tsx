@@ -12,6 +12,7 @@ import { Activity } from '../../../models/activity';
  * @interface Props
  * @property {Activity} activity - The activity object containing details of the activity.
  * @property {() => void} cancelSelectActivity - Function to cancel the selection of the activity.
+ * @property {() => void} openForm - Function to open the form for editing the activity.
  */
 export interface Props {
   /**
@@ -19,18 +20,21 @@ export interface Props {
    */
   activity: Activity;
   cancelSelectActivity: () => void;
+  openForm: (id: string) => void;
 }
 
 /**
  * A functional component that displays the details of an activity.
  *
+ * @component
  * @param {Props} props - The props object containing the activity.
  * @returns {JSX.Element} The JSX element representing the activity details.
  *
  * @remarks
  * This component uses the Semantic UI React library to create a card layout for displaying activity details.
- * It includes an image, title, date, description, and buttons for editing or cancelling the activity.
+ * It includes an image, title, date, description, and buttons for editing or canceling the activity.
  * The `cancelSelectActivity` function is called when the "Cancel" button is clicked.
+ * The `openForm` function is called with the activity ID when the "Edit" button is clicked.
  *
  * @example
  * Here is an example of how to use the ActivityDetails component:
@@ -45,12 +49,17 @@ export interface Props {
  *   venue: 'Central Park'
  * };
  *
- * <ActivityDetails activity={activity} cancelSelectActivity={() => console.log('Cancel clicked')} />
+ * <ActivityDetails
+ *   activity={activity}
+ *   cancelSelectActivity={() => console.log('Cancel clicked')}
+ *   openForm={(id) => console.log(`Edit clicked for activity with id ${id}`)}
+ * />
  * ```
  */
 export default function ActivityDetails({
   activity,
   cancelSelectActivity,
+  openForm,
 }: Props): JSX.Element {
   return (
     <Card fluid>
@@ -62,7 +71,12 @@ export default function ActivityDetails({
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths="2">
-          <Button basic color="blue" content="Edit" />
+          <Button
+            onClick={() => openForm(activity.id)}
+            basic
+            color="blue"
+            content="Edit"
+          />
           <Button
             onClick={cancelSelectActivity}
             basic

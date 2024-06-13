@@ -45,6 +45,8 @@ describe('ActivityDashboard', () => {
 
   const selectActivity = jest.fn();
   const cancelSelectActivity = jest.fn();
+  const openForm = jest.fn();
+  const closeForm = jest.fn();
 
   test('renders the ActivityDashboard component', () => {
     // Arrange
@@ -54,6 +56,8 @@ describe('ActivityDashboard', () => {
         selectedActivity={undefined}
         selectActivity={selectActivity}
         cancelSelectActivity={cancelSelectActivity}
+        openForm={openForm}
+        closeForm={closeForm}
       />,
     );
 
@@ -75,6 +79,8 @@ describe('ActivityDashboard', () => {
         selectedActivity={undefined}
         selectActivity={selectActivity}
         cancelSelectActivity={cancelSelectActivity}
+        openForm={openForm}
+        closeForm={closeForm}
       />,
     );
 

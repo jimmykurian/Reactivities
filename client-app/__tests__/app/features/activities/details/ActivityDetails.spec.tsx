@@ -27,6 +27,7 @@ describe('ActivityDetails', () => {
   };
 
   const cancelSelectActivity = jest.fn();
+  const openForm = jest.fn();
 
   test('renders the ActivityDetails component', () => {
     // Arrange
@@ -35,6 +36,7 @@ describe('ActivityDetails', () => {
       <ActivityDetails
         activity={mockActivity}
         cancelSelectActivity={cancelSelectActivity}
+        openForm={openForm}
       />,
     );
 
@@ -53,6 +55,7 @@ describe('ActivityDetails', () => {
       <ActivityDetails
         activity={mockActivity}
         cancelSelectActivity={cancelSelectActivity}
+        openForm={openForm}
       />,
     );
 
@@ -70,6 +73,7 @@ describe('ActivityDetails', () => {
       <ActivityDetails
         activity={staticMockActivity}
         cancelSelectActivity={cancelSelectActivity}
+        openForm={openForm}
       />,
     );
 
