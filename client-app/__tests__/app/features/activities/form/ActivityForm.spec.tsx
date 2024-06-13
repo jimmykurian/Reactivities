@@ -1,10 +1,26 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import ActivityForm from '../../../../../src/app/features/activities/form/ActivityForm';
+import { Activity } from '../../../../../src/app/models/activity';
+
+// Static mock activity for consistent tests
+const staticMockActivity: Activity = {
+  id: '1',
+  title: 'Static Title',
+  date: '2024-06-12T00:00:00.000Z',
+  description: 'This is a static description for testing.',
+  category: 'static-category',
+  city: 'Static City',
+  venue: 'Static Venue',
+};
 
 describe('ActivityForm', () => {
+  const closeForm = jest.fn();
+
   test('renders the ActivityForm component', () => {
     // Arrange
-    render(<ActivityForm />);
+    render(
+      <ActivityForm activity={staticMockActivity} closeForm={closeForm} />,
+    );
 
     // Act & Assert
     expect(screen.getByPlaceholderText('Title')).toBeInTheDocument();
@@ -20,7 +36,9 @@ describe('ActivityForm', () => {
   test('calls submit handler when form is submitted', () => {
     // Arrange
     const handleSubmit = jest.fn();
-    render(<ActivityForm />);
+    render(
+      <ActivityForm activity={staticMockActivity} closeForm={closeForm} />,
+    );
 
     // Act
     fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
@@ -31,7 +49,9 @@ describe('ActivityForm', () => {
 
   test('matches snapshot', () => {
     // Arrange
-    const { asFragment } = render(<ActivityForm />);
+    const { asFragment } = render(
+      <ActivityForm activity={staticMockActivity} closeForm={closeForm} />,
+    );
 
     // Act & Assert
     expect(asFragment()).toMatchSnapshot();

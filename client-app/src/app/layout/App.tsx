@@ -19,9 +19,9 @@ import ActivityDashboard from '../features/activities/dashboard/ActivityDashboar
  *
  * @remarks
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
- * The `useState` hook is used to manage the activities state as well as the selected activity state.
+ * The `useState` hook is used to manage the activities state, the selected activity state, and the edit mode state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
- * The `handleSelectActivity` and `handleCancelSelectActivity` functions are used to manage the selected activity state.
+ * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, and `handleFormClose` functions are used to manage the selected activity and edit mode states.
  *
  * @example
  * ```tsx
@@ -41,6 +41,7 @@ function App(): JSX.Element {
   const [selectedActivity, setSelectedActivity] = useState<
     Activity | undefined
   >(undefined);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     axios
@@ -66,15 +67,35 @@ function App(): JSX.Element {
     setSelectedActivity(undefined);
   }
 
+  /**
+   * Opens the form for creating or editing an activity.
+   *
+   * @param {string} [id] - The ID of the activity to edit, or undefined to create a new activity.
+   */
+  function handleFormOpen(id?: string) {
+    id ? handleSelectActivity(id) : handleCancelSelectActivity();
+    setEditMode(true);
+  }
+
+  /**
+   * Closes the form for creating or editing an activity.
+   */
+  function handleFormClose() {
+    setEditMode(false);
+  }
+
   return (
     <>
-      <NavBar />
+      <NavBar openForm={handleFormOpen} />
       <Container style={{ marginTop: '7em' }}>
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
           selectActivity={handleSelectActivity}
           cancelSelectActivity={handleCancelSelectActivity}
+          editMode={editMode}
+          openForm={handleFormOpen}
+          closeForm={handleFormClose}
         />
       </Container>
     </>

@@ -17,12 +17,18 @@ import ActivityForm from '../form/ActivityForm';
  * @property {Activity | undefined} selectedActivity - The currently selected activity.
  * @property {(id: string) => void} selectActivity - Function to select an activity by ID.
  * @property {() => void} cancelSelectActivity - Function to cancel the selection of an activity.
+ * @property {boolean | undefined} editMode - Boolean indicating if the form is in edit mode.
+ * @property {(id: string) => void} openForm - Function to open the form for editing or creating an activity.
+ * @property {() => void} closeForm - Function to close the form.
  */
 export interface Props {
   activities: Activity[];
   selectedActivity: Activity | undefined;
   selectActivity: (id: string) => void;
   cancelSelectActivity: () => void;
+  editMode?: boolean;
+  openForm: (id?: string) => void;
+  closeForm: () => void;
 }
 
 /**
@@ -50,12 +56,16 @@ export interface Props {
  * const selectedActivity = activities[0];
  * const selectActivity = (id: string) => console.log(id);
  * const cancelSelectActivity = () => console.log('Cancel selection');
+ * const openForm = (id?: string) => console.log(`Open form for activity with id ${id}`);
+ * const closeForm = () => console.log('Close form');
  *
  * <ActivityDashboard
  *   activities={activities}
  *   selectedActivity={selectedActivity}
  *   selectActivity={selectActivity}
  *   cancelSelectActivity={cancelSelectActivity}
+ *   openForm={openForm}
+ *   closeForm={closeForm}
  * />
  * ```
  */
@@ -64,6 +74,9 @@ export default function ActivityDashboard({
   selectedActivity,
   selectActivity,
   cancelSelectActivity,
+  editMode,
+  openForm,
+  closeForm,
 }: Props): JSX.Element {
   return (
     <Grid>
@@ -76,13 +89,16 @@ export default function ActivityDashboard({
         </List>
       </Grid.Column>
       <Grid.Column width="6">
-        {selectedActivity && (
+        {selectedActivity && !editMode && (
           <ActivityDetails
             activity={selectedActivity}
             cancelSelectActivity={cancelSelectActivity}
+            openForm={openForm}
           />
         )}
-        <ActivityForm />
+        {editMode && (
+          <ActivityForm closeForm={closeForm} activity={selectedActivity} />
+        )}
       </Grid.Column>
     </Grid>
   );

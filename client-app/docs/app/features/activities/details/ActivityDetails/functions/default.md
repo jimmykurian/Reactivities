@@ -22,11 +22,14 @@ The props object containing the activity.
 
 The JSX element representing the activity details.
 
+## Component
+
 ## Remarks
 
 This component uses the Semantic UI React library to create a card layout for displaying activity details.
-It includes an image, title, date, description, and buttons for editing or cancelling the activity.
+It includes an image, title, date, description, and buttons for editing or canceling the activity.
 The `cancelSelectActivity` function is called when the "Cancel" button is clicked.
+The `openForm` function is called with the activity ID when the "Edit" button is clicked.
 
 ## Example
 
@@ -42,9 +45,13 @@ const activity = {
   venue: 'Central Park'
 };
 
-<ActivityDetails activity={activity} cancelSelectActivity={() => console.log('Cancel clicked')} />
+<ActivityDetails
+  activity={activity}
+  cancelSelectActivity={() => console.log('Cancel clicked')}
+  openForm={(id) => console.log(`Edit clicked for activity with id ${id}`)}
+/>
 ```
 
 ## Source
 
-[app/features/activities/details/ActivityDetails.tsx:51](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/details/ActivityDetails.tsx#L51)
+[app/features/activities/details/ActivityDetails.tsx:59](https://github.com/jimmykurian/Reactivities/blob/d382f1c721a2ea58fd894b7b4be5c6512186a40a/client-app/src/app/features/activities/details/ActivityDetails.tsx#L59)

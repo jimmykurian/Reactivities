@@ -1,11 +1,13 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import NavBar from '../../../src/app/layout/NavBar';
 
 describe('NavBar', () => {
+  const openForm = jest.fn();
+
   test('renders the logo image', () => {
     // Arrange
-    render(<NavBar />);
+    render(<NavBar openForm={openForm} />);
 
     // Act
     const logoImage = screen.getByAltText('logo');
@@ -17,7 +19,7 @@ describe('NavBar', () => {
 
   test('renders the header title', () => {
     // Arrange
-    render(<NavBar />);
+    render(<NavBar openForm={openForm} />);
 
     // Act
     const headerTitle = screen.getByText(/Reactivities/i);
@@ -28,7 +30,7 @@ describe('NavBar', () => {
 
   test('renders the Activities menu item', () => {
     // Arrange
-    render(<NavBar />);
+    render(<NavBar openForm={openForm} />);
 
     // Act
     const activitiesMenuItem = screen.getByRole('menuitem', {
@@ -41,7 +43,7 @@ describe('NavBar', () => {
 
   test('renders the Create Activity button', () => {
     // Arrange
-    render(<NavBar />);
+    render(<NavBar openForm={openForm} />);
 
     // Act
     const createActivityButton = screen.getByRole('button', {
@@ -53,9 +55,23 @@ describe('NavBar', () => {
     expect(createActivityButton).toHaveClass('positive');
   });
 
+  test('calls openForm when the Create Activity button is clicked', () => {
+    // Arrange
+    render(<NavBar openForm={openForm} />);
+
+    // Act
+    const createActivityButton = screen.getByRole('button', {
+      name: /Create Activity/i,
+    });
+    fireEvent.click(createActivityButton);
+
+    // Assert
+    expect(openForm).toHaveBeenCalled();
+  });
+
   test('matches snapshot', () => {
     // Arrange
-    const { asFragment } = render(<NavBar />);
+    const { asFragment } = render(<NavBar openForm={openForm} />);
 
     // Act & Assert
     expect(asFragment()).toMatchSnapshot();
