@@ -44,15 +44,19 @@ const activities = [
 const selectedActivity = activities[0];
 const selectActivity = (id: string) => console.log(id);
 const cancelSelectActivity = () => console.log('Cancel selection');
+const openForm = (id?: string) => console.log(`Open form for activity with id ${id}`);
+const closeForm = () => console.log('Close form');
 
 <ActivityDashboard
   activities={activities}
   selectedActivity={selectedActivity}
   selectActivity={selectActivity}
   cancelSelectActivity={cancelSelectActivity}
+  openForm={openForm}
+  closeForm={closeForm}
 />
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:62](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L62)
+[app/features/activities/dashboard/ActivityDashboard.tsx:72](https://github.com/jimmykurian/Reactivities/blob/d382f1c721a2ea58fd894b7b4be5c6512186a40a/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L72)

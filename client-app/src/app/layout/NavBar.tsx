@@ -5,6 +5,12 @@
 
 import { Button, Container, Menu } from 'semantic-ui-react';
 
+/**
+ * Props interface for the NavBar component.
+ *
+ * @interface Props
+ * @property {() => void} openForm - Function to open the form for creating a new activity.
+ */
 interface Props {
   /**
    * Function to open the form for creating a new activity.

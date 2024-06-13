@@ -47,7 +47,7 @@ interface Props {
  * ```
  */
 
-// TODO: Will implement the activiy variable in ActivityForm component in the next task.
+//TODO: Will implement activity variable once the form is fully implemented
 export default function ActivityForm({ closeForm }: Props): JSX.Element {
   return (
     <Segment clearing>

@@ -22,9 +22,9 @@ The rendered App component.
 ## Remarks
 
 The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
-The `useState` hook is used to manage the activities state as well as the selected activity state.
+The `useState` hook is used to manage the activities state, the selected activity state, and the edit mode state.
 The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
-The `handleSelectActivity` and `handleCancelSelectActivity` functions are used to manage the selected activity state.
+The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, and `handleFormClose` functions are used to manage the selected activity and edit mode states.
 
 ## Example
 
@@ -42,4 +42,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Source
 
-[app/layout/App.tsx:39](https://github.com/jimmykurian/Reactivities/blob/a434653d2775e48b1e9101040f63634644bb62b7/client-app/src/app/layout/App.tsx#L39)
+[app/layout/App.tsx:39](https://github.com/jimmykurian/Reactivities/blob/d382f1c721a2ea58fd894b7b4be5c6512186a40a/client-app/src/app/layout/App.tsx#L39)
