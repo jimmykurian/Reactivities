@@ -11,7 +11,7 @@ import { Button, Container, Menu } from 'semantic-ui-react';
  * @interface Props
  * @property {() => void} openForm - Function to open the form for creating a new activity.
  */
-interface Props {
+export interface Props {
   /**
    * Function to open the form for creating a new activity.
    */
