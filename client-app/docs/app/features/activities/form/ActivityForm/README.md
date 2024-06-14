@@ -8,6 +8,10 @@
 
 ## Index
 
+### Interfaces
+
+- [Props](interfaces/Props.md)
+
 ### Functions
 
 - [default](functions/default.md)

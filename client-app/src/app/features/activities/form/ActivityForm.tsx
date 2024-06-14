@@ -14,7 +14,7 @@ import { useState } from 'react';
  * @property {Activity | undefined} activity - The activity object containing details of the activity to be edited, or undefined for a new activity.
  * @property {() => void} closeForm - Function to close the form.
  */
-interface Props {
+export interface Props {
   activity: Activity | undefined;
   closeForm: () => void;
 }

@@ -20,7 +20,7 @@ The activity object containing details of the activity.
 
 #### Source
 
-[app/features/activities/details/ActivityDetails.tsx:21](https://github.com/jimmykurian/Reactivities/blob/d382f1c721a2ea58fd894b7b4be5c6512186a40a/client-app/src/app/features/activities/details/ActivityDetails.tsx#L21)
+[app/features/activities/details/ActivityDetails.tsx:21](https://github.com/jimmykurian/Reactivities/blob/121f957c5dd0f42591c8ed9ce52818607ca097fb/client-app/src/app/features/activities/details/ActivityDetails.tsx#L21)
 
 ***
 
@@ -36,7 +36,7 @@ Function to cancel the selection of the activity.
 
 #### Source
 
-[app/features/activities/details/ActivityDetails.tsx:22](https://github.com/jimmykurian/Reactivities/blob/d382f1c721a2ea58fd894b7b4be5c6512186a40a/client-app/src/app/features/activities/details/ActivityDetails.tsx#L22)
+[app/features/activities/details/ActivityDetails.tsx:22](https://github.com/jimmykurian/Reactivities/blob/121f957c5dd0f42591c8ed9ce52818607ca097fb/client-app/src/app/features/activities/details/ActivityDetails.tsx#L22)
 
 ***
 
@@ -56,4 +56,4 @@ Function to open the form for editing the activity.
 
 #### Source
 
-[app/features/activities/details/ActivityDetails.tsx:23](https://github.com/jimmykurian/Reactivities/blob/d382f1c721a2ea58fd894b7b4be5c6512186a40a/client-app/src/app/features/activities/details/ActivityDetails.tsx#L23)
+[app/features/activities/details/ActivityDetails.tsx:23](https://github.com/jimmykurian/Reactivities/blob/121f957c5dd0f42591c8ed9ce52818607ca097fb/client-app/src/app/features/activities/details/ActivityDetails.tsx#L23)
