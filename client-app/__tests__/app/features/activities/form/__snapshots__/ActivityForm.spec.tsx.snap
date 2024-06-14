@@ -6,6 +6,7 @@ exports[`ActivityForm matches snapshot 1`] = `
     class="ui clearing segment"
   >
     <form
+      autocomplete="off"
       class="ui form"
     >
       <div
@@ -15,8 +16,10 @@ exports[`ActivityForm matches snapshot 1`] = `
           class="ui input"
         >
           <input
+            name="title"
             placeholder="Title"
             type="text"
+            value="Static Title"
           />
         </div>
       </div>
@@ -24,9 +27,12 @@ exports[`ActivityForm matches snapshot 1`] = `
         class="field"
       >
         <textarea
+          name="description"
           placeholder="Description"
           rows="3"
-        />
+        >
+          This is a static description for testing.
+        </textarea>
       </div>
       <div
         class="field"
@@ -35,8 +41,10 @@ exports[`ActivityForm matches snapshot 1`] = `
           class="ui input"
         >
           <input
+            name="category"
             placeholder="Category"
             type="text"
+            value="static-category"
           />
         </div>
       </div>
@@ -47,8 +55,10 @@ exports[`ActivityForm matches snapshot 1`] = `
           class="ui input"
         >
           <input
+            name="date"
             placeholder="Date"
             type="text"
+            value="2024-06-12T00:00:00.000Z"
           />
         </div>
       </div>
@@ -59,8 +69,10 @@ exports[`ActivityForm matches snapshot 1`] = `
           class="ui input"
         >
           <input
+            name="city"
             placeholder="City"
             type="text"
+            value="Static City"
           />
         </div>
       </div>
@@ -71,8 +83,10 @@ exports[`ActivityForm matches snapshot 1`] = `
           class="ui input"
         >
           <input
+            name="venue"
             placeholder="Venue"
             type="text"
+            value="Static Venue"
           />
         </div>
       </div>
