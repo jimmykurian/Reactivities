@@ -20,7 +20,7 @@ The activity object containing details of the activity to be edited, or undefine
 
 #### Source
 
-[app/features/activities/form/ActivityForm.tsx:18](https://github.com/jimmykurian/Reactivities/blob/121f957c5dd0f42591c8ed9ce52818607ca097fb/client-app/src/app/features/activities/form/ActivityForm.tsx#L18)
+[app/features/activities/form/ActivityForm.tsx:19](https://github.com/jimmykurian/Reactivities/blob/2eec73b290ba27687cc01099a29cb3dbf8f367be/client-app/src/app/features/activities/form/ActivityForm.tsx#L19)
 
 ***
 
@@ -36,4 +36,24 @@ Function to close the form.
 
 #### Source
 
-[app/features/activities/form/ActivityForm.tsx:19](https://github.com/jimmykurian/Reactivities/blob/121f957c5dd0f42591c8ed9ce52818607ca097fb/client-app/src/app/features/activities/form/ActivityForm.tsx#L19)
+[app/features/activities/form/ActivityForm.tsx:20](https://github.com/jimmykurian/Reactivities/blob/2eec73b290ba27687cc01099a29cb3dbf8f367be/client-app/src/app/features/activities/form/ActivityForm.tsx#L20)
+
+***
+
+### createOrEdit()
+
+> **createOrEdit**: (`activity`) => `void`
+
+Function to create or edit an activity.
+
+#### Parameters
+
+• **activity**: [`Activity`](../../../../../models/activity/interfaces/Activity.md)
+
+#### Returns
+
+`void`
+
+#### Source
+
+[app/features/activities/form/ActivityForm.tsx:21](https://github.com/jimmykurian/Reactivities/blob/2eec73b290ba27687cc01099a29cb3dbf8f367be/client-app/src/app/features/activities/form/ActivityForm.tsx#L21)
