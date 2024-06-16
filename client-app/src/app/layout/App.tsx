@@ -22,7 +22,7 @@ import { v4 as uuid } from 'uuid';
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
  * The `useState` hook is used to manage the activities state, the selected activity state, and the edit mode state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
- * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, and `handleFormClose` functions are used to manage the selected activity and edit mode states.
+ * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, and `handleCreateOrEditActivity` functions are used to manage the selected activity and edit mode states, as well as creating or editing activities.
  *
  * @example
  * ```tsx
