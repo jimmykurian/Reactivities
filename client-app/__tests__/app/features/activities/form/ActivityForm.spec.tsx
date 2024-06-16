@@ -15,11 +15,16 @@ const staticMockActivity: Activity = {
 
 describe('ActivityForm', () => {
   const closeForm = jest.fn();
+  const createOrEdit = jest.fn();
 
   test('renders the ActivityForm component', () => {
     // Arrange
     render(
-      <ActivityForm activity={staticMockActivity} closeForm={closeForm} />,
+      <ActivityForm
+        activity={staticMockActivity}
+        closeForm={closeForm}
+        createOrEdit={createOrEdit}
+      />,
     );
 
     // Act & Assert
@@ -35,22 +40,29 @@ describe('ActivityForm', () => {
 
   test('calls submit handler when form is submitted', () => {
     // Arrange
-    const handleSubmit = jest.fn();
     render(
-      <ActivityForm activity={staticMockActivity} closeForm={closeForm} />,
+      <ActivityForm
+        activity={staticMockActivity}
+        closeForm={closeForm}
+        createOrEdit={createOrEdit}
+      />,
     );
 
     // Act
     fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
 
-    // Assert // TODO: Update after Submit button has been fully implemented
-    expect(handleSubmit).toHaveBeenCalledTimes(0);
+    // Assert
+    expect(createOrEdit).toHaveBeenCalledTimes(1);
   });
 
   test('matches snapshot', () => {
     // Arrange
     const { asFragment } = render(
-      <ActivityForm activity={staticMockActivity} closeForm={closeForm} />,
+      <ActivityForm
+        activity={staticMockActivity}
+        closeForm={closeForm}
+        createOrEdit={createOrEdit}
+      />,
     );
 
     // Act & Assert

@@ -14,7 +14,7 @@ A functional component that renders a form for activity details.
 
 • **props**: [`Props`](../interfaces/Props.md)
 
-The props object containing the selected activity and the closeForm function.
+The props object containing the selected activity, the closeForm function, and the createOrEdit function.
 
 ## Returns
 
@@ -30,6 +30,7 @@ This component uses the Semantic UI React library to create a form layout
 for collecting activity details such as title, description, category, date, city, and venue.
 It includes input fields and buttons for submitting or canceling the form.
 The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
+The `handleSubmit` function is used to create or edit the activity when the form is submitted.
 
 ## Example
 
@@ -45,9 +46,9 @@ const activity = {
   venue: 'Central Park'
 };
 
-<ActivityForm activity={activity} closeForm={() => console.log('Form closed')} />
+<ActivityForm activity={activity} closeForm={() => console.log('Form closed')} createOrEdit={(activity) => console.log(activity)} />
 ```
 
 ## Source
 
-[app/features/activities/form/ActivityForm.tsx:51](https://github.com/jimmykurian/Reactivities/blob/121f957c5dd0f42591c8ed9ce52818607ca097fb/client-app/src/app/features/activities/form/ActivityForm.tsx#L51)
+[app/features/activities/form/ActivityForm.tsx:54](https://github.com/jimmykurian/Reactivities/blob/2eec73b290ba27687cc01099a29cb3dbf8f367be/client-app/src/app/features/activities/form/ActivityForm.tsx#L54)

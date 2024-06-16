@@ -84,6 +84,24 @@ function App(): JSX.Element {
     setEditMode(false);
   }
 
+  /**
+   * Handles creating or editing an activity.
+   *
+   * @param {Activity} activity - The activity object to create or edit.
+   */
+  function handleCreateOrEditActivity(activity: Activity) {
+    if (activity.id) {
+      setActivities([
+        ...activities.filter((a) => a.id !== activity.id),
+        activity,
+      ]);
+    } else {
+      setActivities([...activities, activity]);
+    }
+    setEditMode(false);
+    setSelectedActivity(activity);
+  }
+
   return (
     <>
       <NavBar openForm={handleFormOpen} />
@@ -96,6 +114,7 @@ function App(): JSX.Element {
           editMode={editMode}
           openForm={handleFormOpen}
           closeForm={handleFormClose}
+          createOrEdit={handleCreateOrEditActivity}
         />
       </Container>
     </>
