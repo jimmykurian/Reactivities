@@ -48,6 +48,7 @@ describe('ActivityDashboard', () => {
   const openForm = jest.fn();
   const closeForm = jest.fn();
   const createOrEdit = jest.fn();
+  const deleteActivity = jest.fn();
 
   test('renders the ActivityDashboard component', () => {
     // Arrange
@@ -60,6 +61,7 @@ describe('ActivityDashboard', () => {
         openForm={openForm}
         closeForm={closeForm}
         createOrEdit={createOrEdit}
+        deleteActivity={deleteActivity}
       />,
     );
 
@@ -84,6 +86,7 @@ describe('ActivityDashboard', () => {
         openForm={openForm}
         closeForm={closeForm}
         createOrEdit={createOrEdit}
+        deleteActivity={deleteActivity}
       />,
     );
 

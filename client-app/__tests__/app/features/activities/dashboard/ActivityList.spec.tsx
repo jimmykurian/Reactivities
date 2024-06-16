@@ -44,6 +44,7 @@ describe('ActivityList', () => {
   ];
 
   const selectActivity = jest.fn();
+  const deleteActivity = jest.fn();
 
   test('renders the ActivityList component', () => {
     // Arrange
@@ -51,6 +52,7 @@ describe('ActivityList', () => {
       <ActivityList
         activities={mockActivities}
         selectActivity={selectActivity}
+        deleteActivity={deleteActivity}
       />,
     );
 
@@ -67,6 +69,7 @@ describe('ActivityList', () => {
       <ActivityList
         activities={fixedMockActivities}
         selectActivity={selectActivity}
+        deleteActivity={deleteActivity}
       />,
     );
 
