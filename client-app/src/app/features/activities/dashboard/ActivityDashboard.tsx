@@ -18,8 +18,9 @@ import ActivityForm from '../form/ActivityForm';
  * @property {(id: string) => void} selectActivity - Function to select an activity by ID.
  * @property {() => void} cancelSelectActivity - Function to cancel the selection of an activity.
  * @property {boolean | undefined} editMode - Boolean indicating if the form is in edit mode.
- * @property {(id: string) => void} openForm - Function to open the form for editing or creating an activity.
+ * @property {(id?: string) => void} openForm - Function to open the form for editing or creating an activity.
  * @property {() => void} closeForm - Function to close the form.
+ * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
  */
 export interface Props {
   activities: Activity[];
@@ -29,6 +30,7 @@ export interface Props {
   editMode?: boolean;
   openForm: (id?: string) => void;
   closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
 }
 
 /**
@@ -58,6 +60,7 @@ export interface Props {
  * const cancelSelectActivity = () => console.log('Cancel selection');
  * const openForm = (id?: string) => console.log(`Open form for activity with id ${id}`);
  * const closeForm = () => console.log('Close form');
+ * const createOrEdit = (activity: Activity) => console.log(`Create or edit activity with id ${activity.id}`);
  *
  * <ActivityDashboard
  *   activities={activities}
@@ -66,6 +69,7 @@ export interface Props {
  *   cancelSelectActivity={cancelSelectActivity}
  *   openForm={openForm}
  *   closeForm={closeForm}
+ *   createOrEdit={createOrEdit}
  * />
  * ```
  */
@@ -77,6 +81,7 @@ export default function ActivityDashboard({
   editMode,
   openForm,
   closeForm,
+  createOrEdit,
 }: Props): JSX.Element {
   return (
     <Grid>
@@ -97,7 +102,11 @@ export default function ActivityDashboard({
           />
         )}
         {editMode && (
-          <ActivityForm closeForm={closeForm} activity={selectedActivity} />
+          <ActivityForm
+            closeForm={closeForm}
+            activity={selectedActivity}
+            createOrEdit={createOrEdit}
+          />
         )}
       </Grid.Column>
     </Grid>
