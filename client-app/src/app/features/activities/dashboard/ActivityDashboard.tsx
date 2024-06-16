@@ -21,6 +21,7 @@ import ActivityForm from '../form/ActivityForm';
  * @property {(id?: string) => void} openForm - Function to open the form for editing or creating an activity.
  * @property {() => void} closeForm - Function to close the form.
  * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
+ * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
  */
 export interface Props {
   activities: Activity[];
@@ -31,6 +32,7 @@ export interface Props {
   openForm: (id?: string) => void;
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
+  deleteActivity: (id: string) => void;
 }
 
 /**
@@ -61,6 +63,7 @@ export interface Props {
  * const openForm = (id?: string) => console.log(`Open form for activity with id ${id}`);
  * const closeForm = () => console.log('Close form');
  * const createOrEdit = (activity: Activity) => console.log(`Create or edit activity with id ${activity.id}`);
+ * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
  *
  * <ActivityDashboard
  *   activities={activities}
@@ -70,6 +73,7 @@ export interface Props {
  *   openForm={openForm}
  *   closeForm={closeForm}
  *   createOrEdit={createOrEdit}
+ *   deleteActivity={deleteActivity}
  * />
  * ```
  */
@@ -82,6 +86,7 @@ export default function ActivityDashboard({
   openForm,
   closeForm,
   createOrEdit,
+  deleteActivity,
 }: Props): JSX.Element {
   return (
     <Grid>
@@ -90,6 +95,7 @@ export default function ActivityDashboard({
           <ActivityList
             activities={activities}
             selectActivity={selectActivity}
+            deleteActivity={deleteActivity}
           />
         </List>
       </Grid.Column>

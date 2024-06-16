@@ -27,8 +27,9 @@ The rendered ActivityList component.
 ## Remarks
 
 This component maps over an array of activities and displays each one with its details using Semantic UI components.
-Each activity includes a title, date, description, city, venue, and category, along with a "View" button.
+Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
 The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
+The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
 
 ## Example
 
@@ -39,10 +40,11 @@ const activities = [
 ];
 
 const selectActivity = (id: string) => console.log(id);
+const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
-<ActivityList activities={activities} selectActivity={selectActivity} />
+<ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} />
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityList.tsx:45](https://github.com/jimmykurian/Reactivities/blob/3efbe3bfb6716c3d5c2e8564b3c6191927ca620b/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L45)
+[app/features/activities/dashboard/ActivityList.tsx:49](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L49)

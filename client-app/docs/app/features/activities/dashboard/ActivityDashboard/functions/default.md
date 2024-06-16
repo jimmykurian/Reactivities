@@ -47,6 +47,7 @@ const cancelSelectActivity = () => console.log('Cancel selection');
 const openForm = (id?: string) => console.log(`Open form for activity with id ${id}`);
 const closeForm = () => console.log('Close form');
 const createOrEdit = (activity: Activity) => console.log(`Create or edit activity with id ${activity.id}`);
+const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
 <ActivityDashboard
   activities={activities}
@@ -56,9 +57,10 @@ const createOrEdit = (activity: Activity) => console.log(`Create or edit activit
   openForm={openForm}
   closeForm={closeForm}
   createOrEdit={createOrEdit}
+  deleteActivity={deleteActivity}
 />
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:76](https://github.com/jimmykurian/Reactivities/blob/3efbe3bfb6716c3d5c2e8564b3c6191927ca620b/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L76)
+[app/features/activities/dashboard/ActivityDashboard.tsx:80](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L80)

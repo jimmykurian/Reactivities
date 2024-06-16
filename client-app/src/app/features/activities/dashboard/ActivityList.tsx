@@ -12,10 +12,12 @@ import { Activity } from '../../../models/activity';
  * @interface Props
  * @property {Activity[]} activities - Array of activities to be displayed.
  * @property {(id: string) => void} selectActivity - Function to select an activity by ID.
+ * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
  */
 export interface Props {
   activities: Activity[];
   selectActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 }
 
 /**
@@ -27,8 +29,9 @@ export interface Props {
  *
  * @remarks
  * This component maps over an array of activities and displays each one with its details using Semantic UI components.
- * Each activity includes a title, date, description, city, venue, and category, along with a "View" button.
+ * Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
  * The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
+ * The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
  *
  * @example
  * ```tsx
@@ -38,13 +41,15 @@ export interface Props {
  * ];
  *
  * const selectActivity = (id: string) => console.log(id);
+ * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
  *
- * <ActivityList activities={activities} selectActivity={selectActivity} />
+ * <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} />
  * ```
  */
 export default function ActivityList({
   activities,
   selectActivity,
+  deleteActivity,
 }: Props): JSX.Element {
   return (
     <Segment>
@@ -66,6 +71,12 @@ export default function ActivityList({
                   floated="right"
                   content="View"
                   color="blue"
+                />
+                <Button
+                  onClick={() => deleteActivity(activity.id)}
+                  floated="right"
+                  content="Delete"
+                  color="red"
                 />
                 <Label basic content={activity.category} />
               </Item.Extra>
