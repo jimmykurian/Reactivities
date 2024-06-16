@@ -61,4 +61,4 @@ const createOrEdit = (activity: Activity) => console.log(`Create or edit activit
 
 ## Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:76](https://github.com/jimmykurian/Reactivities/blob/2eec73b290ba27687cc01099a29cb3dbf8f367be/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L76)
+[app/features/activities/dashboard/ActivityDashboard.tsx:76](https://github.com/jimmykurian/Reactivities/blob/3efbe3bfb6716c3d5c2e8564b3c6191927ca620b/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L76)
