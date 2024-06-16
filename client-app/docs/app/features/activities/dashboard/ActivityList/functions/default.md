@@ -45,4 +45,4 @@ const selectActivity = (id: string) => console.log(id);
 
 ## Source
 
-[app/features/activities/dashboard/ActivityList.tsx:45](https://github.com/jimmykurian/Reactivities/blob/2eec73b290ba27687cc01099a29cb3dbf8f367be/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L45)
+[app/features/activities/dashboard/ActivityList.tsx:45](https://github.com/jimmykurian/Reactivities/blob/3efbe3bfb6716c3d5c2e8564b3c6191927ca620b/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L45)
