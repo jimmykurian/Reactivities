@@ -48,7 +48,11 @@ export interface Props {
  *   venue: 'Central Park'
  * };
  *
- * <ActivityForm activity={activity} closeForm={() => console.log('Form closed')} createOrEdit={(activity) => console.log(activity)} />
+ * <ActivityForm
+ *   activity={activity}
+ *   closeForm={() => console.log('Form closed')}
+ *   createOrEdit={(activity) => console.log(activity)}
+ * />
  * ```
  */
 export default function ActivityForm({
@@ -102,6 +106,7 @@ export default function ActivityForm({
         />
         <Form.Input
           placeholder="Date"
+          type="date"
           value={activity.date}
           name="date"
           onChange={handleInputChange}
