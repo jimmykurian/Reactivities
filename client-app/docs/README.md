@@ -6,6 +6,7 @@
 
 ## Modules
 
+- [app/api/agent](app/api/agent/README.md)
 - [app/features/activities/dashboard/ActivityDashboard](app/features/activities/dashboard/ActivityDashboard/README.md)
 - [app/features/activities/dashboard/ActivityList](app/features/activities/dashboard/ActivityList/README.md)
 - [app/features/activities/details/ActivityDetails](app/features/activities/details/ActivityDetails/README.md)

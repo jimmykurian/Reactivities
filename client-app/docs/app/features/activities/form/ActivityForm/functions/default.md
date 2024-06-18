@@ -46,9 +46,13 @@ const activity = {
   venue: 'Central Park'
 };
 
-<ActivityForm activity={activity} closeForm={() => console.log('Form closed')} createOrEdit={(activity) => console.log(activity)} />
+<ActivityForm
+  activity={activity}
+  closeForm={() => console.log('Form closed')}
+  createOrEdit={(activity) => console.log(activity)}
+/>
 ```
 
 ## Source
 
-[app/features/activities/form/ActivityForm.tsx:54](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/form/ActivityForm.tsx#L54)
+[app/features/activities/form/ActivityForm.tsx:58](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/form/ActivityForm.tsx#L58)

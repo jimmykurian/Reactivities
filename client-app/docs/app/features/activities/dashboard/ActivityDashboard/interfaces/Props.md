@@ -20,7 +20,7 @@ Array of activities to be displayed.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:27](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L27)
+[app/features/activities/dashboard/ActivityDashboard.tsx:27](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L27)
 
 ***
 
@@ -36,7 +36,7 @@ Function to cancel the selection of an activity.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:30](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L30)
+[app/features/activities/dashboard/ActivityDashboard.tsx:30](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L30)
 
 ***
 
@@ -52,7 +52,7 @@ Function to close the form.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:33](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L33)
+[app/features/activities/dashboard/ActivityDashboard.tsx:33](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L33)
 
 ***
 
@@ -72,7 +72,7 @@ Function to create or edit an activity.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:34](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L34)
+[app/features/activities/dashboard/ActivityDashboard.tsx:34](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L34)
 
 ***
 
@@ -92,7 +92,7 @@ Function to delete an activity by ID.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:35](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L35)
+[app/features/activities/dashboard/ActivityDashboard.tsx:35](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L35)
 
 ***
 
@@ -104,7 +104,7 @@ Boolean indicating if the form is in edit mode.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:31](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L31)
+[app/features/activities/dashboard/ActivityDashboard.tsx:31](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L31)
 
 ***
 
@@ -124,7 +124,7 @@ Function to open the form for editing or creating an activity.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:32](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L32)
+[app/features/activities/dashboard/ActivityDashboard.tsx:32](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L32)
 
 ***
 
@@ -144,7 +144,7 @@ Function to select an activity by ID.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:29](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L29)
+[app/features/activities/dashboard/ActivityDashboard.tsx:29](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L29)
 
 ***
 
@@ -156,4 +156,4 @@ The currently selected activity.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:28](https://github.com/jimmykurian/Reactivities/blob/85417055be40c93091219e6bba8d453667ca4663/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L28)
+[app/features/activities/dashboard/ActivityDashboard.tsx:28](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L28)
