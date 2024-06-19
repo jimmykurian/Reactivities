@@ -10,6 +10,7 @@ import NavBar from './NavBar';
 import ActivityDashboard from '../features/activities/dashboard/ActivityDashboard';
 import { v4 as uuid } from 'uuid';
 import agent from '../api/agent';
+import LoadingComponent from './LoadingComponent';
 
 /**
  * The App component serves as the root component for the React application.
@@ -20,7 +21,7 @@ import agent from '../api/agent';
  *
  * @remarks
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
- * The `useState` hook is used to manage the activities state, the selected activity state, and the edit mode state.
+ * The `useState` hook is used to manage the activities state, the selected activity state, the edit mode state, and the loading state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
  * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
  *
@@ -43,6 +44,7 @@ function App(): JSX.Element {
     Activity | undefined
   >(undefined);
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     agent.Activities.list().then((response) => {
@@ -52,6 +54,7 @@ function App(): JSX.Element {
         activities.push(activity);
       });
       setActivities(activities);
+      setLoading(false);
     });
   }, []);
 
@@ -114,6 +117,8 @@ function App(): JSX.Element {
   function handleDeleteActivity(id: string) {
     setActivities([...activities.filter((a) => a.id !== id)]);
   }
+
+  if (loading) return <LoadingComponent content="Loading app..." />;
 
   return (
     <>
