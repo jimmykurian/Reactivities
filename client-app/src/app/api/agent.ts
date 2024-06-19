@@ -6,7 +6,29 @@
 import axios, { AxiosResponse } from 'axios';
 import { Activity } from '../models/activity';
 
+/**
+ * Simulates a delay for a given number of milliseconds.
+ *
+ * @param {number} delay - The number of milliseconds to delay.
+ * @returns {Promise<void>} A promise that resolves after the specified delay.
+ */
+const sleep = (delay: number): Promise<void> => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+};
+
 axios.defaults.baseURL = 'http://localhost:5000/api';
+
+axios.interceptors.response.use(async (response) => {
+  try {
+    await sleep(1000);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return await Promise.reject(error);
+  }
+});
 
 /**
  * Extracts the data from an Axios response.
@@ -15,7 +37,7 @@ axios.defaults.baseURL = 'http://localhost:5000/api';
  * @param {AxiosResponse<T>} response - The Axios response.
  * @returns {T} The extracted response data.
  */
-const responseBody = <T>(response: AxiosResponse<T>) => response.data;
+const responseBody = <T>(response: AxiosResponse<T>): T => response.data;
 
 /**
  * An object containing methods for making HTTP requests.
@@ -28,7 +50,7 @@ const requests = {
    * @param {string} url - The URL to send the GET request to.
    * @returns {Promise<T>} A promise that resolves to the response data.
    */
-  get: <T>(url: string) => axios.get<T>(url).then(responseBody),
+  get: <T>(url: string): Promise<T> => axios.get<T>(url).then(responseBody),
 
   /**
    * Makes a POST request to the specified URL with the given body.
@@ -38,7 +60,7 @@ const requests = {
    * @param {object} body - The body to include in the POST request.
    * @returns {Promise<T>} A promise that resolves to the response data.
    */
-  post: <T>(url: string, body: object) =>
+  post: <T>(url: string, body: object): Promise<T> =>
     axios.post<T>(url, body).then(responseBody),
 
   /**
@@ -49,7 +71,7 @@ const requests = {
    * @param {object} body - The body to include in the PUT request.
    * @returns {Promise<T>} A promise that resolves to the response data.
    */
-  put: <T>(url: string, body: object) =>
+  put: <T>(url: string, body: object): Promise<T> =>
     axios.put<T>(url, body).then(responseBody),
 
   /**
@@ -59,7 +81,7 @@ const requests = {
    * @param {string} url - The URL to send the DELETE request to.
    * @returns {Promise<T>} A promise that resolves to the response data.
    */
-  del: <T>(url: string) => axios.delete<T>(url).then(responseBody),
+  del: <T>(url: string): Promise<T> => axios.delete<T>(url).then(responseBody),
 };
 
 /**
@@ -71,7 +93,7 @@ const Activities = {
    *
    * @returns {Promise<Activity[]>} A promise that resolves to the list of activities.
    */
-  list: () => requests.get<Activity[]>('/activities'),
+  list: (): Promise<Activity[]> => requests.get<Activity[]>('/activities'),
 
   /**
    * Fetches the details of a specific activity by ID.
@@ -79,7 +101,8 @@ const Activities = {
    * @param {string} id - The ID of the activity to fetch.
    * @returns {Promise<Activity>} A promise that resolves to the activity details.
    */
-  details: (id: string) => requests.get<Activity>(`/activities/${id}`),
+  details: (id: string): Promise<Activity> =>
+    requests.get<Activity>(`/activities/${id}`),
 
   /**
    * Creates a new activity.
@@ -87,7 +110,8 @@ const Activities = {
    * @param {Activity} activity - The activity to create.
    * @returns {Promise<void>} A promise that resolves when the activity is created.
    */
-  create: (activity: Activity) => requests.post<void>('/activities', activity),
+  create: (activity: Activity): Promise<void> =>
+    requests.post<void>('/activities', activity),
 
   /**
    * Updates an existing activity.
@@ -95,7 +119,7 @@ const Activities = {
    * @param {Activity} activity - The activity to update.
    * @returns {Promise<void>} A promise that resolves when the activity is updated.
    */
-  update: (activity: Activity) =>
+  update: (activity: Activity): Promise<void> =>
     requests.put<void>(`/activities/${activity.id}`, activity),
 
   /**
@@ -104,7 +128,8 @@ const Activities = {
    * @param {string} id - The ID of the activity to delete.
    * @returns {Promise<void>} A promise that resolves when the activity is deleted.
    */
-  delete: (id: string) => requests.del<void>(`/activities/${id}`),
+  delete: (id: string): Promise<void> =>
+    requests.del<void>(`/activities/${id}`),
 };
 
 /**

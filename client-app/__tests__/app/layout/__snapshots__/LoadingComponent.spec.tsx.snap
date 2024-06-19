@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingComponent matches snapshot with custom content and non-inverted dimmer 1`] = `
+<DocumentFragment>
+  <div
+    class="ui active transition visible dimmer"
+    data-testid="dimmer"
+    style="display: flex;"
+  >
+    <div
+      class="content"
+    >
+      <div
+        class="ui text loader"
+      >
+        Loading data...
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`LoadingComponent matches snapshot with default props 1`] = `
+<DocumentFragment>
+  <div
+    class="ui active transition visible inverted dimmer"
+    data-testid="dimmer"
+    style="display: flex;"
+  >
+    <div
+      class="content"
+    >
+      <div
+        class="ui text loader"
+      >
+        Loading...
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
