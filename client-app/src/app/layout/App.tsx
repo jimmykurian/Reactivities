@@ -21,7 +21,7 @@ import LoadingComponent from './LoadingComponent';
  *
  * @remarks
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
- * The `useState` hook is used to manage the activities state, the selected activity state, the edit mode state, and the loading state.
+ * The `useState` hook is used to manage the activities state, the selected activity state, the edit mode state, the loading state, and the submitting state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
  * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
  *
@@ -45,6 +45,7 @@ function App(): JSX.Element {
   >(undefined);
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     agent.Activities.list().then((response) => {
@@ -97,16 +98,26 @@ function App(): JSX.Element {
    * @param {Activity} activity - The activity object to create or edit.
    */
   function handleCreateOrEditActivity(activity: Activity) {
+    setSubmitting(true);
     if (activity.id) {
-      setActivities([
-        ...activities.filter((a) => a.id !== activity.id),
-        activity,
-      ]);
+      agent.Activities.update(activity).then(() => {
+        setActivities([
+          ...activities.filter((a) => a.id !== activity.id),
+          activity,
+        ]);
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
+      });
     } else {
-      setActivities([...activities, { ...activity, id: uuid() }]);
+      activity.id = uuid();
+      agent.Activities.create(activity).then(() => {
+        setActivities([...activities, activity]);
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
+      });
     }
-    setEditMode(false);
-    setSelectedActivity(activity);
   }
 
   /**
@@ -134,6 +145,7 @@ function App(): JSX.Element {
           closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
           deleteActivity={handleDeleteActivity}
+          submitting={submitting}
         />
       </Container>
     </>

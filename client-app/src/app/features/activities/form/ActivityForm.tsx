@@ -14,11 +14,13 @@ import { useState } from 'react';
  * @property {Activity | undefined} activity - The activity object containing details of the activity to be edited, or undefined for a new activity.
  * @property {() => void} closeForm - Function to close the form.
  * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
+ * @property {boolean} [submitting] - Indicates whether the form submission is in progress.
  */
 export interface Props {
   activity: Activity | undefined;
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
+  submitting?: boolean;
 }
 
 /**
@@ -52,6 +54,7 @@ export interface Props {
  *   activity={activity}
  *   closeForm={() => console.log('Form closed')}
  *   createOrEdit={(activity) => console.log(activity)}
+ *   submitting={false}
  * />
  * ```
  */
@@ -59,6 +62,7 @@ export default function ActivityForm({
   activity: selectedActivity,
   closeForm,
   createOrEdit,
+  submitting,
 }: Props): JSX.Element {
   const initialState = selectedActivity ?? {
     id: '',
@@ -123,7 +127,13 @@ export default function ActivityForm({
           name="venue"
           onChange={handleInputChange}
         />
-        <Button floated="right" positive type="submit" content="Submit" />
+        <Button
+          loading={submitting}
+          floated="right"
+          positive
+          type="submit"
+          content="Submit"
+        />
         <Button
           onClick={closeForm}
           floated="right"
