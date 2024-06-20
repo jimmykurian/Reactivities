@@ -12,6 +12,7 @@
 - [app/features/activities/details/ActivityDetails](app/features/activities/details/ActivityDetails/README.md)
 - [app/features/activities/form/ActivityForm](app/features/activities/form/ActivityForm/README.md)
 - [app/layout/App](app/layout/App/README.md)
+- [app/layout/LoadingComponent](app/layout/LoadingComponent/README.md)
 - [app/layout/NavBar](app/layout/NavBar/README.md)
 - [app/models/activity](app/models/activity/README.md)
 - [main](main/README.md)

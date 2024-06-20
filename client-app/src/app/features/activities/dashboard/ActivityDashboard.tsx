@@ -22,6 +22,7 @@ import ActivityForm from '../form/ActivityForm';
  * @property {() => void} closeForm - Function to close the form.
  * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
  * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
+ * @property {boolean} [submitting] - Indicates whether the form submission is in progress.
  */
 export interface Props {
   activities: Activity[];
@@ -33,6 +34,7 @@ export interface Props {
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
+  submitting?: boolean;
 }
 
 /**
@@ -74,6 +76,7 @@ export interface Props {
  *   closeForm={closeForm}
  *   createOrEdit={createOrEdit}
  *   deleteActivity={deleteActivity}
+ *   submitting={false}
  * />
  * ```
  */
@@ -87,6 +90,7 @@ export default function ActivityDashboard({
   closeForm,
   createOrEdit,
   deleteActivity,
+  submitting,
 }: Props): JSX.Element {
   return (
     <Grid>
@@ -112,6 +116,7 @@ export default function ActivityDashboard({
             closeForm={closeForm}
             activity={selectedActivity}
             createOrEdit={createOrEdit}
+            submitting={submitting}
           />
         )}
       </Grid.Column>

@@ -12,7 +12,7 @@ import { Dimmer, Loader } from 'semantic-ui-react';
  * @property {boolean} [inverted=true] - Whether the dimmer is inverted (dark background with light content).
  * @property {string} [content='Loading...'] - The loading message to be displayed.
  */
-interface Props {
+export interface Props {
   inverted?: boolean;
   content?: string;
 }

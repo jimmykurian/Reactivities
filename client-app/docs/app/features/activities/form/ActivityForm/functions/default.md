@@ -50,9 +50,10 @@ const activity = {
   activity={activity}
   closeForm={() => console.log('Form closed')}
   createOrEdit={(activity) => console.log(activity)}
+  submitting={false}
 />
 ```
 
 ## Source
 
-[app/features/activities/form/ActivityForm.tsx:58](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/form/ActivityForm.tsx#L58)
+[app/features/activities/form/ActivityForm.tsx:61](https://github.com/jimmykurian/Reactivities/blob/44702a695ba6190a1c37512d565ed9970e06fec6/client-app/src/app/features/activities/form/ActivityForm.tsx#L61)
