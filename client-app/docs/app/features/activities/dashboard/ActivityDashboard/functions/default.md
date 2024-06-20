@@ -58,9 +58,10 @@ const deleteActivity = (id: string) => console.log(`Delete activity with id ${id
   closeForm={closeForm}
   createOrEdit={createOrEdit}
   deleteActivity={deleteActivity}
+  submitting={false}
 />
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:80](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L80)
+[app/features/activities/dashboard/ActivityDashboard.tsx:83](https://github.com/jimmykurian/Reactivities/blob/44702a695ba6190a1c37512d565ed9970e06fec6/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L83)

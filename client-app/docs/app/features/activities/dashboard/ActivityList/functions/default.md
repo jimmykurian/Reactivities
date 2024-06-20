@@ -47,4 +47,4 @@ const deleteActivity = (id: string) => console.log(`Delete activity with id ${id
 
 ## Source
 
-[app/features/activities/dashboard/ActivityList.tsx:49](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L49)
+[app/features/activities/dashboard/ActivityList.tsx:49](https://github.com/jimmykurian/Reactivities/blob/44702a695ba6190a1c37512d565ed9970e06fec6/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L49)

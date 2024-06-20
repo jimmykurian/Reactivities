@@ -24,4 +24,4 @@ Function to open the form for creating a new activity.
 
 #### Source
 
-[app/layout/NavBar.tsx:18](https://github.com/jimmykurian/Reactivities/blob/f260f6ff0faf6b2149127afa0fc1621dce7138ca/client-app/src/app/layout/NavBar.tsx#L18)
+[app/layout/NavBar.tsx:18](https://github.com/jimmykurian/Reactivities/blob/44702a695ba6190a1c37512d565ed9970e06fec6/client-app/src/app/layout/NavBar.tsx#L18)
