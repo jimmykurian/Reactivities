@@ -49,12 +49,11 @@ function App(): JSX.Element {
 
   useEffect(() => {
     agent.Activities.list().then((response) => {
-      const activities: Activity[] = [];
-      response.forEach((activity) => {
-        activity.date = activity.date.split('T')[0];
-        activities.push(activity);
-      });
-      setActivities(activities);
+      const formattedActivities: Activity[] = response.map((activity) => ({
+        ...activity,
+        date: activity.date.split('T')[0], // Format date to 'YYYY-MM-DD'
+      }));
+      setActivities(formattedActivities);
       setLoading(false);
     });
   }, []);
@@ -64,14 +63,14 @@ function App(): JSX.Element {
    *
    * @param {string} id - The ID of the activity to select.
    */
-  function handleSelectActivity(id: string) {
+  function handleSelectActivity(id: string): void {
     setSelectedActivity(activities.find((a) => a.id === id));
   }
 
   /**
    * Handles canceling the selection of an activity.
    */
-  function handleCancelSelectActivity() {
+  function handleCancelSelectActivity(): void {
     setSelectedActivity(undefined);
   }
 
@@ -80,7 +79,7 @@ function App(): JSX.Element {
    *
    * @param {string} [id] - The ID of the activity to edit, or undefined to create a new activity.
    */
-  function handleFormOpen(id?: string) {
+  function handleFormOpen(id?: string): void {
     id ? handleSelectActivity(id) : handleCancelSelectActivity();
     setEditMode(true);
   }
@@ -88,7 +87,7 @@ function App(): JSX.Element {
   /**
    * Closes the form for creating or editing an activity.
    */
-  function handleFormClose() {
+  function handleFormClose(): void {
     setEditMode(false);
   }
 
@@ -97,14 +96,13 @@ function App(): JSX.Element {
    *
    * @param {Activity} activity - The activity object to create or edit.
    */
-  function handleCreateOrEditActivity(activity: Activity) {
+  function handleCreateOrEditActivity(activity: Activity): void {
     setSubmitting(true);
     if (activity.id) {
       agent.Activities.update(activity).then(() => {
-        setActivities([
-          ...activities.filter((a) => a.id !== activity.id),
-          activity,
-        ]);
+        setActivities(
+          activities.map((a) => (a.id === activity.id ? activity : a)),
+        );
         setSelectedActivity(activity);
         setEditMode(false);
         setSubmitting(false);
@@ -125,10 +123,10 @@ function App(): JSX.Element {
    *
    * @param {string} id - The ID of the activity to delete.
    */
-  function handleDeleteActivity(id: string) {
+  function handleDeleteActivity(id: string): void {
     setSubmitting(true);
     agent.Activities.delete(id).then(() => {
-      setActivities([...activities.filter((a) => a.id !== id)]);
+      setActivities(activities.filter((a) => a.id !== id));
       setSubmitting(false);
     });
   }

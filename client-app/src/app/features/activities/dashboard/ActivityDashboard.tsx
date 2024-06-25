@@ -94,7 +94,7 @@ export default function ActivityDashboard({
 }: Props): JSX.Element {
   return (
     <Grid>
-      <Grid.Column width="10">
+      <Grid.Column width={10}>
         <List>
           <ActivityList
             activities={activities}
@@ -104,7 +104,7 @@ export default function ActivityDashboard({
           />
         </List>
       </Grid.Column>
-      <Grid.Column width="6">
+      <Grid.Column width={6}>
         {selectedActivity && !editMode && (
           <ActivityDetails
             activity={selectedActivity}
