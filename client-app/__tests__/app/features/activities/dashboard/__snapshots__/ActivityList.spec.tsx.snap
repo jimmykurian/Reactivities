@@ -44,6 +44,7 @@ exports[`ActivityList matches snapshot 1`] = `
             </button>
             <button
               class="ui red right floated button"
+              name="1"
             >
               Delete
             </button>
@@ -91,6 +92,7 @@ exports[`ActivityList matches snapshot 1`] = `
             </button>
             <button
               class="ui red right floated button"
+              name="2"
             >
               Delete
             </button>

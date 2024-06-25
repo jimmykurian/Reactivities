@@ -126,7 +126,11 @@ function App(): JSX.Element {
    * @param {string} id - The ID of the activity to delete.
    */
   function handleDeleteActivity(id: string) {
-    setActivities([...activities.filter((a) => a.id !== id)]);
+    setSubmitting(true);
+    agent.Activities.delete(id).then(() => {
+      setActivities([...activities.filter((a) => a.id !== id)]);
+      setSubmitting(false);
+    });
   }
 
   if (loading) return <LoadingComponent content="Loading app..." />;
