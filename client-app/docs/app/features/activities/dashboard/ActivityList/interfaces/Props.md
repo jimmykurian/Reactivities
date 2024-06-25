@@ -20,7 +20,7 @@ Array of activities to be displayed.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:18](https://github.com/jimmykurian/Reactivities/blob/44702a695ba6190a1c37512d565ed9970e06fec6/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L18)
+[app/features/activities/dashboard/ActivityList.tsx:19](https://github.com/jimmykurian/Reactivities/blob/f0a090a3bb727420443b721b8bb2341546df5669/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L19)
 
 ***
 
@@ -40,7 +40,7 @@ Function to delete an activity by ID.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:20](https://github.com/jimmykurian/Reactivities/blob/44702a695ba6190a1c37512d565ed9970e06fec6/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L20)
+[app/features/activities/dashboard/ActivityList.tsx:21](https://github.com/jimmykurian/Reactivities/blob/f0a090a3bb727420443b721b8bb2341546df5669/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L21)
 
 ***
 
@@ -60,4 +60,14 @@ Function to select an activity by ID.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:19](https://github.com/jimmykurian/Reactivities/blob/44702a695ba6190a1c37512d565ed9970e06fec6/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L19)
+[app/features/activities/dashboard/ActivityList.tsx:20](https://github.com/jimmykurian/Reactivities/blob/f0a090a3bb727420443b721b8bb2341546df5669/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L20)
+
+***
+
+### submitting?
+
+> `optional` **submitting**: `boolean`
+
+#### Source
+
+[app/features/activities/dashboard/ActivityList.tsx:22](https://github.com/jimmykurian/Reactivities/blob/f0a090a3bb727420443b721b8bb2341546df5669/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L22)
