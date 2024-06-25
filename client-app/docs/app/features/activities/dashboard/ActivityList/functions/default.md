@@ -30,6 +30,7 @@ This component maps over an array of activities and displays each one with its d
 Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
 The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
 The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
+The `submitting` prop is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
 
 ## Example
 
@@ -42,9 +43,9 @@ const activities = [
 const selectActivity = (id: string) => console.log(id);
 const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
-<ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} />
+<ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} submitting={false} />
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityList.tsx:51](https://github.com/jimmykurian/Reactivities/blob/f0a090a3bb727420443b721b8bb2341546df5669/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L51)
+[app/features/activities/dashboard/ActivityList.tsx:53](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L53)
