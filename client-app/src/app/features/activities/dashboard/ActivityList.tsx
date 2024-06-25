@@ -5,6 +5,7 @@
 
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../models/activity';
+import { SyntheticEvent, useState } from 'react';
 
 /**
  * Props interface for the ActivityList component.
@@ -13,11 +14,13 @@ import { Activity } from '../../../models/activity';
  * @property {Activity[]} activities - Array of activities to be displayed.
  * @property {(id: string) => void} selectActivity - Function to select an activity by ID.
  * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
+ * @property {boolean} [submitting] - Boolean indicating whether a delete operation is in progress.
  */
 export interface Props {
   activities: Activity[];
   selectActivity: (id: string) => void;
   deleteActivity: (id: string) => void;
+  submitting?: boolean;
 }
 
 /**
@@ -32,6 +35,7 @@ export interface Props {
  * Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
  * The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
  * The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
+ * The `submitting` prop is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
  *
  * @example
  * ```tsx
@@ -43,14 +47,31 @@ export interface Props {
  * const selectActivity = (id: string) => console.log(id);
  * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
  *
- * <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} />
+ * <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} submitting={false} />
  * ```
  */
 export default function ActivityList({
   activities,
   selectActivity,
   deleteActivity,
+  submitting,
 }: Props): JSX.Element {
+  const [target, setTarget] = useState('');
+
+  /**
+   * Handles the deletion of an activity.
+   *
+   * @param {SyntheticEvent<HTMLButtonElement>} e - The synthetic event triggered by clicking the delete button.
+   * @param {string} id - The ID of the activity to delete.
+   */
+  function handleActivityDelete(
+    e: SyntheticEvent<HTMLButtonElement>,
+    id: string,
+  ) {
+    setTarget(e.currentTarget.name);
+    deleteActivity(id);
+  }
+
   return (
     <Segment>
       <Item.Group divided>
@@ -73,7 +94,9 @@ export default function ActivityList({
                   color="blue"
                 />
                 <Button
-                  onClick={() => deleteActivity(activity.id)}
+                  name={activity.id}
+                  loading={submitting && target === activity.id}
+                  onClick={(e) => handleActivityDelete(e, activity.id)}
                   floated="right"
                   content="Delete"
                   color="red"
