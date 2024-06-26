@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '../src/app/layout/App';
+import { StoreContext, store } from '../src/app/stores/store';
 
 // Mock ReactDOM.createRoot and its render method
 const mockRender = jest.fn();
@@ -26,7 +27,9 @@ describe('main.tsx', () => {
     expect(ReactDOM.createRoot).toHaveBeenCalledWith(root);
     expect(mockRender).toHaveBeenCalledWith(
       <React.StrictMode>
-        <App />
+        <StoreContext.Provider value={store}>
+          <App />
+        </StoreContext.Provider>
       </React.StrictMode>,
     );
   });

@@ -19,7 +19,7 @@ The category to which the activity belongs.
 
 #### Source
 
-[app/models/activity.ts:25](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/models/activity.ts#L25)
+[app/models/activity.ts:25](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/models/activity.ts#L25)
 
 ***
 
@@ -31,7 +31,7 @@ The city where the activity takes place.
 
 #### Source
 
-[app/models/activity.ts:26](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/models/activity.ts#L26)
+[app/models/activity.ts:26](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/models/activity.ts#L26)
 
 ***
 
@@ -43,7 +43,7 @@ The date of the activity in ISO string format.
 
 #### Source
 
-[app/models/activity.ts:23](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/models/activity.ts#L23)
+[app/models/activity.ts:23](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/models/activity.ts#L23)
 
 ***
 
@@ -55,7 +55,7 @@ A brief description of the activity.
 
 #### Source
 
-[app/models/activity.ts:24](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/models/activity.ts#L24)
+[app/models/activity.ts:24](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/models/activity.ts#L24)
 
 ***
 
@@ -67,7 +67,7 @@ The unique identifier for the activity.
 
 #### Source
 
-[app/models/activity.ts:21](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/models/activity.ts#L21)
+[app/models/activity.ts:21](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/models/activity.ts#L21)
 
 ***
 
@@ -79,7 +79,7 @@ The title of the activity.
 
 #### Source
 
-[app/models/activity.ts:22](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/models/activity.ts#L22)
+[app/models/activity.ts:22](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/models/activity.ts#L22)
 
 ***
 
@@ -91,4 +91,4 @@ The specific venue of the activity within the city.
 
 #### Source
 
-[app/models/activity.ts:27](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/models/activity.ts#L27)
+[app/models/activity.ts:27](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/models/activity.ts#L27)

@@ -11,10 +11,12 @@ import ActivityDashboard from '../features/activities/dashboard/ActivityDashboar
 import { v4 as uuid } from 'uuid';
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
+import { useStore } from '../stores/store';
 
 /**
  * The App component serves as the root component for the React application.
  * It fetches activities from an API, maintains the activities state, and renders the NavBar and ActivityDashboard components.
+ * It also utilizes the MobX store for additional state management.
  *
  * @component
  * @returns {JSX.Element} The rendered App component.
@@ -24,6 +26,7 @@ import LoadingComponent from './LoadingComponent';
  * The `useState` hook is used to manage the activities state, the selected activity state, the edit mode state, the loading state, and the submitting state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
  * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
+ * The component also accesses the `activityStore` from the MobX store context.
  *
  * @example
  * ```tsx
@@ -39,6 +42,7 @@ import LoadingComponent from './LoadingComponent';
  * ```
  */
 function App(): JSX.Element {
+  const { activityStore } = useStore();
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<
     Activity | undefined
@@ -137,6 +141,7 @@ function App(): JSX.Element {
     <>
       <NavBar openForm={handleFormOpen} />
       <Container style={{ marginTop: '7em' }}>
+        <h2>{activityStore.title}</h2>
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
