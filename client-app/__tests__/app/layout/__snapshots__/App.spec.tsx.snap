@@ -39,6 +39,9 @@ exports[`App matches snapshot 1`] = `
     class="ui container"
     style="margin-top: 7em;"
   >
+    <h2>
+      Hello from MobX!
+    </h2>
     <div
       class="ui grid"
     >
