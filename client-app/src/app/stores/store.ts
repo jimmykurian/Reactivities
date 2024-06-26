@@ -12,7 +12,7 @@ import ActivityStore from './activityStore';
  * @interface Store
  * @property {ActivityStore} activityStore - Instance of ActivityStore for managing activity-related state.
  */
-interface Store {
+export interface Store {
   activityStore: ActivityStore;
 }
 
