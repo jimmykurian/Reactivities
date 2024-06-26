@@ -10,6 +10,7 @@
 
 The App component serves as the root component for the React application.
 It fetches activities from an API, maintains the activities state, and renders the NavBar and ActivityDashboard components.
+It also utilizes the MobX store for additional state management.
 
 ## Returns
 
@@ -25,6 +26,7 @@ The App component uses the `useEffect` hook to fetch activities from the API whe
 The `useState` hook is used to manage the activities state, the selected activity state, the edit mode state, the loading state, and the submitting state.
 The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
 The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
+The component also accesses the `activityStore` from the MobX store context.
 
 ## Example
 
@@ -42,4 +44,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Source
 
-[app/layout/App.tsx:41](https://github.com/jimmykurian/Reactivities/blob/94238eb6c3d18a67186dc39044f1c2ddc8ef9033/client-app/src/app/layout/App.tsx#L41)
+[app/layout/App.tsx:44](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/layout/App.tsx#L44)
