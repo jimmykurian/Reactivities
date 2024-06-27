@@ -3,7 +3,7 @@
  * @name ActivityStore
  */
 
-import { makeObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 /**
  * ActivityStore class.
@@ -32,8 +32,10 @@ export default class ActivityStore {
    * The constructor initializes the observables using MobX's makeObservable.
    */
   constructor() {
-    makeObservable(this, {
-      title: observable,
-    });
+    makeAutoObservable(this);
   }
+
+  setTitle = () => {
+    this.title = this.title + '!';
+  };
 }

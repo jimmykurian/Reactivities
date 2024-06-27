@@ -42,6 +42,11 @@ exports[`App matches snapshot 1`] = `
     <h2>
       Hello from MobX!
     </h2>
+    <button
+      class="ui positive button"
+    >
+      Add exclamation!
+    </button>
     <div
       class="ui grid"
     >
