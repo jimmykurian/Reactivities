@@ -3,7 +3,7 @@
  * @name ActivityStore
  */
 
-import { makeObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 /**
  * ActivityStore class.
@@ -14,10 +14,12 @@ import { makeObservable, observable } from 'mobx';
  *
  * @example
  * ```tsx
- * import { ActivityStore } from './ActivityStore';
+ * import ActivityStore from './ActivityStore';
  *
  * const activityStore = new ActivityStore();
  * console.log(activityStore.title); // Outputs: "Hello from MobX!"
+ * activityStore.setTitle();
+ * console.log(activityStore.title); // Outputs: "Hello from MobX!!"
  * ```
  */
 export default class ActivityStore {
@@ -29,11 +31,16 @@ export default class ActivityStore {
 
   /**
    * Creates an instance of ActivityStore.
-   * The constructor initializes the observables using MobX's makeObservable.
+   * The constructor initializes the observables using MobX's makeAutoObservable.
    */
   constructor() {
-    makeObservable(this, {
-      title: observable,
-    });
+    makeAutoObservable(this);
   }
+
+  /**
+   * Updates the title by appending an exclamation mark.
+   */
+  setTitle = () => {
+    this.title = this.title + '!';
+  };
 }

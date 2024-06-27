@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { Container } from 'semantic-ui-react';
+import { Button, Container } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import ActivityDashboard from '../features/activities/dashboard/ActivityDashboard';
@@ -12,6 +12,7 @@ import { v4 as uuid } from 'uuid';
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
 import { useStore } from '../stores/store';
+import { observer } from 'mobx-react-lite';
 
 /**
  * The App component serves as the root component for the React application.
@@ -27,6 +28,8 @@ import { useStore } from '../stores/store';
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
  * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
  * The component also accesses the `activityStore` from the MobX store context.
+ *
+ * Additionally, it includes a button to trigger the `setTitle` method from the `activityStore`, demonstrating interaction with the store.
  *
  * @example
  * ```tsx
@@ -142,6 +145,11 @@ function App(): JSX.Element {
       <NavBar openForm={handleFormOpen} />
       <Container style={{ marginTop: '7em' }}>
         <h2>{activityStore.title}</h2>
+        <Button
+          content="Add exclamation!"
+          positive
+          onClick={activityStore.setTitle}
+        />
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
@@ -159,4 +167,4 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export default observer(App);

@@ -28,6 +28,8 @@ The component includes the NavBar and ActivityDashboard components for displayin
 The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
 The component also accesses the `activityStore` from the MobX store context.
 
+Additionally, it includes a button to trigger the `setTitle` method from the `activityStore`, demonstrating interaction with the store.
+
 ## Example
 
 ```tsx
@@ -44,4 +46,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Source
 
-[app/layout/App.tsx:44](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/layout/App.tsx#L44)
+[app/layout/App.tsx:170](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/layout/App.tsx#L170)
