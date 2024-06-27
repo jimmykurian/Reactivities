@@ -29,6 +29,8 @@ import { observer } from 'mobx-react-lite';
  * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
  * The component also accesses the `activityStore` from the MobX store context.
  *
+ * Additionally, it includes a button to trigger the `setTitle` method from the `activityStore`, demonstrating interaction with the store.
+ *
  * @example
  * ```tsx
  * import React from 'react';
