@@ -16,10 +16,12 @@ It initializes the observables and configures MobX for state management.
 ## Example
 
 ```tsx
-import { ActivityStore } from './ActivityStore';
+import ActivityStore from './ActivityStore';
 
 const activityStore = new ActivityStore();
 console.log(activityStore.title); // Outputs: "Hello from MobX!"
+activityStore.setTitle();
+console.log(activityStore.title); // Outputs: "Hello from MobX!!"
 ```
 
 ## Constructors
@@ -29,7 +31,7 @@ console.log(activityStore.title); // Outputs: "Hello from MobX!"
 > **new default**(): [`default`](default.md)
 
 Creates an instance of ActivityStore.
-The constructor initializes the observables using MobX's makeObservable.
+The constructor initializes the observables using MobX's makeAutoObservable.
 
 #### Returns
 
@@ -37,7 +39,7 @@ The constructor initializes the observables using MobX's makeObservable.
 
 #### Source
 
-[app/stores/activityStore.ts:34](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/stores/activityStore.ts#L34)
+[app/stores/activityStore.ts:36](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/stores/activityStore.ts#L36)
 
 ## Properties
 
@@ -49,4 +51,20 @@ The title of the activity store.
 
 #### Source
 
-[app/stores/activityStore.ts:28](https://github.com/jimmykurian/Reactivities/blob/5b5ed521e5b39ce1e9f25269c451ae4d7d2b1c5a/client-app/src/app/stores/activityStore.ts#L28)
+[app/stores/activityStore.ts:30](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/stores/activityStore.ts#L30)
+
+## Methods
+
+### setTitle()
+
+> **setTitle**(): `void`
+
+Updates the title by appending an exclamation mark.
+
+#### Returns
+
+`void`
+
+#### Source
+
+[app/stores/activityStore.ts:43](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/stores/activityStore.ts#L43)
