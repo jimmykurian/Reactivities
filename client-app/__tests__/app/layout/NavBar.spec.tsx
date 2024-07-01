@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import NavBar from '../../../src/app/layout/NavBar';
+
+// Automatically cleanup after each test
+afterEach(cleanup);
 
 describe('NavBar', () => {
   const openForm = jest.fn();
