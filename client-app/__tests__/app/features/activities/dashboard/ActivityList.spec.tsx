@@ -5,8 +5,8 @@ import { render, screen } from '@testing-library/react';
 
 describe('ActivityList', () => {
   // Generate mock activities using Faker.js
-  const generateMockActivity = (): Activity => ({
-    id: faker.string.uuid(),
+  const generateMockActivity = (id: string): Activity => ({
+    id,
     title: faker.lorem.words(3),
     date: faker.date.future().toISOString(),
     description: faker.lorem.sentence(),
@@ -16,10 +16,10 @@ describe('ActivityList', () => {
   });
 
   // Generate mock activities dynamically for other tests
-  const mockActivities: Activity[] = Array.from(
-    { length: 2 },
-    generateMockActivity,
-  );
+  const mockActivities: Activity[] = [
+    generateMockActivity('1'),
+    generateMockActivity('2'),
+  ];
 
   // Fixed mock activities for snapshot test
   const fixedMockActivities: Activity[] = [

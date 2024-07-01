@@ -2,22 +2,11 @@ import { render, screen, waitFor } from '@testing-library/react';
 import App from '../../../src/app/layout/App';
 import agent from '../../../src/app/api/agent';
 import { Activity } from '../../../src/app/models/activity';
-import { faker } from '@faker-js/faker';
 
 // Mock the agent
 jest.mock('../../../src/app/api/agent');
 
 describe('App', () => {
-  const generateMockActivity = (): Activity => ({
-    id: faker.string.uuid(),
-    title: faker.lorem.words(3),
-    date: faker.date.future().toISOString().split('T')[0],
-    description: faker.lorem.sentence(),
-    category: faker.lorem.word(),
-    city: faker.location.city(),
-    venue: faker.location.streetAddress(),
-  });
-
   const staticMockActivities: Activity[] = [
     {
       id: '1',
@@ -40,10 +29,9 @@ describe('App', () => {
   ];
 
   beforeEach(() => {
-    (agent.Activities.list as jest.Mock).mockResolvedValue([
-      generateMockActivity(),
-      generateMockActivity(),
-    ]);
+    (agent.Activities.list as jest.Mock).mockResolvedValue(
+      staticMockActivities,
+    );
   });
 
   test('renders Reactivities heading', async () => {
@@ -61,13 +49,10 @@ describe('App', () => {
 
   test('matches snapshot', async () => {
     // Arrange
-    (agent.Activities.list as jest.Mock).mockResolvedValueOnce(
-      staticMockActivities,
-    );
     const { asFragment } = render(<App />);
 
     // Act
-    await waitFor(() => screen.getByText(/Reactivities/i));
+    await waitFor(() => screen.getAllByText(/Static Test Activity/i));
 
     // Assert
     expect(asFragment()).toMatchSnapshot();

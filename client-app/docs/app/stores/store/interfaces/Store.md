@@ -20,4 +20,4 @@ Instance of ActivityStore for managing activity-related state.
 
 #### Source
 
-[app/stores/store.ts:16](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/stores/store.ts#L16)
+[app/stores/store.ts:16](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/stores/store.ts#L16)
