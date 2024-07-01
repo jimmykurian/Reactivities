@@ -20,7 +20,7 @@ Array of activities to be displayed.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:20](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L20)
+[app/features/activities/dashboard/ActivityList.tsx:20](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L20)
 
 ***
 
@@ -40,7 +40,7 @@ Function to delete an activity by ID.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:22](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L22)
+[app/features/activities/dashboard/ActivityList.tsx:22](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L22)
 
 ***
 
@@ -60,7 +60,7 @@ Function to select an activity by ID.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:21](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L21)
+[app/features/activities/dashboard/ActivityList.tsx:21](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L21)
 
 ***
 
@@ -72,4 +72,4 @@ Boolean indicating whether a delete operation is in progress.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityList.tsx:23](https://github.com/jimmykurian/Reactivities/blob/b285dbdeca2a76ed48753d209361112d619ac92f/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L23)
+[app/features/activities/dashboard/ActivityList.tsx:23](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L23)
