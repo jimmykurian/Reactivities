@@ -43,10 +43,6 @@ describe('ActivityDashboard', () => {
     },
   ];
 
-  const selectActivity = jest.fn();
-  const cancelSelectActivity = jest.fn();
-  const openForm = jest.fn();
-  const closeForm = jest.fn();
   const createOrEdit = jest.fn();
   const deleteActivity = jest.fn();
 
@@ -55,13 +51,9 @@ describe('ActivityDashboard', () => {
     render(
       <ActivityDashboard
         activities={mockActivities}
-        selectedActivity={undefined}
-        selectActivity={selectActivity}
-        cancelSelectActivity={cancelSelectActivity}
-        openForm={openForm}
-        closeForm={closeForm}
         createOrEdit={createOrEdit}
         deleteActivity={deleteActivity}
+        submitting={false}
       />,
     );
 
@@ -80,13 +72,9 @@ describe('ActivityDashboard', () => {
     const { asFragment } = render(
       <ActivityDashboard
         activities={fixedMockActivities}
-        selectedActivity={undefined}
-        selectActivity={selectActivity}
-        cancelSelectActivity={cancelSelectActivity}
-        openForm={openForm}
-        closeForm={closeForm}
         createOrEdit={createOrEdit}
         deleteActivity={deleteActivity}
+        submitting={false}
       />,
     );
 

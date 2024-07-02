@@ -20,7 +20,7 @@ describe('ActivityStore', () => {
   it('should initialize with the correct state', () => {
     // Arrange
     const expectedActivities: Activity[] = [];
-    const expectedSelectedActivity = null;
+    const expectedSelectedActivity = undefined;
     const expectedEditMode = false;
     const expectedLoading = false;
     const expectedLoadingInitial = false;

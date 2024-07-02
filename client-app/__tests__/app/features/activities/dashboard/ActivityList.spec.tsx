@@ -1,12 +1,12 @@
-import { faker } from '@faker-js/faker';
-import ActivityList from '../../../../../src/app/features/activities/dashboard/ActivityList';
-import { Activity } from '../../../../../src/app/models/activity';
 import { render, screen } from '@testing-library/react';
+import { faker } from '@faker-js/faker';
+import { Activity } from '../../../../../src/app/models/activity';
+import ActivityList from '../../../../../src/app/features/activities/dashboard/ActivityList';
 
 describe('ActivityList', () => {
   // Generate mock activities using Faker.js
-  const generateMockActivity = (id: string): Activity => ({
-    id,
+  const generateMockActivity = (): Activity => ({
+    id: faker.string.uuid(),
     title: faker.lorem.words(3),
     date: faker.date.future().toISOString(),
     description: faker.lorem.sentence(),
@@ -16,10 +16,10 @@ describe('ActivityList', () => {
   });
 
   // Generate mock activities dynamically for other tests
-  const mockActivities: Activity[] = [
-    generateMockActivity('1'),
-    generateMockActivity('2'),
-  ];
+  const mockActivities: Activity[] = Array.from(
+    { length: 2 },
+    generateMockActivity,
+  );
 
   // Fixed mock activities for snapshot test
   const fixedMockActivities: Activity[] = [
@@ -43,7 +43,6 @@ describe('ActivityList', () => {
     },
   ];
 
-  const selectActivity = jest.fn();
   const deleteActivity = jest.fn();
 
   test('renders the ActivityList component', () => {
@@ -51,15 +50,18 @@ describe('ActivityList', () => {
     render(
       <ActivityList
         activities={mockActivities}
-        selectActivity={selectActivity}
         deleteActivity={deleteActivity}
+        submitting={false}
       />,
     );
 
     // Act & Assert
     mockActivities.forEach((activity) => {
-      const activityElement = screen.getByText(activity.title);
-      expect(activityElement).toBeInTheDocument();
+      const activityElements = screen.getAllByText(activity.title);
+      expect(activityElements.length).toBeGreaterThan(0);
+      activityElements.forEach((element) =>
+        expect(element).toBeInTheDocument(),
+      );
     });
   });
 
@@ -68,8 +70,8 @@ describe('ActivityList', () => {
     const { asFragment } = render(
       <ActivityList
         activities={fixedMockActivities}
-        selectActivity={selectActivity}
         deleteActivity={deleteActivity}
+        submitting={false}
       />,
     );
 
