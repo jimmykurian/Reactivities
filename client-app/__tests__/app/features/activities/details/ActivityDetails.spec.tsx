@@ -1,7 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { faker } from '@faker-js/faker';
 import { Activity } from '../../../../../src/app/models/activity';
+import { useStore } from '../../../../../src/app/stores/store';
 import ActivityDetails from '../../../../../src/app/features/activities/details/ActivityDetails';
+
+// Mock the useStore hook
+jest.mock('../../../../../src/app/stores/store', () => ({
+  useStore: jest.fn(),
+}));
 
 describe('ActivityDetails', () => {
   // Generate a mock activity using Faker.js
@@ -26,19 +32,30 @@ describe('ActivityDetails', () => {
     venue: 'Static Venue',
   };
 
-  const cancelSelectActivity = jest.fn();
+  const cancelSelectedActivity = jest.fn();
   const openForm = jest.fn();
+
+  beforeEach(() => {
+    (useStore as jest.Mock).mockReturnValue({
+      activityStore: {
+        selectedActivity: staticMockActivity,
+        cancelSelectedActivity,
+        openForm,
+      },
+    });
+  });
 
   test('renders the ActivityDetails component', () => {
     // Arrange
     const mockActivity = generateMockActivity();
-    render(
-      <ActivityDetails
-        activity={mockActivity}
-        cancelSelectActivity={cancelSelectActivity}
-        openForm={openForm}
-      />,
-    );
+    (useStore as jest.Mock).mockReturnValue({
+      activityStore: {
+        selectedActivity: mockActivity,
+        cancelSelectedActivity,
+        openForm,
+      },
+    });
+    render(<ActivityDetails />);
 
     // Act & Assert
     expect(screen.getByText(mockActivity.title)).toBeInTheDocument();
@@ -51,13 +68,14 @@ describe('ActivityDetails', () => {
   test('displays the correct image for the activity category', () => {
     // Arrange
     const mockActivity = generateMockActivity();
-    render(
-      <ActivityDetails
-        activity={mockActivity}
-        cancelSelectActivity={cancelSelectActivity}
-        openForm={openForm}
-      />,
-    );
+    (useStore as jest.Mock).mockReturnValue({
+      activityStore: {
+        selectedActivity: mockActivity,
+        cancelSelectedActivity,
+        openForm,
+      },
+    });
+    render(<ActivityDetails />);
 
     // Act & Assert
     const imgElement = screen.getByRole('img');
@@ -69,13 +87,7 @@ describe('ActivityDetails', () => {
 
   test('matches snapshot', () => {
     // Arrange
-    const { asFragment } = render(
-      <ActivityDetails
-        activity={staticMockActivity}
-        cancelSelectActivity={cancelSelectActivity}
-        openForm={openForm}
-      />,
-    );
+    const { asFragment } = render(<ActivityDetails />);
 
     // Act & Assert
     expect(asFragment()).toMatchSnapshot();

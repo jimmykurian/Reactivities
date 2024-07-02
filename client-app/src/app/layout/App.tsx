@@ -24,12 +24,10 @@ import { observer } from 'mobx-react-lite';
  *
  * @remarks
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
- * The `useState` hook is used to manage the activities state, the selected activity state, the edit mode state, the loading state, and the submitting state.
+ * The `useState` hook is used to manage the activities state, the submitting state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
- * The `handleSelectActivity`, `handleCancelSelectActivity`, `handleFormOpen`, `handleFormClose`, `handleCreateOrEditActivity`, and `handleDeleteActivity` functions are used to manage the selected activity and edit mode states, as well as creating, editing, and deleting activities.
+ * The `handleCreateOrEditActivity` and `handleDeleteActivity` functions are used to manage creating, editing, and deleting activities.
  * The component also accesses the `activityStore` from the MobX store context.
- *
- * Additionally, it includes a button to trigger the `setTitle` method from the `activityStore`, demonstrating interaction with the store.
  *
  * @example
  * ```tsx
@@ -47,48 +45,13 @@ import { observer } from 'mobx-react-lite';
 function App(): JSX.Element {
   const { activityStore } = useStore();
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [selectedActivity, setSelectedActivity] = useState<
-    Activity | undefined
-  >(undefined);
-  const [editMode, setEditMode] = useState(false);
+  const [, setSelectedActivity] = useState<Activity | undefined>(undefined);
+  const [, setEditMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     activityStore.loadActivities();
   }, [activityStore]);
-
-  /**
-   * Handles selecting an activity by its ID.
-   *
-   * @param {string} id - The ID of the activity to select.
-   */
-  function handleSelectActivity(id: string): void {
-    setSelectedActivity(activities.find((a) => a.id === id));
-  }
-
-  /**
-   * Handles canceling the selection of an activity.
-   */
-  function handleCancelSelectActivity(): void {
-    setSelectedActivity(undefined);
-  }
-
-  /**
-   * Opens the form for creating or editing an activity.
-   *
-   * @param {string} [id] - The ID of the activity to edit, or undefined to create a new activity.
-   */
-  function handleFormOpen(id?: string): void {
-    id ? handleSelectActivity(id) : handleCancelSelectActivity();
-    setEditMode(true);
-  }
-
-  /**
-   * Closes the form for creating or editing an activity.
-   */
-  function handleFormClose(): void {
-    setEditMode(false);
-  }
 
   /**
    * Handles creating or editing an activity.
@@ -135,16 +98,10 @@ function App(): JSX.Element {
 
   return (
     <>
-      <NavBar openForm={handleFormOpen} />
+      <NavBar />
       <Container style={{ marginTop: '7em' }}>
         <ActivityDashboard
           activities={activityStore.activities}
-          selectedActivity={selectedActivity}
-          selectActivity={handleSelectActivity}
-          cancelSelectActivity={handleCancelSelectActivity}
-          editMode={editMode}
-          openForm={handleFormOpen}
-          closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
           deleteActivity={handleDeleteActivity}
           submitting={submitting}

@@ -4,26 +4,13 @@
  */
 
 import { Button, Container, Menu } from 'semantic-ui-react';
-
-/**
- * Props interface for the NavBar component.
- *
- * @interface Props
- * @property {() => void} openForm - Function to open the form for creating a new activity.
- */
-export interface Props {
-  /**
-   * Function to open the form for creating a new activity.
-   */
-  openForm: () => void;
-}
+import { useStore } from '../stores/store';
 
 /**
  * The NavBar component serves as the navigation bar for the Reactivities application.
  * It includes a logo, a menu item for activities, and a button to create a new activity.
  *
  * @component
- * @param {Props} props - The properties passed to the component.
  * @returns {JSX.Element} The rendered NavBar component.
  *
  * @example
@@ -32,13 +19,9 @@ export interface Props {
  * import NavBar from './NavBar';
  *
  * function App() {
- *   const openForm = () => {
- *     // logic to open the form
- *   };
- *
  *   return (
  *     <div>
- *       <NavBar openForm={openForm} />
+ *       <NavBar />
  *       // other components
  *     </div>
  *   );
@@ -47,7 +30,9 @@ export interface Props {
  * export default App;
  * ```
  */
-export default function NavBar({ openForm }: Props): JSX.Element {
+export default function NavBar(): JSX.Element {
+  const { activityStore } = useStore();
+
   return (
     <Menu inverted fixed="top">
       <Container>
@@ -61,7 +46,11 @@ export default function NavBar({ openForm }: Props): JSX.Element {
         </Menu.Item>
         <Menu.Item name="Activities" role="menuitem" />
         <Menu.Item>
-          <Button onClick={openForm} positive content="Create Activity" />
+          <Button
+            onClick={() => activityStore.openForm()}
+            positive
+            content="Create Activity"
+          />
         </Menu.Item>
       </Container>
     </Menu>

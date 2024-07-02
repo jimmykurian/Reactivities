@@ -24,7 +24,7 @@ import agent from '../api/agent';
  */
 export default class ActivityStore {
   activities: Activity[] = [];
-  selectedActivity: Activity | null = null;
+  selectedActivity: Activity | undefined = undefined;
   editMode = false;
   loading = false;
   loadingInitial = false;
@@ -44,7 +44,7 @@ export default class ActivityStore {
    * @function
    * @returns {Promise<void>}
    */
-  loadActivities = async () => {
+  loadActivities = async (): Promise<void> => {
     this.setLoadingInitial(true);
     try {
       const activities = await agent.Activities.list();
@@ -65,7 +65,46 @@ export default class ActivityStore {
    * @function
    * @param {boolean} state - The loading state to set.
    */
-  setLoadingInitial = (state: boolean) => {
+  setLoadingInitial = (state: boolean): void => {
     this.loadingInitial = state;
+  };
+
+  /**
+   * Selects an activity by its ID.
+   *
+   * @function
+   * @param {string} id - The ID of the activity to select.
+   */
+  selectActivity = (id: string): void => {
+    this.selectedActivity = this.activities.find((a) => a.id === id);
+  };
+
+  /**
+   * Cancels the selection of the currently selected activity.
+   *
+   * @function
+   */
+  cancelSelectedActivity = (): void => {
+    this.selectedActivity = undefined;
+  };
+
+  /**
+   * Opens the form for creating or editing an activity.
+   *
+   * @function
+   * @param {string} [id] - The ID of the activity to edit, if any.
+   */
+  openForm = (id?: string): void => {
+    id ? this.selectActivity(id) : this.cancelSelectedActivity();
+    this.editMode = true;
+  };
+
+  /**
+   * Closes the form for creating or editing an activity.
+   *
+   * @function
+   */
+  closeForm = (): void => {
+    this.editMode = false;
   };
 }

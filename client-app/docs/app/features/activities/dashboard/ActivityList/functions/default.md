@@ -28,7 +28,7 @@ The rendered ActivityList component.
 
 This component maps over an array of activities and displays each one with its details using Semantic UI components.
 Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
-The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
+The `activityStore.selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
 The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
 The `submitting` prop is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
 
@@ -40,12 +40,11 @@ const activities = [
   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
 ];
 
-const selectActivity = (id: string) => console.log(id);
 const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
-<ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} submitting={false} />
+<ActivityList activities={activities} deleteActivity={deleteActivity} submitting={false} />
 ```
 
 ## Source
 
-[app/features/activities/dashboard/ActivityList.tsx:53](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L53)
+[src/app/features/activities/dashboard/ActivityList.tsx:51](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L51)

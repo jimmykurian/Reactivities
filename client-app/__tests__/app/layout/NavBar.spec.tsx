@@ -1,6 +1,12 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import NavBar from '../../../src/app/layout/NavBar';
+import { useStore } from '../../../src/app/stores/store';
+
+// Mock the useStore hook
+jest.mock('../../../src/app/stores/store', () => ({
+  useStore: jest.fn(),
+}));
 
 // Automatically cleanup after each test
 afterEach(cleanup);
@@ -8,9 +14,17 @@ afterEach(cleanup);
 describe('NavBar', () => {
   const openForm = jest.fn();
 
+  beforeEach(() => {
+    (useStore as jest.Mock).mockReturnValue({
+      activityStore: {
+        openForm,
+      },
+    });
+  });
+
   test('renders the logo image', () => {
     // Arrange
-    render(<NavBar openForm={openForm} />);
+    render(<NavBar />);
 
     // Act
     const logoImage = screen.getByAltText('logo');
@@ -22,7 +36,7 @@ describe('NavBar', () => {
 
   test('renders the header title', () => {
     // Arrange
-    render(<NavBar openForm={openForm} />);
+    render(<NavBar />);
 
     // Act
     const headerTitle = screen.getByText(/Reactivities/i);
@@ -33,7 +47,7 @@ describe('NavBar', () => {
 
   test('renders the Activities menu item', () => {
     // Arrange
-    render(<NavBar openForm={openForm} />);
+    render(<NavBar />);
 
     // Act
     const activitiesMenuItem = screen.getByRole('menuitem', {
@@ -46,7 +60,7 @@ describe('NavBar', () => {
 
   test('renders the Create Activity button', () => {
     // Arrange
-    render(<NavBar openForm={openForm} />);
+    render(<NavBar />);
 
     // Act
     const createActivityButton = screen.getByRole('button', {
@@ -60,7 +74,7 @@ describe('NavBar', () => {
 
   test('calls openForm when the Create Activity button is clicked', () => {
     // Arrange
-    render(<NavBar openForm={openForm} />);
+    render(<NavBar />);
 
     // Act
     const createActivityButton = screen.getByRole('button', {
@@ -74,7 +88,7 @@ describe('NavBar', () => {
 
   test('matches snapshot', () => {
     // Arrange
-    const { asFragment } = render(<NavBar openForm={openForm} />);
+    const { asFragment } = render(<NavBar />);
 
     // Act & Assert
     expect(asFragment()).toMatchSnapshot();

@@ -6,19 +6,16 @@
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../models/activity';
 import { useState } from 'react';
+import { useStore } from '../../../stores/store';
 
 /**
  * Props interface for the ActivityForm component.
  *
  * @interface Props
- * @property {Activity | undefined} activity - The activity object containing details of the activity to be edited, or undefined for a new activity.
- * @property {() => void} closeForm - Function to close the form.
  * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
  * @property {boolean} [submitting] - Indicates whether the form submission is in progress.
  */
 export interface Props {
-  activity: Activity | undefined;
-  closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
   submitting?: boolean;
 }
@@ -27,7 +24,7 @@ export interface Props {
  * A functional component that renders a form for activity details.
  *
  * @component
- * @param {Props} props - The props object containing the selected activity, the closeForm function, and the createOrEdit function.
+ * @param {Props} props - The props object containing the createOrEdit function and the submitting state.
  * @returns {JSX.Element} The JSX element representing the activity form.
  *
  * @remarks
@@ -36,6 +33,7 @@ export interface Props {
  * It includes input fields and buttons for submitting or canceling the form.
  * The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
  * The `handleSubmit` function is used to create or edit the activity when the form is submitted.
+ * The component accesses the `activityStore` from the MobX store context to get the selected activity and closeForm function.
  *
  * @example
  * Here is an example of how to use the ActivityForm component:
@@ -51,19 +49,18 @@ export interface Props {
  * };
  *
  * <ActivityForm
- *   activity={activity}
- *   closeForm={() => console.log('Form closed')}
  *   createOrEdit={(activity) => console.log(activity)}
  *   submitting={false}
  * />
  * ```
  */
 export default function ActivityForm({
-  activity: selectedActivity,
-  closeForm,
   createOrEdit,
   submitting,
 }: Props): JSX.Element {
+  const { activityStore } = useStore();
+  const { selectedActivity, closeForm } = activityStore;
+
   const initialState = selectedActivity ?? {
     id: '',
     title: '',
@@ -76,13 +73,24 @@ export default function ActivityForm({
 
   const [activity, setActivity] = useState(initialState);
 
-  function handleSubmit() {
+  /**
+   * Handles form submission.
+   *
+   * @function
+   */
+  function handleSubmit(): void {
     createOrEdit(activity);
   }
 
+  /**
+   * Handles input changes in the form fields.
+   *
+   * @function
+   * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} event - The event triggered by changing the form input fields.
+   */
   function handleInputChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
+  ): void {
     const { name, value } = event.target;
     setActivity({ ...activity, [name]: value });
   }

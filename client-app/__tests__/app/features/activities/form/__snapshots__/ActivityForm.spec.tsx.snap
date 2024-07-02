@@ -19,7 +19,7 @@ exports[`ActivityForm matches snapshot 1`] = `
             name="title"
             placeholder="Title"
             type="text"
-            value="Static Title"
+            value=""
           />
         </div>
       </div>
@@ -30,9 +30,7 @@ exports[`ActivityForm matches snapshot 1`] = `
           name="description"
           placeholder="Description"
           rows="3"
-        >
-          This is a static description for testing.
-        </textarea>
+        />
       </div>
       <div
         class="field"
@@ -44,7 +42,7 @@ exports[`ActivityForm matches snapshot 1`] = `
             name="category"
             placeholder="Category"
             type="text"
-            value="static-category"
+            value=""
           />
         </div>
       </div>
@@ -58,7 +56,7 @@ exports[`ActivityForm matches snapshot 1`] = `
             name="date"
             placeholder="Date"
             type="date"
-            value="2024-06-12T00:00:00.000Z"
+            value=""
           />
         </div>
       </div>
@@ -72,7 +70,7 @@ exports[`ActivityForm matches snapshot 1`] = `
             name="city"
             placeholder="City"
             type="text"
-            value="Static City"
+            value=""
           />
         </div>
       </div>
@@ -86,7 +84,7 @@ exports[`ActivityForm matches snapshot 1`] = `
             name="venue"
             placeholder="Venue"
             type="text"
-            value="Static Venue"
+            value=""
           />
         </div>
       </div>

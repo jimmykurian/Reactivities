@@ -6,19 +6,18 @@
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../models/activity';
 import { SyntheticEvent, useState } from 'react';
+import { useStore } from '../../../stores/store';
 
 /**
  * Props interface for the ActivityList component.
  *
  * @interface Props
  * @property {Activity[]} activities - Array of activities to be displayed.
- * @property {(id: string) => void} selectActivity - Function to select an activity by ID.
  * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
  * @property {boolean} [submitting] - Boolean indicating whether a delete operation is in progress.
  */
 export interface Props {
   activities: Activity[];
-  selectActivity: (id: string) => void;
   deleteActivity: (id: string) => void;
   submitting?: boolean;
 }
@@ -33,7 +32,7 @@ export interface Props {
  * @remarks
  * This component maps over an array of activities and displays each one with its details using Semantic UI components.
  * Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
- * The `selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
+ * The `activityStore.selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
  * The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
  * The `submitting` prop is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
  *
@@ -44,15 +43,13 @@ export interface Props {
  *   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
  * ];
  *
- * const selectActivity = (id: string) => console.log(id);
  * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
  *
- * <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} submitting={false} />
+ * <ActivityList activities={activities} deleteActivity={deleteActivity} submitting={false} />
  * ```
  */
 export default function ActivityList({
   activities,
-  selectActivity,
   deleteActivity,
   submitting,
 }: Props): JSX.Element {
@@ -72,6 +69,8 @@ export default function ActivityList({
     deleteActivity(id);
   }
 
+  const { activityStore } = useStore();
+
   return (
     <Segment>
       <Item.Group divided>
@@ -88,7 +87,7 @@ export default function ActivityList({
               </Item.Description>
               <Item.Extra>
                 <Button
-                  onClick={() => selectActivity(activity.id)}
+                  onClick={() => activityStore.selectActivity(activity.id)}
                   floated="right"
                   content="View"
                   color="blue"
