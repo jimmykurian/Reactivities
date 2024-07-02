@@ -20,39 +20,7 @@ Array of activities to be displayed.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:28](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L28)
-
-***
-
-### cancelSelectActivity()
-
-> **cancelSelectActivity**: () => `void`
-
-Function to cancel the selection of an activity.
-
-#### Returns
-
-`void`
-
-#### Source
-
-[app/features/activities/dashboard/ActivityDashboard.tsx:31](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L31)
-
-***
-
-### closeForm()
-
-> **closeForm**: () => `void`
-
-Function to close the form.
-
-#### Returns
-
-`void`
-
-#### Source
-
-[app/features/activities/dashboard/ActivityDashboard.tsx:34](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L34)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:24](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L24)
 
 ***
 
@@ -72,7 +40,7 @@ Function to create or edit an activity.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:35](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L35)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:25](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L25)
 
 ***
 
@@ -92,71 +60,7 @@ Function to delete an activity by ID.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:36](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L36)
-
-***
-
-### editMode?
-
-> `optional` **editMode**: `boolean`
-
-Boolean indicating if the form is in edit mode.
-
-#### Source
-
-[app/features/activities/dashboard/ActivityDashboard.tsx:32](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L32)
-
-***
-
-### openForm()
-
-> **openForm**: (`id`?) => `void`
-
-Function to open the form for editing or creating an activity.
-
-#### Parameters
-
-• **id?**: `string`
-
-#### Returns
-
-`void`
-
-#### Source
-
-[app/features/activities/dashboard/ActivityDashboard.tsx:33](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L33)
-
-***
-
-### selectActivity()
-
-> **selectActivity**: (`id`) => `void`
-
-Function to select an activity by ID.
-
-#### Parameters
-
-• **id**: `string`
-
-#### Returns
-
-`void`
-
-#### Source
-
-[app/features/activities/dashboard/ActivityDashboard.tsx:30](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L30)
-
-***
-
-### selectedActivity
-
-> **selectedActivity**: `undefined` \| [`Activity`](../../../../../models/activity/interfaces/Activity.md)
-
-The currently selected activity.
-
-#### Source
-
-[app/features/activities/dashboard/ActivityDashboard.tsx:29](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L29)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:26](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L26)
 
 ***
 
@@ -164,8 +68,8 @@ The currently selected activity.
 
 > `optional` **submitting**: `boolean`
 
-Indicates whether the form submission is in progress.
+Indicates whether a delete operation is in progress.
 
 #### Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:37](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L37)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:27](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L27)

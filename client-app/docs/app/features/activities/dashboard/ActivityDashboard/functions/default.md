@@ -6,7 +6,7 @@
 
 # Function: default()
 
-> **default**(`props`): `JSX.Element`
+> **default**(`props`, `deprecatedLegacyContext`?): `ReactNode`
 
 ActivityDashboard component.
 
@@ -16,9 +16,17 @@ ActivityDashboard component.
 
 The properties passed to the component.
 
+• **deprecatedLegacyContext?**: `any`
+
+**Deprecated**
+
+**See**
+
+[React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods)
+
 ## Returns
 
-`JSX.Element`
+`ReactNode`
 
 The rendered ActivityDashboard component.
 
@@ -30,8 +38,8 @@ This component serves as the dashboard to display a list of activities.
 It uses the `Grid.Column` component from Semantic UI to structure the layout
 and the `List` component to contain the `ActivityList` component.
 The `ActivityDetails` component is conditionally rendered to display details
-of the selected activity. Additionally, the `ActivityForm` component is rendered
-for creating or editing activities.
+of the selected activity from the MobX store context. Additionally, the `ActivityForm`
+component is conditionally rendered for creating or editing activities.
 
 ## Example
 
@@ -41,21 +49,11 @@ const activities = [
   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
 ];
 
-const selectedActivity = activities[0];
-const selectActivity = (id: string) => console.log(id);
-const cancelSelectActivity = () => console.log('Cancel selection');
-const openForm = (id?: string) => console.log(`Open form for activity with id ${id}`);
-const closeForm = () => console.log('Close form');
 const createOrEdit = (activity: Activity) => console.log(`Create or edit activity with id ${activity.id}`);
 const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
 <ActivityDashboard
   activities={activities}
-  selectedActivity={selectedActivity}
-  selectActivity={selectActivity}
-  cancelSelectActivity={cancelSelectActivity}
-  openForm={openForm}
-  closeForm={closeForm}
   createOrEdit={createOrEdit}
   deleteActivity={deleteActivity}
   submitting={false}
@@ -64,4 +62,4 @@ const deleteActivity = (id: string) => console.log(`Delete activity with id ${id
 
 ## Source
 
-[app/features/activities/dashboard/ActivityDashboard.tsx:83](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L83)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:63](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L63)

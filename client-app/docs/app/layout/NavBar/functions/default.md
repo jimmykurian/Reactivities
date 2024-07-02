@@ -6,16 +6,10 @@
 
 # Function: default()
 
-> **default**(`props`): `JSX.Element`
+> **default**(): `JSX.Element`
 
 The NavBar component serves as the navigation bar for the Reactivities application.
 It includes a logo, a menu item for activities, and a button to create a new activity.
-
-## Parameters
-
-• **props**: [`Props`](../interfaces/Props.md)
-
-The properties passed to the component.
 
 ## Returns
 
@@ -32,13 +26,9 @@ import React from 'react';
 import NavBar from './NavBar';
 
 function App() {
-  const openForm = () => {
-    // logic to open the form
-  };
-
   return (
     <div>
-      <NavBar openForm={openForm} />
+      <NavBar />
       // other components
     </div>
   );
@@ -49,4 +39,4 @@ export default App;
 
 ## Source
 
-[app/layout/NavBar.tsx:50](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/layout/NavBar.tsx#L50)
+[src/app/layout/NavBar.tsx:33](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/layout/NavBar.tsx#L33)

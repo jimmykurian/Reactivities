@@ -6,15 +6,9 @@
 
 # Function: default()
 
-> **default**(`props`): `JSX.Element`
+> **default**(): `JSX.Element`
 
 A functional component that displays the details of an activity.
-
-## Parameters
-
-• **props**: [`Props`](../interfaces/Props.md)
-
-The props object containing the activity.
 
 ## Returns
 
@@ -28,8 +22,9 @@ The JSX element representing the activity details.
 
 This component uses the Semantic UI React library to create a card layout for displaying activity details.
 It includes an image, title, date, description, and buttons for editing or canceling the activity.
-The `cancelSelectActivity` function is called when the "Cancel" button is clicked.
+The `cancelSelectedActivity` function is called when the "Cancel" button is clicked.
 The `openForm` function is called with the activity ID when the "Edit" button is clicked.
+The component accesses the `activityStore` from the MobX store context to get the selected activity and relevant functions.
 
 ## Example
 
@@ -47,11 +42,11 @@ const activity = {
 
 <ActivityDetails
   activity={activity}
-  cancelSelectActivity={() => console.log('Cancel clicked')}
+  cancelSelectedActivity={() => console.log('Cancel clicked')}
   openForm={(id) => console.log(`Edit clicked for activity with id ${id}`)}
 />
 ```
 
 ## Source
 
-[app/features/activities/details/ActivityDetails.tsx:59](https://github.com/jimmykurian/Reactivities/blob/41c65456cc86c8f767cf2b3fae7f0fff76c6e321/client-app/src/app/features/activities/details/ActivityDetails.tsx#L59)
+[src/app/features/activities/details/ActivityDetails.tsx:43](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/details/ActivityDetails.tsx#L43)
