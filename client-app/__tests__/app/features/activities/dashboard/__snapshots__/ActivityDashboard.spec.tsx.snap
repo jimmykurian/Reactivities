@@ -32,7 +32,7 @@ exports[`ActivityDashboard matches snapshot 1`] = `
                 <div
                   class="meta"
                 >
-                  2023-12-31T23:59:59.000Z
+                  2023-12-31
                 </div>
                 <div
                   class="description"
@@ -80,7 +80,7 @@ exports[`ActivityDashboard matches snapshot 1`] = `
                 <div
                   class="meta"
                 >
-                  2024-01-01T23:59:59.000Z
+                  2024-01-01
                 </div>
                 <div
                   class="description"

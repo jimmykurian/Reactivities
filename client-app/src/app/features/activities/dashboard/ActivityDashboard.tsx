@@ -9,21 +9,6 @@ import ActivityDetails from '../details/ActivityDetails';
 import ActivityForm from '../form/ActivityForm';
 import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
-import { Activity } from '../../../models/activity';
-
-/**
- * Props interface for the ActivityDashboard component.
- *
- * @interface Props
- * @property {Activity[]} activities - Array of activities to be displayed.
- * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
- * @property {boolean} [submitting] - Indicates whether a delete operation is in progress.
- */
-export interface Props {
-  activities: Activity[];
-  deleteActivity: (id: string) => void;
-  submitting?: boolean;
-}
 
 /**
  * ActivityDashboard component.
@@ -56,11 +41,7 @@ export interface Props {
  * />
  * ```
  */
-export default observer(function ActivityDashboard({
-  activities,
-  deleteActivity,
-  submitting,
-}: Props): JSX.Element {
+export default observer(function ActivityDashboard(): JSX.Element {
   const { activityStore } = useStore();
   const { selectedActivity, editMode } = activityStore;
 
@@ -68,11 +49,7 @@ export default observer(function ActivityDashboard({
     <Grid>
       <Grid.Column width={10}>
         <List>
-          <ActivityList
-            activities={activities}
-            deleteActivity={deleteActivity}
-            submitting={submitting}
-          />
+          <ActivityList />
         </List>
       </Grid.Column>
       <Grid.Column width={6}>
