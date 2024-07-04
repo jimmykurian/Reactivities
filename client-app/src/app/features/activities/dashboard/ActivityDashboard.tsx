@@ -22,7 +22,6 @@ import { Activity } from '../../../models/activity';
  */
 export interface Props {
   activities: Activity[];
-  createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
   submitting?: boolean;
 }
@@ -62,7 +61,6 @@ export interface Props {
  */
 export default observer(function ActivityDashboard({
   activities,
-  createOrEdit,
   deleteActivity,
   submitting,
 }: Props): JSX.Element {
@@ -82,9 +80,7 @@ export default observer(function ActivityDashboard({
       </Grid.Column>
       <Grid.Column width={6}>
         {selectedActivity && !editMode && <ActivityDetails />}
-        {editMode && (
-          <ActivityForm createOrEdit={createOrEdit} submitting={submitting} />
-        )}
+        {editMode && <ActivityForm />}
       </Grid.Column>
     </Grid>
   );

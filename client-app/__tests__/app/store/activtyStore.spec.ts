@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 import ActivityStore from '../../../src/app/stores/activityStore';
 import { Activity } from '../../../src/app/models/activity';
 import agent from '../../../src/app/api/agent';
+import { runInAction } from 'mobx';
 
 jest.mock('../../../src/app/api/agent');
 
@@ -84,5 +85,45 @@ describe('ActivityStore', () => {
 
     // Assert
     expect(activityStore.loadingInitial).toBe(false);
+  });
+
+  it('should create a new activity', async () => {
+    // Arrange
+    const newActivity = generateMockActivity();
+    (agent.Activities.create as jest.Mock).mockResolvedValue(newActivity);
+
+    const activityStore = new ActivityStore();
+
+    // Act
+    await activityStore.createActivity(newActivity);
+
+    // Assert
+    expect(activityStore.activities).toContainEqual(newActivity);
+    expect(activityStore.selectedActivity).toEqual(newActivity);
+    expect(activityStore.editMode).toBe(false);
+    expect(activityStore.loading).toBe(false);
+  });
+
+  it('should update an existing activity', async () => {
+    // Arrange
+    const existingActivity = generateMockActivity();
+    const updatedActivity = { ...existingActivity, title: 'Updated Title' };
+    (agent.Activities.update as jest.Mock).mockResolvedValue(updatedActivity);
+
+    const activityStore = new ActivityStore();
+
+    runInAction(() => {
+      activityStore.activities.push(existingActivity);
+    });
+
+    // Act
+    await activityStore.updateActivity(updatedActivity);
+
+    // Assert
+    expect(activityStore.activities).toContainEqual(updatedActivity);
+    expect(activityStore.activities).not.toContainEqual(existingActivity);
+    expect(activityStore.selectedActivity).toEqual(updatedActivity);
+    expect(activityStore.editMode).toBe(false);
+    expect(activityStore.loading).toBe(false);
   });
 });

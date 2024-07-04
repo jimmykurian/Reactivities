@@ -4,21 +4,9 @@
  */
 
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { Activity } from '../../../models/activity';
 import { useState } from 'react';
 import { useStore } from '../../../stores/store';
-
-/**
- * Props interface for the ActivityForm component.
- *
- * @interface Props
- * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
- * @property {boolean} [submitting] - Indicates whether the form submission is in progress.
- */
-export interface Props {
-  createOrEdit: (activity: Activity) => void;
-  submitting?: boolean;
-}
+import { observer } from 'mobx-react-lite';
 
 /**
  * A functional component that renders a form for activity details.
@@ -54,12 +42,15 @@ export interface Props {
  * />
  * ```
  */
-export default function ActivityForm({
-  createOrEdit,
-  submitting,
-}: Props): JSX.Element {
+export default observer(function ActivityForm(): JSX.Element {
   const { activityStore } = useStore();
-  const { selectedActivity, closeForm } = activityStore;
+  const {
+    selectedActivity,
+    closeForm,
+    createActivity,
+    updateActivity,
+    loading,
+  } = activityStore;
 
   const initialState = selectedActivity ?? {
     id: '',
@@ -79,7 +70,7 @@ export default function ActivityForm({
    * @function
    */
   function handleSubmit(): void {
-    createOrEdit(activity);
+    activity.id ? updateActivity(activity) : createActivity(activity);
   }
 
   /**
@@ -136,7 +127,7 @@ export default function ActivityForm({
           onChange={handleInputChange}
         />
         <Button
-          loading={submitting}
+          loading={loading}
           floated="right"
           positive
           type="submit"
@@ -151,4 +142,4 @@ export default function ActivityForm({
       </Form>
     </Segment>
   );
-}
+});
