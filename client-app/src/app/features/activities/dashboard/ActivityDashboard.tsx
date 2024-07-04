@@ -16,13 +16,11 @@ import { Activity } from '../../../models/activity';
  *
  * @interface Props
  * @property {Activity[]} activities - Array of activities to be displayed.
- * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
  * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
  * @property {boolean} [submitting] - Indicates whether a delete operation is in progress.
  */
 export interface Props {
   activities: Activity[];
-  createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
   submitting?: boolean;
 }
@@ -49,12 +47,10 @@ export interface Props {
  *   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
  * ];
  *
- * const createOrEdit = (activity: Activity) => console.log(`Create or edit activity with id ${activity.id}`);
  * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
  *
  * <ActivityDashboard
  *   activities={activities}
- *   createOrEdit={createOrEdit}
  *   deleteActivity={deleteActivity}
  *   submitting={false}
  * />
@@ -62,7 +58,6 @@ export interface Props {
  */
 export default observer(function ActivityDashboard({
   activities,
-  createOrEdit,
   deleteActivity,
   submitting,
 }: Props): JSX.Element {
@@ -82,9 +77,7 @@ export default observer(function ActivityDashboard({
       </Grid.Column>
       <Grid.Column width={6}>
         {selectedActivity && !editMode && <ActivityDetails />}
-        {editMode && (
-          <ActivityForm createOrEdit={createOrEdit} submitting={submitting} />
-        )}
+        {editMode && <ActivityForm />}
       </Grid.Column>
     </Grid>
   );

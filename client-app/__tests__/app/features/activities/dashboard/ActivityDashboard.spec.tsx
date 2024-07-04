@@ -43,7 +43,6 @@ describe('ActivityDashboard', () => {
     },
   ];
 
-  const createOrEdit = jest.fn();
   const deleteActivity = jest.fn();
 
   test('renders the ActivityDashboard component', () => {
@@ -51,7 +50,6 @@ describe('ActivityDashboard', () => {
     render(
       <ActivityDashboard
         activities={mockActivities}
-        createOrEdit={createOrEdit}
         deleteActivity={deleteActivity}
         submitting={false}
       />,
@@ -72,7 +70,6 @@ describe('ActivityDashboard', () => {
     const { asFragment } = render(
       <ActivityDashboard
         activities={fixedMockActivities}
-        createOrEdit={createOrEdit}
         deleteActivity={deleteActivity}
         submitting={false}
       />,

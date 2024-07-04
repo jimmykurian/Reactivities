@@ -49,12 +49,10 @@ const activities = [
   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
 ];
 
-const createOrEdit = (activity: Activity) => console.log(`Create or edit activity with id ${activity.id}`);
 const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
 <ActivityDashboard
   activities={activities}
-  createOrEdit={createOrEdit}
   deleteActivity={deleteActivity}
   submitting={false}
 />
@@ -62,4 +60,4 @@ const deleteActivity = (id: string) => console.log(`Delete activity with id ${id
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:63](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L63)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:59](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L59)

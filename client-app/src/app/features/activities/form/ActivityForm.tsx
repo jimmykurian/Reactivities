@@ -4,27 +4,14 @@
  */
 
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { Activity } from '../../../models/activity';
 import { useState } from 'react';
 import { useStore } from '../../../stores/store';
-
-/**
- * Props interface for the ActivityForm component.
- *
- * @interface Props
- * @property {(activity: Activity) => void} createOrEdit - Function to create or edit an activity.
- * @property {boolean} [submitting] - Indicates whether the form submission is in progress.
- */
-export interface Props {
-  createOrEdit: (activity: Activity) => void;
-  submitting?: boolean;
-}
+import { observer } from 'mobx-react-lite';
 
 /**
  * A functional component that renders a form for activity details.
  *
  * @component
- * @param {Props} props - The props object containing the createOrEdit function and the submitting state.
  * @returns {JSX.Element} The JSX element representing the activity form.
  *
  * @remarks
@@ -33,7 +20,7 @@ export interface Props {
  * It includes input fields and buttons for submitting or canceling the form.
  * The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
  * The `handleSubmit` function is used to create or edit the activity when the form is submitted.
- * The component accesses the `activityStore` from the MobX store context to get the selected activity and closeForm function.
+ * The component accesses the `activityStore` from the MobX store context to get the selected activity, closeForm, createActivity, and updateActivity functions.
  *
  * @example
  * Here is an example of how to use the ActivityForm component:
@@ -48,18 +35,18 @@ export interface Props {
  *   venue: 'Central Park'
  * };
  *
- * <ActivityForm
- *   createOrEdit={(activity) => console.log(activity)}
- *   submitting={false}
- * />
+ * <ActivityForm />
  * ```
  */
-export default function ActivityForm({
-  createOrEdit,
-  submitting,
-}: Props): JSX.Element {
+export default observer(function ActivityForm(): JSX.Element {
   const { activityStore } = useStore();
-  const { selectedActivity, closeForm } = activityStore;
+  const {
+    selectedActivity,
+    closeForm,
+    createActivity,
+    updateActivity,
+    loading,
+  } = activityStore;
 
   const initialState = selectedActivity ?? {
     id: '',
@@ -79,7 +66,7 @@ export default function ActivityForm({
    * @function
    */
   function handleSubmit(): void {
-    createOrEdit(activity);
+    activity.id ? updateActivity(activity) : createActivity(activity);
   }
 
   /**
@@ -136,7 +123,7 @@ export default function ActivityForm({
           onChange={handleInputChange}
         />
         <Button
-          loading={submitting}
+          loading={loading}
           floated="right"
           positive
           type="submit"
@@ -151,4 +138,4 @@ export default function ActivityForm({
       </Form>
     </Segment>
   );
-}
+});

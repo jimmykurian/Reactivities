@@ -8,7 +8,6 @@ import { Container } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import ActivityDashboard from '../features/activities/dashboard/ActivityDashboard';
-import { v4 as uuid } from 'uuid';
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
 import { useStore } from '../stores/store';
@@ -24,10 +23,10 @@ import { observer } from 'mobx-react-lite';
  *
  * @remarks
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
- * The `useState` hook is used to manage the activities state, the submitting state.
+ * The `useState` hook is used to manage the submitting state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
- * The `handleCreateOrEditActivity` and `handleDeleteActivity` functions are used to manage creating, editing, and deleting activities.
- * The component also accesses the `activityStore` from the MobX store context.
+ * The `handleDeleteActivity` function is used to manage deleting activities.
+ * The component also accesses the `activityStore` from the MobX store context to manage the activities.
  *
  * @example
  * ```tsx
@@ -45,40 +44,11 @@ import { observer } from 'mobx-react-lite';
 function App(): JSX.Element {
   const { activityStore } = useStore();
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [, setSelectedActivity] = useState<Activity | undefined>(undefined);
-  const [, setEditMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     activityStore.loadActivities();
   }, [activityStore]);
-
-  /**
-   * Handles creating or editing an activity.
-   *
-   * @param {Activity} activity - The activity object to create or edit.
-   */
-  function handleCreateOrEditActivity(activity: Activity): void {
-    setSubmitting(true);
-    if (activity.id) {
-      agent.Activities.update(activity).then(() => {
-        setActivities(
-          activities.map((a) => (a.id === activity.id ? activity : a)),
-        );
-        setSelectedActivity(activity);
-        setEditMode(false);
-        setSubmitting(false);
-      });
-    } else {
-      activity.id = uuid();
-      agent.Activities.create(activity).then(() => {
-        setActivities([...activities, activity]);
-        setSelectedActivity(activity);
-        setEditMode(false);
-        setSubmitting(false);
-      });
-    }
-  }
 
   /**
    * Handles deleting an activity.
@@ -102,7 +72,6 @@ function App(): JSX.Element {
       <Container style={{ marginTop: '7em' }}>
         <ActivityDashboard
           activities={activityStore.activities}
-          createOrEdit={handleCreateOrEditActivity}
           deleteActivity={handleDeleteActivity}
           submitting={submitting}
         />

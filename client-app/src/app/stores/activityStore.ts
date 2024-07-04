@@ -3,9 +3,10 @@
  * @name ActivityStore
  */
 
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { Activity } from '../models/activity';
 import agent from '../api/agent';
+import { v4 as uuid } from 'uuid';
 
 /**
  * ActivityStore class.
@@ -48,14 +49,18 @@ export default class ActivityStore {
     this.setLoadingInitial(true);
     try {
       const activities = await agent.Activities.list();
-      activities.forEach((activity: Activity) => {
-        activity.date = activity.date.split('T')[0];
-        this.activities.push(activity);
+      runInAction(() => {
+        activities.forEach((activity: Activity) => {
+          activity.date = activity.date.split('T')[0];
+          this.activities.push(activity);
+        });
+        this.setLoadingInitial(false);
       });
-      this.setLoadingInitial(false);
     } catch (error) {
       console.log(error);
-      this.setLoadingInitial(false);
+      runInAction(() => {
+        this.setLoadingInitial(false);
+      });
     }
   };
 
@@ -106,5 +111,61 @@ export default class ActivityStore {
    */
   closeForm = (): void => {
     this.editMode = false;
+  };
+
+  /**
+   * Creates a new activity.
+   *
+   * @async
+   * @function
+   * @param {Activity} activity - The activity to create.
+   * @returns {Promise<void>}
+   */
+  createActivity = async (activity: Activity): Promise<void> => {
+    this.loading = true;
+    activity.id = uuid();
+    try {
+      await agent.Activities.create(activity);
+      runInAction(() => {
+        this.activities.push(activity);
+        this.selectedActivity = activity;
+        this.editMode = false;
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
+
+  /**
+   * Updates an existing activity.
+   *
+   * @async
+   * @function
+   * @param {Activity} activity - The activity to update.
+   * @returns {Promise<void>}
+   */
+  updateActivity = async (activity: Activity): Promise<void> => {
+    this.loading = true;
+    try {
+      await agent.Activities.update(activity);
+      runInAction(() => {
+        this.activities = [
+          ...this.activities.filter((a) => a.id !== activity.id),
+          activity,
+        ];
+        this.selectedActivity = activity;
+        this.editMode = false;
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
   };
 }

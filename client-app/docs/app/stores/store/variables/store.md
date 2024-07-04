@@ -14,4 +14,4 @@ The store instance containing all the application's stores.
 
 ## Source
 
-[src/app/stores/store.ts:25](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/store.ts#L25)
+[src/app/stores/store.ts:25](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/store.ts#L25)
