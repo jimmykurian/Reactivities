@@ -8,13 +8,9 @@
 
 > **default**(`props`, `deprecatedLegacyContext`?): `ReactNode`
 
-ActivityDashboard component.
-
 ## Parameters
 
-• **props**: [`Props`](../interfaces/Props.md)
-
-The properties passed to the component.
+• **props**: `object`
 
 • **deprecatedLegacyContext?**: `any`
 
@@ -30,16 +26,22 @@ The properties passed to the component.
 
 The rendered ActivityDashboard component.
 
+## Author
+
+Jimmy Kurian
+
 ## Component
+
+ActivityDashboard
+
+## Description
+
+The ActivityDashboard component displays a list of activities and their details or a form for editing/creating activities.
 
 ## Remarks
 
-This component serves as the dashboard to display a list of activities.
-It uses the `Grid.Column` component from Semantic UI to structure the layout
-and the `List` component to contain the `ActivityList` component.
-The `ActivityDetails` component is conditionally rendered to display details
-of the selected activity from the MobX store context. Additionally, the `ActivityForm`
-component is conditionally rendered for creating or editing activities.
+This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`, `ActivityDetails`,
+and `ActivityForm` components based on the state from the MobX store.
 
 ## Example
 
@@ -51,13 +53,9 @@ const activities = [
 
 const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
-<ActivityDashboard
-  activities={activities}
-  deleteActivity={deleteActivity}
-  submitting={false}
-/>
+<ActivityDashboard />
 ```
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:59](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L59)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:30](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L30)

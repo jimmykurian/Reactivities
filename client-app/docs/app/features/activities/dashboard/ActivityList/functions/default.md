@@ -6,23 +6,37 @@
 
 # Function: default()
 
-> **default**(`props`): `JSX.Element`
-
-ActivityList component.
+> **default**(`props`, `deprecatedLegacyContext`?): `ReactNode`
 
 ## Parameters
 
-• **props**: [`Props`](../interfaces/Props.md)
+• **props**: `object`
 
-The properties passed to the component.
+• **deprecatedLegacyContext?**: `any`
+
+**Deprecated**
+
+**See**
+
+[React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods)
 
 ## Returns
 
-`JSX.Element`
+`ReactNode`
 
 The rendered ActivityList component.
 
+## Author
+
+Jimmy Kurian
+
 ## Component
+
+ActivityList
+
+## Description
+
+The ActivityList component displays a list of activities with options to view and delete each activity.
 
 ## Remarks
 
@@ -30,7 +44,7 @@ This component maps over an array of activities and displays each one with its d
 Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
 The `activityStore.selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
 The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
-The `submitting` prop is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
+The `loading` state is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
 
 ## Example
 
@@ -42,9 +56,9 @@ const activities = [
 
 const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
 
-<ActivityList activities={activities} deleteActivity={deleteActivity} submitting={false} />
+<ActivityList />
 ```
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityList.tsx:51](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L51)
+[src/app/features/activities/dashboard/ActivityList.tsx:31](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L31)
