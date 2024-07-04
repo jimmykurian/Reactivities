@@ -49,14 +49,18 @@ export default class ActivityStore {
     this.setLoadingInitial(true);
     try {
       const activities = await agent.Activities.list();
-      activities.forEach((activity: Activity) => {
-        activity.date = activity.date.split('T')[0];
-        this.activities.push(activity);
+      runInAction(() => {
+        activities.forEach((activity: Activity) => {
+          activity.date = activity.date.split('T')[0];
+          this.activities.push(activity);
+        });
+        this.setLoadingInitial(false);
       });
-      this.setLoadingInitial(false);
     } catch (error) {
       console.log(error);
-      this.setLoadingInitial(false);
+      runInAction(() => {
+        this.setLoadingInitial(false);
+      });
     }
   };
 
@@ -109,6 +113,14 @@ export default class ActivityStore {
     this.editMode = false;
   };
 
+  /**
+   * Creates a new activity.
+   *
+   * @async
+   * @function
+   * @param {Activity} activity - The activity to create.
+   * @returns {Promise<void>}
+   */
   createActivity = async (activity: Activity): Promise<void> => {
     this.loading = true;
     activity.id = uuid();
@@ -128,6 +140,14 @@ export default class ActivityStore {
     }
   };
 
+  /**
+   * Updates an existing activity.
+   *
+   * @async
+   * @function
+   * @param {Activity} activity - The activity to update.
+   * @returns {Promise<void>}
+   */
   updateActivity = async (activity: Activity): Promise<void> => {
     this.loading = true;
     try {

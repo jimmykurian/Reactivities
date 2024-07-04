@@ -12,7 +12,6 @@ import { observer } from 'mobx-react-lite';
  * A functional component that renders a form for activity details.
  *
  * @component
- * @param {Props} props - The props object containing the createOrEdit function and the submitting state.
  * @returns {JSX.Element} The JSX element representing the activity form.
  *
  * @remarks
@@ -21,7 +20,7 @@ import { observer } from 'mobx-react-lite';
  * It includes input fields and buttons for submitting or canceling the form.
  * The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
  * The `handleSubmit` function is used to create or edit the activity when the form is submitted.
- * The component accesses the `activityStore` from the MobX store context to get the selected activity and closeForm function.
+ * The component accesses the `activityStore` from the MobX store context to get the selected activity, closeForm, createActivity, and updateActivity functions.
  *
  * @example
  * Here is an example of how to use the ActivityForm component:
@@ -36,10 +35,7 @@ import { observer } from 'mobx-react-lite';
  *   venue: 'Central Park'
  * };
  *
- * <ActivityForm
- *   createOrEdit={(activity) => console.log(activity)}
- *   submitting={false}
- * />
+ * <ActivityForm />
  * ```
  */
 export default observer(function ActivityForm(): JSX.Element {

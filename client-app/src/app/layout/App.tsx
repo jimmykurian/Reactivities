@@ -23,10 +23,10 @@ import { observer } from 'mobx-react-lite';
  *
  * @remarks
  * The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
- * The `useState` hook is used to manage the activities state, the submitting state.
+ * The `useState` hook is used to manage the submitting state.
  * The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
- * The `handleCreateOrEditActivity` and `handleDeleteActivity` functions are used to manage creating, editing, and deleting activities.
- * The component also accesses the `activityStore` from the MobX store context.
+ * The `handleDeleteActivity` function is used to manage deleting activities.
+ * The component also accesses the `activityStore` from the MobX store context to manage the activities.
  *
  * @example
  * ```tsx
