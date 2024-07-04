@@ -126,4 +126,24 @@ describe('ActivityStore', () => {
     expect(activityStore.editMode).toBe(false);
     expect(activityStore.loading).toBe(false);
   });
+
+  it('should delete an activity', async () => {
+    // Arrange
+    const existingActivity = generateMockActivity();
+    (agent.Activities.delete as jest.Mock).mockResolvedValue(undefined);
+
+    const activityStore = new ActivityStore();
+
+    runInAction(() => {
+      activityStore.activities.push(existingActivity);
+    });
+
+    // Act
+    await activityStore.deleteActivity(existingActivity.id);
+
+    // Assert
+    expect(activityStore.activities).not.toContainEqual(existingActivity);
+    expect(activityStore.selectedActivity).toBeUndefined();
+    expect(activityStore.loading).toBe(false);
+  });
 });

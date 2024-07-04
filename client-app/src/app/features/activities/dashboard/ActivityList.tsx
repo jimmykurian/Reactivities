@@ -1,32 +1,12 @@
-/**
- * @author Jimmy Kurian
- * @name ActivityList
- */
-
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
-import { Activity } from '../../../models/activity';
 import { SyntheticEvent, useState } from 'react';
 import { useStore } from '../../../stores/store';
+import { observer } from 'mobx-react-lite';
 
 /**
- * Props interface for the ActivityList component.
- *
- * @interface Props
- * @property {Activity[]} activities - Array of activities to be displayed.
- * @property {(id: string) => void} deleteActivity - Function to delete an activity by ID.
- * @property {boolean} [submitting] - Boolean indicating whether a delete operation is in progress.
- */
-export interface Props {
-  activities: Activity[];
-  deleteActivity: (id: string) => void;
-  submitting?: boolean;
-}
-
-/**
- * ActivityList component.
- *
- * @component
- * @param {Props} props - The properties passed to the component.
+ * @author Jimmy Kurian
+ * @component ActivityList
+ * @description The ActivityList component displays a list of activities with options to view and delete each activity.
  * @returns {JSX.Element} The rendered ActivityList component.
  *
  * @remarks
@@ -34,7 +14,7 @@ export interface Props {
  * Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
  * The `activityStore.selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
  * The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
- * The `submitting` prop is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
+ * The `loading` state is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
  *
  * @example
  * ```tsx
@@ -45,14 +25,12 @@ export interface Props {
  *
  * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
  *
- * <ActivityList activities={activities} deleteActivity={deleteActivity} submitting={false} />
+ * <ActivityList />
  * ```
  */
-export default function ActivityList({
-  activities,
-  deleteActivity,
-  submitting,
-}: Props): JSX.Element {
+export default observer(function ActivityList(): JSX.Element {
+  const { activityStore } = useStore();
+  const { activities, deleteActivity, loading } = activityStore;
   const [target, setTarget] = useState('');
 
   /**
@@ -68,8 +46,6 @@ export default function ActivityList({
     setTarget(e.currentTarget.name);
     deleteActivity(id);
   }
-
-  const { activityStore } = useStore();
 
   return (
     <Segment>
@@ -94,7 +70,7 @@ export default function ActivityList({
                 />
                 <Button
                   name={activity.id}
-                  loading={submitting && target === activity.id}
+                  loading={loading && target === activity.id}
                   onClick={(e) => handleActivityDelete(e, activity.id)}
                   floated="right"
                   content="Delete"
@@ -108,4 +84,4 @@ export default function ActivityList({
       </Item.Group>
     </Segment>
   );
-}
+});

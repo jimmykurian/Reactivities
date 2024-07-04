@@ -8,25 +8,32 @@
 
 > **default**(): `JSX.Element`
 
-The App component serves as the root component for the React application.
-It fetches activities from an API, maintains the activities state, and renders the NavBar and ActivityDashboard components.
-It also utilizes the MobX store for additional state management.
-
 ## Returns
 
 `JSX.Element`
 
 The rendered App component.
 
+## Author
+
+Jimmy Kurian
+
 ## Component
+
+App
+
+## Description
+
+The App component serves as the root component for the React application.
+It fetches activities from an API, maintains the activities state, and renders the NavBar and ActivityDashboard components.
+It also utilizes the MobX store for additional state management.
 
 ## Remarks
 
 The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
-The `useState` hook is used to manage the submitting state.
-The component includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
-The `handleDeleteActivity` function is used to manage deleting activities.
+It includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
 The component also accesses the `activityStore` from the MobX store context to manage the activities.
+If the activities are still loading, it displays a LoadingComponent.
 
 ## Example
 
@@ -44,4 +51,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Source
 
-[src/app/layout/App.tsx:83](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/layout/App.tsx#L83)
+[src/app/layout/App.tsx:58](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/layout/App.tsx#L58)

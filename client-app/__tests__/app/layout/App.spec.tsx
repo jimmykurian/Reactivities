@@ -1,10 +1,14 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import App from '../../../src/app/layout/App';
-import agent from '../../../src/app/api/agent';
 import { Activity } from '../../../src/app/models/activity';
+import { useStore } from '../../../src/app/stores/store';
+import { makeAutoObservable, runInAction } from 'mobx';
 
-// Mock the agent
+// Mock the agent and store
 jest.mock('../../../src/app/api/agent');
+jest.mock('../../../src/app/stores/store', () => ({
+  useStore: jest.fn(),
+}));
 
 describe('App', () => {
   const staticMockActivities: Activity[] = [
@@ -28,10 +32,31 @@ describe('App', () => {
     },
   ];
 
+  class MockActivityStore {
+    activities: Activity[] = [];
+    selectedActivity: Activity | undefined = undefined;
+    editMode = false;
+    loading = false;
+    loadingInitial = true;
+    loadActivities = jest.fn().mockImplementation(async () => {
+      runInAction(() => {
+        this.activities = staticMockActivities;
+        this.loadingInitial = false;
+      });
+    });
+
+    constructor() {
+      makeAutoObservable(this);
+    }
+  }
+
+  const mockStore = {
+    activityStore: new MockActivityStore(),
+  };
+
   beforeEach(() => {
-    (agent.Activities.list as jest.Mock).mockResolvedValue(
-      staticMockActivities,
-    );
+    (useStore as jest.Mock).mockReturnValue(mockStore);
+    jest.clearAllMocks();
   });
 
   test('renders Reactivities heading', async () => {

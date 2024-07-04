@@ -1,17 +1,11 @@
-/**
- * @author Jimmy Kurian
- * @name ActivityStore
- */
-
 import { makeAutoObservable, runInAction } from 'mobx';
 import { Activity } from '../models/activity';
 import agent from '../api/agent';
 import { v4 as uuid } from 'uuid';
 
 /**
- * ActivityStore class.
- *
- * @class
+ * @author Jimmy Kurian
+ * @class ActivityStore
  * @classdesc This class represents the MobX store for managing activity-related state.
  * It initializes the observables and configures MobX for state management.
  *
@@ -24,15 +18,24 @@ import { v4 as uuid } from 'uuid';
  * ```
  */
 export default class ActivityStore {
+  /** @type {Activity[]} */
   activities: Activity[] = [];
+
+  /** @type {Activity | undefined} */
   selectedActivity: Activity | undefined = undefined;
+
+  /** @type {boolean} */
   editMode = false;
+
+  /** @type {boolean} */
   loading = false;
+
+  /** @type {boolean} */
   loadingInitial = false;
 
   /**
    * Creates an instance of ActivityStore.
-   * The constructor initializes the observables using MobX's makeAutoObservable.
+   * Initializes the observables using MobX's makeAutoObservable.
    */
   constructor() {
     makeAutoObservable(this);
@@ -159,6 +162,31 @@ export default class ActivityStore {
         ];
         this.selectedActivity = activity;
         this.editMode = false;
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
+
+  /**
+   * Deletes an activity.
+   *
+   * @async
+   * @function
+   * @param {string} id - The ID of the activity to delete.
+   * @returns {Promise<void>}
+   */
+  deleteActivity = async (id: string): Promise<void> => {
+    this.loading = true;
+    try {
+      await agent.Activities.delete(id);
+      runInAction(() => {
+        this.activities = this.activities.filter((a) => a.id !== id);
+        if (this.selectedActivity?.id === id) this.cancelSelectedActivity();
         this.loading = false;
       });
     } catch (error) {
