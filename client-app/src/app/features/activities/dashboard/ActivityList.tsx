@@ -1,18 +1,12 @@
-/**
- * @author Jimmy Kurian
- * @name ActivityList
- */
-
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
 import { SyntheticEvent, useState } from 'react';
 import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
 
 /**
- * ActivityList component.
- *
- * @component
- * @param {Props} props - The properties passed to the component.
+ * @author Jimmy Kurian
+ * @component ActivityList
+ * @description The ActivityList component displays a list of activities with options to view and delete each activity.
  * @returns {JSX.Element} The rendered ActivityList component.
  *
  * @remarks
@@ -20,7 +14,7 @@ import { observer } from 'mobx-react-lite';
  * Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
  * The `activityStore.selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
  * The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
- * The `submitting` prop is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
+ * The `loading` state is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
  *
  * @example
  * ```tsx
@@ -31,7 +25,7 @@ import { observer } from 'mobx-react-lite';
  *
  * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
  *
- * <ActivityList activities={activities} deleteActivity={deleteActivity} submitting={false} />
+ * <ActivityList />
  * ```
  */
 export default observer(function ActivityList(): JSX.Element {
