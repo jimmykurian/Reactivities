@@ -37,7 +37,7 @@ The constructor initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:36](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L36)
+[src/app/stores/activityStore.ts:37](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L37)
 
 ## Properties
 
@@ -47,7 +47,7 @@ The constructor initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:26](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L26)
+[src/app/stores/activityStore.ts:27](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L27)
 
 ***
 
@@ -57,7 +57,7 @@ The constructor initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:28](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L28)
+[src/app/stores/activityStore.ts:29](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L29)
 
 ***
 
@@ -67,7 +67,7 @@ The constructor initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:29](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L29)
+[src/app/stores/activityStore.ts:30](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L30)
 
 ***
 
@@ -77,7 +77,7 @@ The constructor initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:30](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L30)
+[src/app/stores/activityStore.ts:31](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L31)
 
 ***
 
@@ -87,7 +87,7 @@ The constructor initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:27](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L27)
+[src/app/stores/activityStore.ts:28](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L28)
 
 ## Methods
 
@@ -105,7 +105,7 @@ Cancels the selection of the currently selected activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:87](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L87)
+[src/app/stores/activityStore.ts:92](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L92)
 
 ***
 
@@ -123,7 +123,33 @@ Closes the form for creating or editing an activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:107](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L107)
+[src/app/stores/activityStore.ts:112](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L112)
+
+***
+
+### createActivity()
+
+> **createActivity**(`activity`): `Promise`\<`void`\>
+
+Creates a new activity.
+
+#### Parameters
+
+• **activity**: [`Activity`](../../../models/activity/interfaces/Activity.md)
+
+The activity to create.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Async
+
+#### Function
+
+#### Source
+
+[src/app/stores/activityStore.ts:124](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L124)
 
 ***
 
@@ -143,7 +169,7 @@ Loads activities from the API and sets the activities state.
 
 #### Source
 
-[src/app/stores/activityStore.ts:47](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L47)
+[src/app/stores/activityStore.ts:48](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L48)
 
 ***
 
@@ -167,7 +193,7 @@ The ID of the activity to edit, if any.
 
 #### Source
 
-[src/app/stores/activityStore.ts:97](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L97)
+[src/app/stores/activityStore.ts:102](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L102)
 
 ***
 
@@ -191,7 +217,7 @@ The ID of the activity to select.
 
 #### Source
 
-[src/app/stores/activityStore.ts:78](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L78)
+[src/app/stores/activityStore.ts:83](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L83)
 
 ***
 
@@ -215,4 +241,30 @@ The loading state to set.
 
 #### Source
 
-[src/app/stores/activityStore.ts:68](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/stores/activityStore.ts#L68)
+[src/app/stores/activityStore.ts:73](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L73)
+
+***
+
+### updateActivity()
+
+> **updateActivity**(`activity`): `Promise`\<`void`\>
+
+Updates an existing activity.
+
+#### Parameters
+
+• **activity**: [`Activity`](../../../models/activity/interfaces/Activity.md)
+
+The activity to update.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Async
+
+#### Function
+
+#### Source
+
+[src/app/stores/activityStore.ts:151](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/stores/activityStore.ts#L151)

@@ -6,19 +6,25 @@
 
 # Function: default()
 
-> **default**(`props`): `JSX.Element`
+> **default**(`props`, `deprecatedLegacyContext`?): `ReactNode`
 
 A functional component that renders a form for activity details.
 
 ## Parameters
 
-• **props**: [`Props`](../interfaces/Props.md)
+• **props**: `object`
 
-The props object containing the createOrEdit function and the submitting state.
+• **deprecatedLegacyContext?**: `any`
+
+**Deprecated**
+
+**See**
+
+[React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods)
 
 ## Returns
 
-`JSX.Element`
+`ReactNode`
 
 The JSX element representing the activity form.
 
@@ -31,7 +37,7 @@ for collecting activity details such as title, description, category, date, city
 It includes input fields and buttons for submitting or canceling the form.
 The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
 The `handleSubmit` function is used to create or edit the activity when the form is submitted.
-The component accesses the `activityStore` from the MobX store context to get the selected activity and closeForm function.
+The component accesses the `activityStore` from the MobX store context to get the selected activity, closeForm, createActivity, and updateActivity functions.
 
 ## Example
 
@@ -47,12 +53,9 @@ const activity = {
   venue: 'Central Park'
 };
 
-<ActivityForm
-  createOrEdit={(activity) => console.log(activity)}
-  submitting={false}
-/>
+<ActivityForm />
 ```
 
 ## Source
 
-[src/app/features/activities/form/ActivityForm.tsx:57](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/form/ActivityForm.tsx#L57)
+[src/app/features/activities/form/ActivityForm.tsx:41](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/features/activities/form/ActivityForm.tsx#L41)

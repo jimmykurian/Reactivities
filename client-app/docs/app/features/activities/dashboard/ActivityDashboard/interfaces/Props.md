@@ -20,27 +20,7 @@ Array of activities to be displayed.
 
 #### Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:24](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L24)
-
-***
-
-### createOrEdit()
-
-> **createOrEdit**: (`activity`) => `void`
-
-Function to create or edit an activity.
-
-#### Parameters
-
-• **activity**: [`Activity`](../../../../../models/activity/interfaces/Activity.md)
-
-#### Returns
-
-`void`
-
-#### Source
-
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:25](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L25)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:23](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L23)
 
 ***
 
@@ -60,7 +40,7 @@ Function to delete an activity by ID.
 
 #### Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:26](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L26)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:24](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L24)
 
 ***
 
@@ -72,4 +52,4 @@ Indicates whether a delete operation is in progress.
 
 #### Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:27](https://github.com/jimmykurian/Reactivities/blob/05f3a8dcd798d01b8ed4c46df32bd7a1c177607c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L27)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:25](https://github.com/jimmykurian/Reactivities/blob/c5b8976c071486a4e7bfff58c75d9a474da2c558/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L25)
