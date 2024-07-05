@@ -16,7 +16,7 @@ export interface Store {
 }
 
 /**
- * @constant
+ * @constant store
  * @description The store instance containing all the application's stores.
  * @type {Store}
  */
@@ -25,7 +25,7 @@ export const store: Store = {
 };
 
 /**
- * @constant
+ * @constant StoreContext
  * @description The React context for the store.
  * @type {React.Context<Store>}
  */

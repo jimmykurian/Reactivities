@@ -13,7 +13,7 @@ import { Activity } from '../models/activity';
  */
 
 /**
- * @constant
+ * @constant sleep
  * @description The sleep function that simulates network delay.
  * @param {number} delay - The number of milliseconds to delay.
  * @returns {Promise<void>} A promise that resolves after the specified delay.
@@ -37,7 +37,7 @@ axios.interceptors.response.use(async (response) => {
 });
 
 /**
- * @constant
+ * @constant responseBody
  * @description Extracts the data from an Axios response.
  * @template T - The type of the response data.
  * @param {AxiosResponse<T>} response - The Axios response.
@@ -46,7 +46,7 @@ axios.interceptors.response.use(async (response) => {
 const responseBody = <T>(response: AxiosResponse<T>): T => response.data;
 
 /**
- * @constant
+ * @constant requests
  * @description An object containing methods for making HTTP requests.
  */
 const requests = {
@@ -88,7 +88,7 @@ const requests = {
 };
 
 /**
- * @constant
+ * @constant Activities
  * @description An object containing methods for interacting with activity-related API endpoints.
  */
 const Activities = {
@@ -132,7 +132,7 @@ const Activities = {
 };
 
 /**
- * @constant
+ * @constant agent
  * @description An object containing all the API interaction methods.
  */
 const agent = {
