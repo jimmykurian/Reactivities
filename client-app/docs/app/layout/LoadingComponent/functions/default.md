@@ -41,4 +41,4 @@ The `inverted` prop controls the background and content color scheme, and the `c
 
 ## Source
 
-[src/app/layout/LoadingComponent.tsx:32](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/layout/LoadingComponent.tsx#L32)
+[src/app/layout/LoadingComponent.tsx:32](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/layout/LoadingComponent.tsx#L32)

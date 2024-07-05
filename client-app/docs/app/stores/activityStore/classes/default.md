@@ -42,7 +42,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:44](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L44)
+[src/app/stores/activityStore.ts:44](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L44)
 
 ## Properties
 
@@ -52,7 +52,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:25](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L25)
+[src/app/stores/activityStore.ts:25](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L25)
 
 ***
 
@@ -62,7 +62,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:31](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L31)
+[src/app/stores/activityStore.ts:31](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L31)
 
 ***
 
@@ -72,7 +72,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:34](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L34)
+[src/app/stores/activityStore.ts:34](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L34)
 
 ***
 
@@ -82,7 +82,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:37](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L37)
+[src/app/stores/activityStore.ts:37](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L37)
 
 ***
 
@@ -92,7 +92,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:28](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L28)
+[src/app/stores/activityStore.ts:28](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L28)
 
 ## Methods
 
@@ -106,13 +106,15 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Function
 
+cancelSelectedActivity
+
 #### Description
 
 Cancels the selection of the currently selected activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:95](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L95)
+[src/app/stores/activityStore.ts:95](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L95)
 
 ***
 
@@ -126,13 +128,15 @@ Cancels the selection of the currently selected activity.
 
 #### Function
 
+closeForm
+
 #### Description
 
 Closes the form for creating or editing an activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:113](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L113)
+[src/app/stores/activityStore.ts:113](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L113)
 
 ***
 
@@ -154,13 +158,15 @@ The activity to create.
 
 #### Function
 
+createActivity
+
 #### Description
 
 Creates a new activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:124](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L124)
+[src/app/stores/activityStore.ts:124](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L124)
 
 ***
 
@@ -182,13 +188,15 @@ The ID of the activity to delete.
 
 #### Function
 
+deleteActivity
+
 #### Description
 
 Deletes an activity by its ID.
 
 #### Source
 
-[src/app/stores/activityStore.ts:178](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L178)
+[src/app/stores/activityStore.ts:178](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L178)
 
 ***
 
@@ -204,13 +212,15 @@ Deletes an activity by its ID.
 
 #### Function
 
+loadActivities
+
 #### Description
 
 Loads activities from the API and sets the activities state.
 
 #### Source
 
-[src/app/stores/activityStore.ts:54](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L54)
+[src/app/stores/activityStore.ts:54](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L54)
 
 ***
 
@@ -230,13 +240,15 @@ The ID of the activity to edit, if any.
 
 #### Function
 
+openForm
+
 #### Description
 
 Opens the form for creating or editing an activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:104](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L104)
+[src/app/stores/activityStore.ts:104](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L104)
 
 ***
 
@@ -256,13 +268,15 @@ The ID of the activity to select.
 
 #### Function
 
+selectActivity
+
 #### Description
 
 Selects an activity by its ID.
 
 #### Source
 
-[src/app/stores/activityStore.ts:87](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L87)
+[src/app/stores/activityStore.ts:87](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L87)
 
 ***
 
@@ -284,13 +298,15 @@ The loading state to set.
 
 #### Function
 
+setLoadingInitial
+
 #### Description
 
 Sets the loading initial state
 
 #### Source
 
-[src/app/stores/activityStore.ts:78](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L78)
+[src/app/stores/activityStore.ts:78](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L78)
 
 ***
 
@@ -312,10 +328,12 @@ The activity to update.
 
 #### Function
 
+updateActivity
+
 #### Description
 
 Updates an existing activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:150](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/activityStore.ts#L150)
+[src/app/stores/activityStore.ts:150](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/activityStore.ts#L150)

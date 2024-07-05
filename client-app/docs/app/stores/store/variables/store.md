@@ -10,10 +10,12 @@
 
 ## Constant
 
+store
+
 ## Description
 
 The store instance containing all the application's stores.
 
 ## Source
 
-[src/app/stores/store.ts:23](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/store.ts#L23)
+[src/app/stores/store.ts:23](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/app/stores/store.ts#L23)
