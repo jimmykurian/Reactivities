@@ -1,6 +1,7 @@
 /**
  * @file ActivityForm.tsx
  * @author Jimmy Kurian
+ * @fileoverview This file contains the ActivityForm component.
  */
 
 import { Button, Form, Segment } from 'semantic-ui-react';
@@ -11,7 +12,9 @@ import { observer } from 'mobx-react-lite';
 /**
  * @component ActivityForm
  * @description A functional component that renders a form for activity details.
+ *
  * @returns {JSX.Element} The JSX element representing the activity form.
+ *
  * @remarks
  * This component uses the Semantic UI React library to create a form layout
  * for collecting activity details such as title, description, category, date, city, and venue.
@@ -19,6 +22,7 @@ import { observer } from 'mobx-react-lite';
  * The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
  * The `handleSubmit` function is used to create or edit the activity when the form is submitted.
  * The component accesses the `activityStore` from the MobX store context to get the selected activity, closeForm, createActivity, and updateActivity functions.
+ *
  * @example
  * Here is an example of how to use the ActivityForm component:
  * ```tsx

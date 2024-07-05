@@ -1,6 +1,7 @@
 /**
  * @file store.ts
  * @author Jimmy Kurian
+ * @fileoverview This file contains the store for the application.
  */
 
 import { createContext, useContext } from 'react';
@@ -9,6 +10,7 @@ import ActivityStore from './activityStore';
 /**
  * @interface Store
  * @description interface representing the structure of the store.
+ *
  * @property {ActivityStore} activityStore - Instance of ActivityStore for managing activity-related state.
  */
 export interface Store {

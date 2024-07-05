@@ -1,6 +1,7 @@
 /**
  * @file activityStore.tsx
  * @author Jimmy Kurian
+ * @fileoverview This file contains the ActivityStore class which manages the state of activities using MobX.
  */
 
 import { makeAutoObservable, runInAction } from 'mobx';
@@ -12,6 +13,7 @@ import { v4 as uuid } from 'uuid';
  * @class ActivityStore
  * @classdesc This class represents the MobX store for managing activity-related state.
  * It initializes the observables and configures MobX for state management.
+ *
  * @example
  * ```tsx
  * import ActivityStore from './ActivityStore';
@@ -39,7 +41,7 @@ export default class ActivityStore {
   /**
    * @constructor ActivityStore
    * @description Creates an instance of ActivityStore.
-   * @remarks Initializes the observables using MobX's makeAutoObservable.
+   * Initializes the observables using MobX's makeAutoObservable.
    */
   constructor() {
     makeAutoObservable(this);
