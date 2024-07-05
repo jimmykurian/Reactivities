@@ -1,6 +1,7 @@
 /**
  * @file ActivityDashboard.tsx
  * @author Jimmy Kurian
+ * @fileoverview This file contains the ActivityDashboard component.
  */
 
 import { Grid, List } from 'semantic-ui-react';
@@ -13,10 +14,13 @@ import { observer } from 'mobx-react-lite';
 /**
  * @component ActivityDashboard
  * @description The ActivityDashboard component displays a list of activities and their details or a form for editing/creating activities.
+ *
  * @returns {JSX.Element} The rendered ActivityDashboard component.
+ *
  * @remarks
  * This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`, `ActivityDetails`,
  * and `ActivityForm` components based on the state from the MobX store.
+ *
  * @example
  * ```tsx
  * const activities = [

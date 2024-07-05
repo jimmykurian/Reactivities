@@ -1,6 +1,7 @@
 /**
  * @file agent.ts
  * @author Jimmy Kurian
+ * @fileoverview This module provides an API client for interacting with activity-related endpoints using axios.
  */
 
 import axios, { AxiosResponse } from 'axios';
