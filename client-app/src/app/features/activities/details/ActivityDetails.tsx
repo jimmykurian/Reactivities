@@ -1,6 +1,6 @@
 /**
+ * @file ActivityDetails.tsx
  * @author Jimmy Kurian
- * @name ActivityDetails
  */
 
 import { Button, Card, Image } from 'semantic-ui-react';
@@ -8,18 +8,15 @@ import { useStore } from '../../../stores/store';
 import LoadingComponent from '../../../layout/LoadingComponent';
 
 /**
- * A functional component that displays the details of an activity.
- *
- * @component
+ * @component ActivityDetails
+ * @description A functional component that displays the details of an activity.
  * @returns {JSX.Element} The JSX element representing the activity details.
- *
  * @remarks
  * This component uses the Semantic UI React library to create a card layout for displaying activity details.
  * It includes an image, title, date, description, and buttons for editing or canceling the activity.
  * The `cancelSelectedActivity` function is called when the "Cancel" button is clicked.
  * The `openForm` function is called with the activity ID when the "Edit" button is clicked.
  * The component accesses the `activityStore` from the MobX store context to get the selected activity and relevant functions.
- *
  * @example
  * Here is an example of how to use the ActivityDetails component:
  * ```tsx

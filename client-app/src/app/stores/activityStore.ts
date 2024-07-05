@@ -1,14 +1,17 @@
+/**
+ * @file activityStore.tsx
+ * @author Jimmy Kurian
+ */
+
 import { makeAutoObservable, runInAction } from 'mobx';
 import { Activity } from '../models/activity';
 import agent from '../api/agent';
 import { v4 as uuid } from 'uuid';
 
 /**
- * @author Jimmy Kurian
  * @class ActivityStore
  * @classdesc This class represents the MobX store for managing activity-related state.
  * It initializes the observables and configures MobX for state management.
- *
  * @example
  * ```tsx
  * import ActivityStore from './ActivityStore';
@@ -34,18 +37,18 @@ export default class ActivityStore {
   loadingInitial = false;
 
   /**
-   * Creates an instance of ActivityStore.
-   * Initializes the observables using MobX's makeAutoObservable.
+   * @constructor
+   * @description Creates an instance of ActivityStore.
+   * @remarks Initializes the observables using MobX's makeAutoObservable.
    */
   constructor() {
     makeAutoObservable(this);
   }
 
   /**
-   * Loads activities from the API and sets the activities state.
-   *
    * @async
    * @function
+   * @description Loads activities from the API and sets the activities state.
    * @returns {Promise<void>}
    */
   loadActivities = async (): Promise<void> => {
@@ -67,10 +70,9 @@ export default class ActivityStore {
     }
   };
 
-  /**
-   * Sets the loading initial state.
-   *
+  /**.
    * @function
+   * @description Sets the loading initial state
    * @param {boolean} state - The loading state to set.
    */
   setLoadingInitial = (state: boolean): void => {
@@ -78,9 +80,8 @@ export default class ActivityStore {
   };
 
   /**
-   * Selects an activity by its ID.
-   *
    * @function
+   * @description Selects an activity by its ID.
    * @param {string} id - The ID of the activity to select.
    */
   selectActivity = (id: string): void => {
@@ -88,18 +89,16 @@ export default class ActivityStore {
   };
 
   /**
-   * Cancels the selection of the currently selected activity.
-   *
    * @function
+   * @description Cancels the selection of the currently selected activity.
    */
   cancelSelectedActivity = (): void => {
     this.selectedActivity = undefined;
   };
 
   /**
-   * Opens the form for creating or editing an activity.
-   *
    * @function
+   * @description Opens the form for creating or editing an activity.
    * @param {string} [id] - The ID of the activity to edit, if any.
    */
   openForm = (id?: string): void => {
@@ -108,19 +107,17 @@ export default class ActivityStore {
   };
 
   /**
-   * Closes the form for creating or editing an activity.
-   *
    * @function
+   * @description Closes the form for creating or editing an activity.
    */
   closeForm = (): void => {
     this.editMode = false;
   };
 
   /**
-   * Creates a new activity.
-   *
    * @async
    * @function
+   * @description Creates a new activity.
    * @param {Activity} activity - The activity to create.
    * @returns {Promise<void>}
    */
@@ -144,10 +141,9 @@ export default class ActivityStore {
   };
 
   /**
-   * Updates an existing activity.
-   *
    * @async
    * @function
+   * @description Updates an existing activity.
    * @param {Activity} activity - The activity to update.
    * @returns {Promise<void>}
    */
@@ -173,10 +169,9 @@ export default class ActivityStore {
   };
 
   /**
-   * Deletes an activity.
-   *
    * @async
    * @function
+   * @description Deletes an activity by its ID.
    * @param {string} id - The ID of the activity to delete.
    * @returns {Promise<void>}
    */

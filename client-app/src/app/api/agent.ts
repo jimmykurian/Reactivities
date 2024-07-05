@@ -1,14 +1,20 @@
 /**
+ * @file agent.ts
  * @author Jimmy Kurian
- * @name Agent
  */
 
 import axios, { AxiosResponse } from 'axios';
 import { Activity } from '../models/activity';
 
 /**
- * Simulates a delay for a given number of milliseconds.
- *
+ * @module Agent
+ * @description This module provides an API client for interacting with activity-related endpoints using axios.
+ * It includes methods for performing CRUD operations on activities and simulates network delay for responses.
+ */
+
+/**
+ * @constant
+ * @description The sleep function that simulates network delay.
  * @param {number} delay - The number of milliseconds to delay.
  * @returns {Promise<void>} A promise that resolves after the specified delay.
  */
@@ -31,8 +37,8 @@ axios.interceptors.response.use(async (response) => {
 });
 
 /**
- * Extracts the data from an Axios response.
- *
+ * @constant
+ * @description Extracts the data from an Axios response.
  * @template T - The type of the response data.
  * @param {AxiosResponse<T>} response - The Axios response.
  * @returns {T} The extracted response data.
@@ -40,12 +46,12 @@ axios.interceptors.response.use(async (response) => {
 const responseBody = <T>(response: AxiosResponse<T>): T => response.data;
 
 /**
- * An object containing methods for making HTTP requests.
+ * @constant
+ * @description An object containing methods for making HTTP requests.
  */
 const requests = {
   /**
-   * Makes a GET request to the specified URL.
-   *
+   * @description Makes a GET request to the specified URL.
    * @template T - The type of the response data.
    * @param {string} url - The URL to send the GET request to.
    * @returns {Promise<T>} A promise that resolves to the response data.
@@ -53,8 +59,7 @@ const requests = {
   get: <T>(url: string): Promise<T> => axios.get<T>(url).then(responseBody),
 
   /**
-   * Makes a POST request to the specified URL with the given body.
-   *
+   * @description Makes a POST request to the specified URL with the given body.
    * @template T - The type of the response data.
    * @param {string} url - The URL to send the POST request to.
    * @param {object} body - The body to include in the POST request.
@@ -64,8 +69,7 @@ const requests = {
     axios.post<T>(url, body).then(responseBody),
 
   /**
-   * Makes a PUT request to the specified URL with the given body.
-   *
+   * @description Makes a PUT request to the specified URL with the given body.
    * @template T - The type of the response data.
    * @param {string} url - The URL to send the PUT request to.
    * @param {object} body - The body to include in the PUT request.
@@ -75,8 +79,7 @@ const requests = {
     axios.put<T>(url, body).then(responseBody),
 
   /**
-   * Makes a DELETE request to the specified URL.
-   *
+   * @description Makes a DELETE request to the specified URL.
    * @template T - The type of the response data.
    * @param {string} url - The URL to send the DELETE request to.
    * @returns {Promise<T>} A promise that resolves to the response data.
@@ -85,19 +88,18 @@ const requests = {
 };
 
 /**
- * An object containing methods for interacting with activity-related API endpoints.
+ * @constant
+ * @description An object containing methods for interacting with activity-related API endpoints.
  */
 const Activities = {
   /**
-   * Fetches the list of activities.
-   *
+   * @description Fetches the list of activities.
    * @returns {Promise<Activity[]>} A promise that resolves to the list of activities.
    */
   list: (): Promise<Activity[]> => requests.get<Activity[]>('/activities'),
 
   /**
-   * Fetches the details of a specific activity by ID.
-   *
+   * @description Fetches the details of a specific activity by ID.
    * @param {string} id - The ID of the activity to fetch.
    * @returns {Promise<Activity>} A promise that resolves to the activity details.
    */
@@ -105,8 +107,7 @@ const Activities = {
     requests.get<Activity>(`/activities/${id}`),
 
   /**
-   * Creates a new activity.
-   *
+   * @description Creates a new activity.
    * @param {Activity} activity - The activity to create.
    * @returns {Promise<void>} A promise that resolves when the activity is created.
    */
@@ -114,8 +115,7 @@ const Activities = {
     requests.post<void>('/activities', activity),
 
   /**
-   * Updates an existing activity.
-   *
+   * @description Updates an existing activity.
    * @param {Activity} activity - The activity to update.
    * @returns {Promise<void>} A promise that resolves when the activity is updated.
    */
@@ -123,8 +123,7 @@ const Activities = {
     requests.put<void>(`/activities/${activity.id}`, activity),
 
   /**
-   * Deletes an activity by ID.
-   *
+   * @description Deletes an activity by ID.
    * @param {string} id - The ID of the activity to delete.
    * @returns {Promise<void>} A promise that resolves when the activity is deleted.
    */
@@ -133,7 +132,8 @@ const Activities = {
 };
 
 /**
- * An object containing all the API interaction methods.
+ * @constant
+ * @description An object containing all the API interaction methods.
  */
 const agent = {
   Activities,

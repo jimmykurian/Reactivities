@@ -1,6 +1,6 @@
 /**
+ * @file ActivityForm.tsx
  * @author Jimmy Kurian
- * @name ActivityForm
  */
 
 import { Button, Form, Segment } from 'semantic-ui-react';
@@ -9,11 +9,9 @@ import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
 
 /**
- * A functional component that renders a form for activity details.
- *
- * @component
+ * @component ActivityForm
+ * @description A functional component that renders a form for activity details.
  * @returns {JSX.Element} The JSX element representing the activity form.
- *
  * @remarks
  * This component uses the Semantic UI React library to create a form layout
  * for collecting activity details such as title, description, category, date, city, and venue.
@@ -21,7 +19,6 @@ import { observer } from 'mobx-react-lite';
  * The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
  * The `handleSubmit` function is used to create or edit the activity when the form is submitted.
  * The component accesses the `activityStore` from the MobX store context to get the selected activity, closeForm, createActivity, and updateActivity functions.
- *
  * @example
  * Here is an example of how to use the ActivityForm component:
  * ```tsx
@@ -61,18 +58,16 @@ export default observer(function ActivityForm(): JSX.Element {
   const [activity, setActivity] = useState(initialState);
 
   /**
-   * Handles form submission.
-   *
    * @function
+   * @description Handles form submission.
    */
   function handleSubmit(): void {
     activity.id ? updateActivity(activity) : createActivity(activity);
   }
 
   /**
-   * Handles input changes in the form fields.
-   *
    * @function
+   * @description Handles input changes in the form fields.
    * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} event - The event triggered by changing the form input fields.
    */
   function handleInputChange(

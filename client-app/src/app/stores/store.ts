@@ -1,15 +1,14 @@
 /**
+ * @file store.ts
  * @author Jimmy Kurian
- * @name Store
  */
 
 import { createContext, useContext } from 'react';
 import ActivityStore from './activityStore';
 
 /**
- * Interface representing the structure of the store.
- *
  * @interface Store
+ * @description interface representing the structure of the store.
  * @property {ActivityStore} activityStore - Instance of ActivityStore for managing activity-related state.
  */
 export interface Store {
@@ -17,9 +16,8 @@ export interface Store {
 }
 
 /**
- * The store instance containing all the application's stores.
- *
  * @constant
+ * @description The store instance containing all the application's stores.
  * @type {Store}
  */
 export const store: Store = {
@@ -27,19 +25,16 @@ export const store: Store = {
 };
 
 /**
- * The React context for the store.
- *
  * @constant
+ * @description The React context for the store.
  * @type {React.Context<Store>}
  */
-export const StoreContext = createContext(store);
+export const StoreContext: React.Context<Store> = createContext(store);
 
 /**
- * Custom hook to use the store in React components.
- *
- * @function
+ * @function Store
+ * @description Custom hook to use the store in React components.
  * @returns {Store} The store instance.
- *
  * @example
  * ```tsx
  * import { useStore } from './store';
