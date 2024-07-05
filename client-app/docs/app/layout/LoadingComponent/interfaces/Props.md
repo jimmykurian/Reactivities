@@ -22,7 +22,7 @@ The loading message to be displayed.
 
 #### Source
 
-[src/app/layout/LoadingComponent.tsx:16](https://github.com/jimmykurian/Reactivities/blob/a12e79dbb60696a9948b8b89e913d44a26f8e7d7/client-app/src/app/layout/LoadingComponent.tsx#L16)
+[src/app/layout/LoadingComponent.tsx:18](https://github.com/jimmykurian/Reactivities/blob/b7deb33720de249fc2929bf02ab0ec1eb6fc42cc/client-app/src/app/layout/LoadingComponent.tsx#L18)
 
 ***
 
@@ -34,4 +34,4 @@ Whether the dimmer is inverted (dark background with light content).
 
 #### Source
 
-[src/app/layout/LoadingComponent.tsx:15](https://github.com/jimmykurian/Reactivities/blob/a12e79dbb60696a9948b8b89e913d44a26f8e7d7/client-app/src/app/layout/LoadingComponent.tsx#L15)
+[src/app/layout/LoadingComponent.tsx:17](https://github.com/jimmykurian/Reactivities/blob/b7deb33720de249fc2929bf02ab0ec1eb6fc42cc/client-app/src/app/layout/LoadingComponent.tsx#L17)
