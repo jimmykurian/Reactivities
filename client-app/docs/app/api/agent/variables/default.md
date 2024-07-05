@@ -8,6 +8,10 @@
 
 > `const` **default**: `object`
 
+## Constant
+
+## Description
+
 An object containing all the API interaction methods.
 
 ## Type declaration
@@ -19,6 +23,8 @@ An object containing all the API interaction methods.
 ### Activities.create()
 
 > **create**: (`activity`) => `Promise`\<`void`\>
+
+#### Description
 
 Creates a new activity.
 
@@ -36,6 +42,8 @@ The activity to create.
 
 > **delete**: (`id`) => `Promise`\<`void`\>
 
+#### Description
+
 Deletes an activity by ID.
 
 #### Parameters
@@ -51,6 +59,8 @@ The ID of the activity to delete.
 ### Activities.details()
 
 > **details**: (`id`) => `Promise`\<[`Activity`](../../../models/activity/interfaces/Activity.md)\>
+
+#### Description
 
 Fetches the details of a specific activity by ID.
 
@@ -68,6 +78,8 @@ The ID of the activity to fetch.
 
 > **list**: () => `Promise`\<[`Activity`](../../../models/activity/interfaces/Activity.md)[]\>
 
+#### Description
+
 Fetches the list of activities.
 
 #### Returns
@@ -77,6 +89,8 @@ Fetches the list of activities.
 ### Activities.update()
 
 > **update**: (`activity`) => `Promise`\<`void`\>
+
+#### Description
 
 Updates an existing activity.
 
@@ -92,4 +106,4 @@ The activity to update.
 
 ## Source
 
-[src/app/api/agent.ts:138](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/api/agent.ts#L138)
+[src/app/api/agent.ts:138](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/api/agent.ts#L138)

@@ -6,12 +6,14 @@
 
 # Variable: StoreContext
 
-> `const` **StoreContext**: `Context`\<[`Store`](../interfaces/Store.md)\>
-
-The React context for the store.
+> `const` **StoreContext**: `React.Context`\<[`Store`](../interfaces/Store.md)\>
 
 ## Constant
 
+## Description
+
+The React context for the store.
+
 ## Source
 
-[src/app/stores/store.ts:35](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/stores/store.ts#L35)
+[src/app/stores/store.ts:32](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/store.ts#L32)

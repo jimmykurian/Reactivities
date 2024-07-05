@@ -8,8 +8,6 @@
 
 > **default**(`props`): `JSX.Element`
 
-LoadingComponent renders a loading indicator with an optional message.
-
 ## Parameters
 
 • **props**: [`Props`](../interfaces/Props.md)
@@ -24,6 +22,12 @@ The rendered LoadingComponent.
 
 ## Component
 
+LoadingComponent
+
+## Description
+
+LoadingComponent renders a loading indicator with an optional message.
+
 ## Remarks
 
 This component utilizes the `Dimmer` and `Loader` components from the Semantic UI React library.
@@ -37,4 +41,4 @@ The `inverted` prop controls the background and content color scheme, and the `c
 
 ## Source
 
-[src/app/layout/LoadingComponent.tsx:36](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/layout/LoadingComponent.tsx#L36)
+[src/app/layout/LoadingComponent.tsx:32](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/layout/LoadingComponent.tsx#L32)

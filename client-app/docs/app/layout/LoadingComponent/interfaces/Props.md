@@ -6,9 +6,11 @@
 
 # Interface: Props
 
-Props interface for the LoadingComponent.
+Props
 
- Props
+## Description
+
+Props interface for the LoadingComponent.
 
 ## Properties
 
@@ -20,7 +22,7 @@ The loading message to be displayed.
 
 #### Source
 
-[src/app/layout/LoadingComponent.tsx:17](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/layout/LoadingComponent.tsx#L17)
+[src/app/layout/LoadingComponent.tsx:16](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/layout/LoadingComponent.tsx#L16)
 
 ***
 
@@ -32,4 +34,4 @@ Whether the dimmer is inverted (dark background with light content).
 
 #### Source
 
-[src/app/layout/LoadingComponent.tsx:16](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/layout/LoadingComponent.tsx#L16)
+[src/app/layout/LoadingComponent.tsx:15](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/layout/LoadingComponent.tsx#L15)
