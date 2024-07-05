@@ -6,9 +6,11 @@
 
 # Interface: Store
 
-Interface representing the structure of the store.
+Store
 
- Store
+## Description
+
+interface representing the structure of the store.
 
 ## Properties
 
@@ -20,4 +22,4 @@ Instance of ActivityStore for managing activity-related state.
 
 #### Source
 
-[src/app/stores/store.ts:16](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/stores/store.ts#L16)
+[src/app/stores/store.ts:15](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/store.ts#L15)

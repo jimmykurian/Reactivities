@@ -8,10 +8,12 @@
 
 > `const` **store**: [`Store`](../interfaces/Store.md)
 
-The store instance containing all the application's stores.
-
 ## Constant
+
+## Description
+
+The store instance containing all the application's stores.
 
 ## Source
 
-[src/app/stores/store.ts:25](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/stores/store.ts#L25)
+[src/app/stores/store.ts:23](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/store.ts#L23)

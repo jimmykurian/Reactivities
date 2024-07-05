@@ -8,9 +8,6 @@
 
 > **default**(): `JSX.Element`
 
-The NavBar component serves as the navigation bar for the Reactivities application.
-It includes a logo, a menu item for activities, and a button to create a new activity.
-
 ## Returns
 
 `JSX.Element`
@@ -18,6 +15,13 @@ It includes a logo, a menu item for activities, and a button to create a new act
 The rendered NavBar component.
 
 ## Component
+
+NavBar
+
+## Description
+
+The NavBar component serves as the navigation bar for the Reactivities application.
+It includes a logo, a menu item for activities, and a button to create a new activity.
 
 ## Example
 
@@ -39,4 +43,4 @@ export default App;
 
 ## Source
 
-[src/app/layout/NavBar.tsx:33](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/layout/NavBar.tsx#L33)
+[src/app/layout/NavBar.tsx:31](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/layout/NavBar.tsx#L31)

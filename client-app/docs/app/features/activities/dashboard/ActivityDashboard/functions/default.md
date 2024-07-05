@@ -26,10 +26,6 @@
 
 The rendered ActivityDashboard component.
 
-## Author
-
-Jimmy Kurian
-
 ## Component
 
 ActivityDashboard
@@ -58,4 +54,4 @@ const deleteActivity = (id: string) => console.log(`Delete activity with id ${id
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:30](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L30)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:32](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L32)

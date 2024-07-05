@@ -8,8 +8,12 @@
 
 > `const` **\_\_main**: `"Main entry point for the React application"` = `'Main entry point for the React application'`
 
+## Constant
+
+## Description
+
 A named export to include this file in TypeDoc documentation.
 
 ## Source
 
-[src/main.tsx:55](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/main.tsx#L55)
+[src/main.tsx:49](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/main.tsx#L49)

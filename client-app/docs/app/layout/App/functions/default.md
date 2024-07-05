@@ -14,10 +14,6 @@
 
 The rendered App component.
 
-## Author
-
-Jimmy Kurian
-
 ## Component
 
 App
@@ -51,4 +47,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Source
 
-[src/app/layout/App.tsx:58](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/layout/App.tsx#L58)
+[src/app/layout/App.tsx:59](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/layout/App.tsx#L59)

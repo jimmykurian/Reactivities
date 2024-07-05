@@ -8,8 +8,6 @@
 
 > **useStore**(): [`Store`](../interfaces/Store.md)
 
-Custom hook to use the store in React components.
-
 ## Returns
 
 [`Store`](../interfaces/Store.md)
@@ -17,6 +15,12 @@ Custom hook to use the store in React components.
 The store instance.
 
 ## Function
+
+Store
+
+## Description
+
+Custom hook to use the store in React components.
 
 ## Example
 
@@ -31,4 +35,4 @@ const MyComponent = () => {
 
 ## Source
 
-[src/app/stores/store.ts:53](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/stores/store.ts#L53)
+[src/app/stores/store.ts:48](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/stores/store.ts#L48)

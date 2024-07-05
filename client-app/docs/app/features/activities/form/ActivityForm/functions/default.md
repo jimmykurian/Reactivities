@@ -8,8 +8,6 @@
 
 > **default**(`props`, `deprecatedLegacyContext`?): `ReactNode`
 
-A functional component that renders a form for activity details.
-
 ## Parameters
 
 • **props**: `object`
@@ -29,6 +27,12 @@ A functional component that renders a form for activity details.
 The JSX element representing the activity form.
 
 ## Component
+
+ActivityForm
+
+## Description
+
+A functional component that renders a form for activity details.
 
 ## Remarks
 
@@ -58,4 +62,4 @@ const activity = {
 
 ## Source
 
-[src/app/features/activities/form/ActivityForm.tsx:41](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/features/activities/form/ActivityForm.tsx#L41)
+[src/app/features/activities/form/ActivityForm.tsx:38](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/features/activities/form/ActivityForm.tsx#L38)

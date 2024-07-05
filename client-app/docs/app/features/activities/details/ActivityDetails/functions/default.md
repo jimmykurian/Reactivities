@@ -8,8 +8,6 @@
 
 > **default**(): `JSX.Element`
 
-A functional component that displays the details of an activity.
-
 ## Returns
 
 `JSX.Element`
@@ -17,6 +15,12 @@ A functional component that displays the details of an activity.
 The JSX element representing the activity details.
 
 ## Component
+
+ActivityDetails
+
+## Description
+
+A functional component that displays the details of an activity.
 
 ## Remarks
 
@@ -49,4 +53,4 @@ const activity = {
 
 ## Source
 
-[src/app/features/activities/details/ActivityDetails.tsx:43](https://github.com/jimmykurian/Reactivities/blob/7242251934a0465caac7d53316c5f07fee39a833/client-app/src/app/features/activities/details/ActivityDetails.tsx#L43)
+[src/app/features/activities/details/ActivityDetails.tsx:40](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/features/activities/details/ActivityDetails.tsx#L40)
