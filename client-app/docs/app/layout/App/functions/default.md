@@ -47,4 +47,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Source
 
-[src/app/layout/App.tsx:59](https://github.com/jimmykurian/Reactivities/blob/389d69564b44e3bb01195bf2a2a519fe0be35b7c/client-app/src/app/layout/App.tsx#L59)
+[src/app/layout/App.tsx:59](https://github.com/jimmykurian/Reactivities/blob/a12e79dbb60696a9948b8b89e913d44a26f8e7d7/client-app/src/app/layout/App.tsx#L59)

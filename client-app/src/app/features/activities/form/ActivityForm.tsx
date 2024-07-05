@@ -58,7 +58,7 @@ export default observer(function ActivityForm(): JSX.Element {
   const [activity, setActivity] = useState(initialState);
 
   /**
-   * @function
+   * @function handleSubmit
    * @description Handles form submission.
    */
   function handleSubmit(): void {
@@ -66,7 +66,7 @@ export default observer(function ActivityForm(): JSX.Element {
   }
 
   /**
-   * @function
+   * @function handleInputChange
    * @description Handles input changes in the form fields.
    * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} event - The event triggered by changing the form input fields.
    */

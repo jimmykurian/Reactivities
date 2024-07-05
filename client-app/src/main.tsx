@@ -43,7 +43,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );
 
 /**
- * @constant
+ * @constant __main
  * @description A named export to include this file in TypeDoc documentation.
  */
 export const __main = 'Main entry point for the React application';

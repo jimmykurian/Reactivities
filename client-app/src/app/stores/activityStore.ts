@@ -37,7 +37,7 @@ export default class ActivityStore {
   loadingInitial = false;
 
   /**
-   * @constructor
+   * @constructor ActivityStore
    * @description Creates an instance of ActivityStore.
    * @remarks Initializes the observables using MobX's makeAutoObservable.
    */
@@ -47,7 +47,7 @@ export default class ActivityStore {
 
   /**
    * @async
-   * @function
+   * @function loadActivities
    * @description Loads activities from the API and sets the activities state.
    * @returns {Promise<void>}
    */
@@ -71,7 +71,7 @@ export default class ActivityStore {
   };
 
   /**.
-   * @function
+   * @function setLoadingInitial
    * @description Sets the loading initial state
    * @param {boolean} state - The loading state to set.
    */
@@ -80,7 +80,7 @@ export default class ActivityStore {
   };
 
   /**
-   * @function
+   * @function selectActivity
    * @description Selects an activity by its ID.
    * @param {string} id - The ID of the activity to select.
    */
@@ -89,7 +89,7 @@ export default class ActivityStore {
   };
 
   /**
-   * @function
+   * @function cancelSelectedActivity
    * @description Cancels the selection of the currently selected activity.
    */
   cancelSelectedActivity = (): void => {
@@ -97,7 +97,7 @@ export default class ActivityStore {
   };
 
   /**
-   * @function
+   * @function openForm
    * @description Opens the form for creating or editing an activity.
    * @param {string} [id] - The ID of the activity to edit, if any.
    */
@@ -107,7 +107,7 @@ export default class ActivityStore {
   };
 
   /**
-   * @function
+   * @function closeForm
    * @description Closes the form for creating or editing an activity.
    */
   closeForm = (): void => {
@@ -116,7 +116,7 @@ export default class ActivityStore {
 
   /**
    * @async
-   * @function
+   * @function createActivity
    * @description Creates a new activity.
    * @param {Activity} activity - The activity to create.
    * @returns {Promise<void>}
@@ -142,7 +142,7 @@ export default class ActivityStore {
 
   /**
    * @async
-   * @function
+   * @function updateActivity
    * @description Updates an existing activity.
    * @param {Activity} activity - The activity to update.
    * @returns {Promise<void>}
@@ -170,7 +170,7 @@ export default class ActivityStore {
 
   /**
    * @async
-   * @function
+   * @function deleteActivity
    * @description Deletes an activity by its ID.
    * @param {string} id - The ID of the activity to delete.
    * @returns {Promise<void>}

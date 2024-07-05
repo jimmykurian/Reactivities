@@ -36,7 +36,7 @@ export default observer(function ActivityList(): JSX.Element {
   const [target, setTarget] = useState('');
 
   /**
-   * @function
+   * @function handleActivityDelete
    * @description Handles the deletion of an activity.
    * @param {SyntheticEvent<HTMLButtonElement>} e - The synthetic event triggered by clicking the delete button.
    * @param {string} id - The ID of the activity to delete.
