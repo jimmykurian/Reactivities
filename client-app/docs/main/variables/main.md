@@ -18,4 +18,4 @@ A named export to include this file in TypeDoc documentation.
 
 ## Source
 
-[src/main.tsx:49](https://github.com/jimmykurian/Reactivities/blob/7a6ba4ec643051f26ce97541e7c5c74c9d07de20/client-app/src/main.tsx#L49)
+[src/main.tsx:49](https://github.com/jimmykurian/Reactivities/blob/a12e79dbb60696a9948b8b89e913d44a26f8e7d7/client-app/src/main.tsx#L49)
