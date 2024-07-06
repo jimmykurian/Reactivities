@@ -70,7 +70,9 @@ describe('ActivityList', () => {
     }
 
     get activitiesByDate() {
-      return this.activities.slice().sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+      return this.activities
+        .slice()
+        .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
     }
 
     setLoadingInitial = (state: boolean) => {

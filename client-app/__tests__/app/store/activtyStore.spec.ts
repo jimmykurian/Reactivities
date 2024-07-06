@@ -72,7 +72,7 @@ describe('ActivityStore', () => {
 
     // Assert
     expect(activityStore.activityRegistry.size).toBe(5);
-    mockActivities.forEach(activity => {
+    mockActivities.forEach((activity) => {
       expect(activityStore.activityRegistry.get(activity.id)).toEqual(activity);
     });
     expect(activityStore.loadingInitial).toBe(false);
@@ -106,7 +106,9 @@ describe('ActivityStore', () => {
     await activityStore.createActivity(newActivity);
 
     // Assert
-    expect(activityStore.activityRegistry.get(newActivity.id)).toEqual(newActivity);
+    expect(activityStore.activityRegistry.get(newActivity.id)).toEqual(
+      newActivity,
+    );
     expect(activityStore.selectedActivity).toEqual(newActivity);
     expect(activityStore.editMode).toBe(false);
     expect(activityStore.loading).toBe(false);
@@ -128,7 +130,9 @@ describe('ActivityStore', () => {
     await activityStore.updateActivity(updatedActivity);
 
     // Assert
-    expect(activityStore.activityRegistry.get(updatedActivity.id)).toEqual(updatedActivity);
+    expect(activityStore.activityRegistry.get(updatedActivity.id)).toEqual(
+      updatedActivity,
+    );
     expect(activityStore.selectedActivity).toEqual(updatedActivity);
     expect(activityStore.editMode).toBe(false);
     expect(activityStore.loading).toBe(false);
@@ -233,7 +237,9 @@ describe('ActivityStore', () => {
 
   it('should handle errors during activity loading', async () => {
     // Arrange
-    (agent.Activities.list as jest.Mock).mockRejectedValue(new Error('Failed to load activities'));
+    (agent.Activities.list as jest.Mock).mockRejectedValue(
+      new Error('Failed to load activities'),
+    );
     const activityStore = new ActivityStore();
 
     // Act
@@ -246,7 +252,9 @@ describe('ActivityStore', () => {
   it('should handle errors during activity creation', async () => {
     // Arrange
     const newActivity = generateMockActivity();
-    (agent.Activities.create as jest.Mock).mockRejectedValue(new Error('Failed to create activity'));
+    (agent.Activities.create as jest.Mock).mockRejectedValue(
+      new Error('Failed to create activity'),
+    );
     const activityStore = new ActivityStore();
 
     // Act
@@ -261,7 +269,9 @@ describe('ActivityStore', () => {
     // Arrange
     const existingActivity = generateMockActivity();
     const updatedActivity = { ...existingActivity, title: 'Updated Title' };
-    (agent.Activities.update as jest.Mock).mockRejectedValue(new Error('Failed to update activity'));
+    (agent.Activities.update as jest.Mock).mockRejectedValue(
+      new Error('Failed to update activity'),
+    );
     const activityStore = new ActivityStore();
 
     runInAction(() => {
@@ -273,13 +283,17 @@ describe('ActivityStore', () => {
 
     // Assert
     expect(activityStore.loading).toBe(false);
-    expect(activityStore.activityRegistry.get(existingActivity.id)).toEqual(existingActivity);
+    expect(activityStore.activityRegistry.get(existingActivity.id)).toEqual(
+      existingActivity,
+    );
   });
 
   it('should handle errors during activity deletion', async () => {
     // Arrange
     const existingActivity = generateMockActivity();
-    (agent.Activities.delete as jest.Mock).mockRejectedValue(new Error('Failed to delete activity'));
+    (agent.Activities.delete as jest.Mock).mockRejectedValue(
+      new Error('Failed to delete activity'),
+    );
     const activityStore = new ActivityStore();
 
     runInAction(() => {
@@ -304,7 +318,7 @@ describe('ActivityStore', () => {
     const activityStore = new ActivityStore();
 
     runInAction(() => {
-      activities.forEach(activity => {
+      activities.forEach((activity) => {
         activityStore.activityRegistry.set(activity.id, activity);
       });
     });
