@@ -149,12 +149,24 @@ describe('ActivityForm', () => {
     render(<ActivityForm />);
 
     // Assert
-    expect((screen.getByPlaceholderText('Title') as HTMLInputElement).value).toBe('Test Title');
-    expect((screen.getByPlaceholderText('Description') as HTMLInputElement).value).toBe('Test Description');
-    expect((screen.getByPlaceholderText('Category') as HTMLInputElement).value).toBe('Test Category');
-    expect((screen.getByPlaceholderText('Date') as HTMLInputElement).value).toBe('2024-01-01');
-    expect((screen.getByPlaceholderText('City') as HTMLInputElement).value).toBe('Test City');
-    expect((screen.getByPlaceholderText('Venue') as HTMLInputElement).value).toBe('Test Venue');
+    expect(
+      (screen.getByPlaceholderText('Title') as HTMLInputElement).value,
+    ).toBe('Test Title');
+    expect(
+      (screen.getByPlaceholderText('Description') as HTMLInputElement).value,
+    ).toBe('Test Description');
+    expect(
+      (screen.getByPlaceholderText('Category') as HTMLInputElement).value,
+    ).toBe('Test Category');
+    expect(
+      (screen.getByPlaceholderText('Date') as HTMLInputElement).value,
+    ).toBe('2024-01-01');
+    expect(
+      (screen.getByPlaceholderText('City') as HTMLInputElement).value,
+    ).toBe('Test City');
+    expect(
+      (screen.getByPlaceholderText('Venue') as HTMLInputElement).value,
+    ).toBe('Test Venue');
   });
 
   test('calls createActivity with new activity when form is submitted', () => {
@@ -162,12 +174,24 @@ describe('ActivityForm', () => {
     render(<ActivityForm />);
 
     // Act
-    fireEvent.change(screen.getByPlaceholderText('Title'), { target: { value: 'New Title' } });
-    fireEvent.change(screen.getByPlaceholderText('Description'), { target: { value: 'New Description' } });
-    fireEvent.change(screen.getByPlaceholderText('Category'), { target: { value: 'New Category' } });
-    fireEvent.change(screen.getByPlaceholderText('Date'), { target: { value: '2024-01-01' } });
-    fireEvent.change(screen.getByPlaceholderText('City'), { target: { value: 'New City' } });
-    fireEvent.change(screen.getByPlaceholderText('Venue'), { target: { value: 'New Venue' } });
+    fireEvent.change(screen.getByPlaceholderText('Title'), {
+      target: { value: 'New Title' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Description'), {
+      target: { value: 'New Description' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Category'), {
+      target: { value: 'New Category' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Date'), {
+      target: { value: '2024-01-01' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('City'), {
+      target: { value: 'New City' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Venue'), {
+      target: { value: 'New Venue' },
+    });
     fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
 
     // Assert
@@ -206,7 +230,9 @@ describe('ActivityForm', () => {
     render(<ActivityForm />);
 
     // Act
-    fireEvent.change(screen.getByPlaceholderText('Title'), { target: { value: 'Updated Title' } });
+    fireEvent.change(screen.getByPlaceholderText('Title'), {
+      target: { value: 'Updated Title' },
+    });
     fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
 
     // Assert
@@ -221,7 +247,9 @@ describe('ActivityForm', () => {
     render(<ActivityForm />);
 
     // Act
-    fireEvent.change(screen.getByPlaceholderText('Title'), { target: { value: 'New Title' } });
+    fireEvent.change(screen.getByPlaceholderText('Title'), {
+      target: { value: 'New Title' },
+    });
 
     // Assert
     expect(createActivity).not.toHaveBeenCalled();
