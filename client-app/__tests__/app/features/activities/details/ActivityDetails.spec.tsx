@@ -92,4 +92,21 @@ describe('ActivityDetails', () => {
     // Act & Assert
     expect(asFragment()).toMatchSnapshot();
   });
+
+  test('renders loading component when no activity is selected', () => {
+    // Arrange
+    (useStore as jest.Mock).mockReturnValue({
+      activityStore: {
+        selectedActivity: null,
+        cancelSelectedActivity,
+        openForm,
+      },
+    });
+
+    // Act
+    render(<ActivityDetails />);
+
+    // Assert
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+  });
 });

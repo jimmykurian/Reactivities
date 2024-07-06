@@ -51,7 +51,7 @@ describe('ActivityDashboard', () => {
   ];
 
   class MockActivityStore {
-    activities: Activity[];
+    activityRegistry: Map<string, Activity>;
     selectedActivity: Activity | undefined = undefined;
     editMode = false;
     loading = false;
@@ -65,8 +65,16 @@ describe('ActivityDashboard', () => {
     updateActivity = jest.fn();
 
     constructor(activities: Activity[]) {
-      this.activities = activities;
+      this.activityRegistry = new Map(
+        activities.map((activity) => [activity.id, activity]),
+      );
       makeAutoObservable(this);
+    }
+
+    get activitiesByDate() {
+      return Array.from(this.activityRegistry.values()).sort(
+        (a, b) => Date.parse(a.date) - Date.parse(b.date),
+      );
     }
 
     setLoadingInitial = (state: boolean) => {
