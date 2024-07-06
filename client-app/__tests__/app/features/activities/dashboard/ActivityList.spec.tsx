@@ -69,6 +69,10 @@ describe('ActivityList', () => {
       makeAutoObservable(this);
     }
 
+    get activitiesByDate() {
+      return this.activities.slice().sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    }
+
     setLoadingInitial = (state: boolean) => {
       this.loadingInitial = state;
     };
