@@ -15,6 +15,7 @@
 - [app/layout/LoadingComponent](app/layout/LoadingComponent/README.md)
 - [app/layout/NavBar](app/layout/NavBar/README.md)
 - [app/models/activity](app/models/activity/README.md)
+- [app/router/Routes](app/router/Routes/README.md)
 - [app/stores/activityStore](app/stores/activityStore/README.md)
 - [app/stores/store](app/stores/store/README.md)
 - [main](main/README.md)
