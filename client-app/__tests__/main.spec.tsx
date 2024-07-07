@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from '../src/app/layout/App';
 import { StoreContext, store } from '../src/app/stores/store';
+import { RouterProvider } from 'react-router-dom';
+import { router } from '../src/app/router/Routes';
 
 // Mock ReactDOM.createRoot and its render method
 const mockRender = jest.fn();
@@ -12,7 +13,7 @@ jest.mock('react-dom/client', () => ({
 }));
 
 describe('main.tsx', () => {
-  it('renders the App component', async () => {
+  it('renders the App component using RouterProvider', async () => {
     // Arrange
     const root = document.createElement('div');
     root.id = 'root';
@@ -28,7 +29,7 @@ describe('main.tsx', () => {
     expect(mockRender).toHaveBeenCalledWith(
       <React.StrictMode>
         <StoreContext.Provider value={store}>
-          <App />
+          <RouterProvider router={router} />
         </StoreContext.Provider>
       </React.StrictMode>,
     );
