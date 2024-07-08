@@ -131,18 +131,6 @@ describe('ActivityDashboard', () => {
     });
   });
 
-  xtest('displays LoadingComponent when loadingInitial is true', async () => {
-    // Arrange
-    mockStore.activityStore.loadingInitial = true;
-
-    render(<ActivityDashboard />);
-
-    // Act & Assert
-    await waitFor(() => {
-      expect(screen.getByText('Loading app...')).toBeInTheDocument();
-    });
-  });
-
   test('matches snapshot', async () => {
     // Arrange
     const { asFragment } = render(<ActivityDashboard />);
