@@ -1,7 +1,9 @@
 /**
  * @file ActivityDashboard.tsx
  * @author Jimmy Kurian
- * @fileoverview This file contains the ActivityDashboard component.
+ * @fileoverview This file contains the ActivityDashboard component which serves as the main dashboard for managing activities.
+ * It conditionally renders the ActivityList, ActivityDetails, and ActivityForm components based on the state from the MobX store.
+ * If activities are still loading, it displays the LoadingComponent.
  */
 
 import { Grid, List } from 'semantic-ui-react';
@@ -21,18 +23,30 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  *
  * @remarks
  * This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`, `ActivityDetails`,
- * and `ActivityForm` components based on the state from the MobX store.
+ * and `ActivityForm` components based on the state from the MobX store. If the activities are still loading, it displays a LoadingComponent.
  *
  * @example
  * ```tsx
- * const activities = [
- *   { id: '1', title: 'Activity 1', date: '2023-12-31', description: 'Description 1', category: 'Category 1', city: 'City 1', venue: 'Venue 1' },
- *   { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
- * ];
+ * import React, { useEffect } from 'react';
+ * import { observer } from 'mobx-react-lite';
+ * import { useStore } from './stores/store';
+ * import ActivityDashboard from './features/activities/dashboard/ActivityDashboard';
  *
- * const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
+ * const App = observer(() => {
+ *   const { activityStore } = useStore();
  *
- * <ActivityDashboard />
+ *   useEffect(() => {
+ *     activityStore.loadActivities();
+ *   }, [activityStore]);
+ *
+ *   if (activityStore.loadingInitial) {
+ *     return <LoadingComponent content="Loading app..." />;
+ *   }
+ *
+ *   return <ActivityDashboard />;
+ * });
+ *
+ * export default App;
  * ```
  */
 export default observer(function ActivityDashboard(): JSX.Element {
