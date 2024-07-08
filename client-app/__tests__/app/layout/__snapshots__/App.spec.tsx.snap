@@ -39,125 +39,13 @@ exports[`App matches snapshot 1`] = `
     class="ui container"
     style="margin-top: 7em;"
   >
-    <div
-      class="ui grid"
-    >
-      <div
-        class="ten wide column"
-      >
-        <div
-          class="ui list"
-          role="list"
-        >
-          <div
-            class="ui segment"
-          >
-            <div
-              class="ui divided items"
-            >
-              <div
-                class="item"
-              >
-                <div
-                  class="content"
-                >
-                  <a
-                    class="header"
-                  >
-                    Static Test Activity 1
-                  </a>
-                  <div
-                    class="meta"
-                  >
-                    2024-06-12
-                  </div>
-                  <div
-                    class="description"
-                  >
-                    <div>
-                      Static Description 1
-                    </div>
-                    <div>
-                      Static City 1, Static Venue 1
-                    </div>
-                  </div>
-                  <div
-                    class="extra"
-                  >
-                    <button
-                      class="ui blue right floated button"
-                    >
-                      View
-                    </button>
-                    <button
-                      class="ui red right floated button"
-                      name="1"
-                    >
-                      Delete
-                    </button>
-                    <div
-                      class="ui basic label"
-                    >
-                      Static Category 1
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="item"
-              >
-                <div
-                  class="content"
-                >
-                  <a
-                    class="header"
-                  >
-                    Static Test Activity 2
-                  </a>
-                  <div
-                    class="meta"
-                  >
-                    2024-07-12
-                  </div>
-                  <div
-                    class="description"
-                  >
-                    <div>
-                      Static Description 2
-                    </div>
-                    <div>
-                      Static City 2, Static Venue 2
-                    </div>
-                  </div>
-                  <div
-                    class="extra"
-                  >
-                    <button
-                      class="ui blue right floated button"
-                    >
-                      View
-                    </button>
-                    <button
-                      class="ui red right floated button"
-                      name="2"
-                    >
-                      Delete
-                    </button>
-                    <div
-                      class="ui basic label"
-                    >
-                      Static Category 2
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div>
+      <div>
+        Static Test Activity 1
       </div>
-      <div
-        class="six wide column"
-      />
+      <div>
+        Static Test Activity 2
+      </div>
     </div>
   </div>
 </DocumentFragment>

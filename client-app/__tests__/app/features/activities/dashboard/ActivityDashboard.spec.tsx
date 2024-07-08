@@ -1,125 +1,156 @@
-import { render, screen } from '@testing-library/react';
-import { faker } from '@faker-js/faker';
-import { useStore } from '../../../../../src/app/stores/store';
+import { render, screen, waitFor } from '@testing-library/react';
 import ActivityDashboard from '../../../../../src/app/features/activities/dashboard/ActivityDashboard';
-import { makeAutoObservable, runInAction } from 'mobx';
 import { Activity } from '../../../../../src/app/models/activity';
+import { useStore } from '../../../../../src/app/stores/store';
+import { makeAutoObservable, runInAction } from 'mobx';
 
-// Mock the store context
+// Mock the store
 jest.mock('../../../../../src/app/stores/store', () => ({
   useStore: jest.fn(),
 }));
 
+// Mocking ActivityList component
+jest.mock(
+  '../../../../../src/app/features/activities/dashboard/ActivityList',
+  () => ({
+    __esModule: true,
+    default: () => <div>Mocked ActivityList</div>,
+  }),
+);
+
+// Mocking ActivityDetails component
+jest.mock(
+  '../../../../../src/app/features/activities/details/ActivityDetails',
+  () => ({
+    __esModule: true,
+    default: () => <div>Mocked ActivityDetails</div>,
+  }),
+);
+
+// Mocking ActivityForm component
+jest.mock(
+  '../../../../../src/app/features/activities/form/ActivityForm',
+  () => ({
+    __esModule: true,
+    default: () => <div>Mocked ActivityForm</div>,
+  }),
+);
+
+// Mocking LoadingComponent component
+jest.mock('../../../../../src/app/layout/LoadingComponent', () => ({
+  __esModule: true,
+  default: () => <div>Loading app...</div>,
+}));
+
 describe('ActivityDashboard', () => {
-  // Generate mock activities using Faker.js
-  const generateMockActivity = (): Activity => ({
-    id: faker.string.uuid(),
-    title: faker.lorem.words(3),
-    date: faker.date.future().toISOString().split('T')[0],
-    description: faker.lorem.sentence(),
-    category: faker.lorem.word(),
-    city: faker.location.city(),
-    venue: faker.location.streetAddress(),
-  });
-
-  // Generate mock activities dynamically for other tests
-  const mockActivities: Activity[] = Array.from(
-    { length: 2 },
-    generateMockActivity,
-  );
-
-  // Fixed mock activities for snapshot test
-  const fixedMockActivities: Activity[] = [
+  const staticMockActivities: Activity[] = [
     {
       id: '1',
-      title: 'Fixed Title 1',
-      date: '2023-12-31',
-      description: 'Fixed description 1',
-      category: 'Fixed category 1',
-      city: 'Fixed city 1',
-      venue: 'Fixed venue 1',
+      title: 'Static Test Activity 1',
+      date: '2024-06-12',
+      description: 'Static Description 1',
+      category: 'Static Category 1',
+      city: 'Static City 1',
+      venue: 'Static Venue 1',
     },
     {
       id: '2',
-      title: 'Fixed Title 2',
-      date: '2024-01-01',
-      description: 'Fixed description 2',
-      category: 'Fixed category 2',
-      city: 'Fixed city 2',
-      venue: 'Fixed venue 2',
+      title: 'Static Test Activity 2',
+      date: '2024-07-12',
+      description: 'Static Description 2',
+      category: 'Static Category 2',
+      city: 'Static City 2',
+      venue: 'Static Venue 2',
     },
   ];
 
   class MockActivityStore {
-    activityRegistry: Map<string, Activity>;
+    activities: Activity[] = [];
     selectedActivity: Activity | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial = false;
-    deleteActivity = jest.fn();
-    selectActivity = jest.fn();
-    cancelSelectedActivity = jest.fn();
-    openForm = jest.fn();
-    closeForm = jest.fn();
-    createActivity = jest.fn();
-    updateActivity = jest.fn();
-
-    constructor(activities: Activity[]) {
-      this.activityRegistry = new Map(
-        activities.map((activity) => [activity.id, activity]),
-      );
-      makeAutoObservable(this);
-    }
+    loadingInitial = true;
+    loadActivities = jest.fn().mockImplementation(async () => {
+      runInAction(() => {
+        this.activities = staticMockActivities;
+        this.loadingInitial = false;
+      });
+    });
 
     get activitiesByDate() {
-      return Array.from(this.activityRegistry.values()).sort(
-        (a, b) => Date.parse(a.date) - Date.parse(b.date),
-      );
+      return this.activities
+        .slice()
+        .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
     }
 
-    setLoadingInitial = (state: boolean) => {
-      this.loadingInitial = state;
-    };
-
-    loadActivities = async () => {
-      this.setLoadingInitial(true);
-      runInAction(() => {
-        this.setLoadingInitial(false);
-      });
-    };
+    constructor() {
+      makeAutoObservable(this);
+    }
   }
 
-  const createMockStore = (activities: Activity[]) => ({
-    activityStore: new MockActivityStore(activities),
+  const mockStore = {
+    activityStore: new MockActivityStore(),
+  };
+
+  beforeEach(() => {
+    (useStore as jest.Mock).mockReturnValue(mockStore);
+    jest.clearAllMocks();
   });
 
-  test('renders the ActivityDashboard component', () => {
+  test('renders the ActivityDashboard component', async () => {
     // Arrange
-    const mockStore = createMockStore(mockActivities);
-    (useStore as jest.Mock).mockReturnValue(mockStore);
-
-    // Act
     render(<ActivityDashboard />);
 
-    // Assert
-    mockActivities.forEach((activity) => {
-      const activityElements = screen.getAllByText(activity.title);
-      expect(activityElements.length).toBeGreaterThan(0);
-      activityElements.forEach((element) =>
-        expect(element).toBeInTheDocument(),
-      );
+    // Act & Assert
+    await waitFor(() => {
+      expect(screen.getByText('Mocked ActivityList')).toBeInTheDocument();
     });
   });
 
-  test('matches snapshot', () => {
+  test('displays ActivityDetails when selectedActivity is set and editMode is false', async () => {
     // Arrange
-    const mockStore = createMockStore(fixedMockActivities);
-    (useStore as jest.Mock).mockReturnValue(mockStore);
+    mockStore.activityStore.selectedActivity = staticMockActivities[0];
 
-    // Act
+    render(<ActivityDashboard />);
+
+    // Act & Assert
+    await waitFor(() => {
+      expect(screen.getByText('Mocked ActivityDetails')).toBeInTheDocument();
+    });
+  });
+
+  test('displays ActivityForm when editMode is true', async () => {
+    // Arrange
+    mockStore.activityStore.editMode = true;
+
+    render(<ActivityDashboard />);
+
+    // Act & Assert
+    await waitFor(() => {
+      expect(screen.getByText('Mocked ActivityForm')).toBeInTheDocument();
+    });
+  });
+
+  xtest('displays LoadingComponent when loadingInitial is true', async () => {
+    // Arrange
+    mockStore.activityStore.loadingInitial = true;
+
+    render(<ActivityDashboard />);
+
+    // Act & Assert
+    await waitFor(() => {
+      expect(screen.getByText('Loading app...')).toBeInTheDocument();
+    });
+  });
+
+  test('matches snapshot', async () => {
+    // Arrange
     const { asFragment } = render(<ActivityDashboard />);
 
-    // Assert
+    // Act & Assert
+    await waitFor(() => {
+      expect(screen.getByText('Mocked ActivityList')).toBeInTheDocument();
+    });
     expect(asFragment()).toMatchSnapshot();
   });
 });

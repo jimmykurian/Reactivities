@@ -1,11 +1,14 @@
 /**
- * @file Router.tsx
+ * @file Routes.tsx
  * @author Jimmy Kurian
  * @fileoverview This file defines the routing configuration for the application using react-router-dom.
  */
 
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import App from '../layout/App';
+import ActivityDashboard from '../features/activities/dashboard/ActivityDashboard';
+import HomePage from '../features/home/HomePage';
+import ActivityForm from '../features/activities/form/ActivityForm';
 
 /**
  * @constant routes
@@ -27,6 +30,11 @@ export const routes: RouteObject[] = [
   {
     path: '/',
     element: <App />,
+    children: [
+      { path: '', element: <HomePage /> },
+      { path: 'activities', element: <ActivityDashboard /> },
+      { path: 'createActivity', element: <ActivityForm /> },
+    ],
   },
 ];
 
