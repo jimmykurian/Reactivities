@@ -37,21 +37,33 @@ The ActivityDashboard component displays a list of activities and their details 
 ## Remarks
 
 This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`, `ActivityDetails`,
-and `ActivityForm` components based on the state from the MobX store.
+and `ActivityForm` components based on the state from the MobX store. If the activities are still loading, it displays a LoadingComponent.
 
 ## Example
 
 ```tsx
-const activities = [
-  { id: '1', title: 'Activity 1', date: '2023-12-31', description: 'Description 1', category: 'Category 1', city: 'City 1', venue: 'Venue 1' },
-  { id: '2', title: 'Activity 2', date: '2024-01-01', description: 'Description 2', category: 'Category 2', city: 'City 2', venue: 'Venue 2' },
-];
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useStore } from './stores/store';
+import ActivityDashboard from './features/activities/dashboard/ActivityDashboard';
 
-const deleteActivity = (id: string) => console.log(`Delete activity with id ${id}`);
+const App = observer(() => {
+  const { activityStore } = useStore();
 
-<ActivityDashboard />
+  useEffect(() => {
+    activityStore.loadActivities();
+  }, [activityStore]);
+
+  if (activityStore.loadingInitial) {
+    return <LoadingComponent content="Loading app..." />;
+  }
+
+  return <ActivityDashboard />;
+});
+
+export default App;
 ```
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:36](https://github.com/jimmykurian/Reactivities/blob/437bfc84a722e4dd815015c3076f1080f8a79d46/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L36)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:52](https://github.com/jimmykurian/Reactivities/blob/ab68919949da6f10746423fc739292afd2dfa6f7/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L52)
