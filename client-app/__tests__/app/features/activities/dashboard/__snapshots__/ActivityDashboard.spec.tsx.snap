@@ -12,115 +12,18 @@ exports[`ActivityDashboard matches snapshot 1`] = `
         class="ui list"
         role="list"
       >
-        <div
-          class="ui segment"
-        >
-          <div
-            class="ui divided items"
-          >
-            <div
-              class="item"
-            >
-              <div
-                class="content"
-              >
-                <a
-                  class="header"
-                >
-                  Fixed Title 1
-                </a>
-                <div
-                  class="meta"
-                >
-                  2023-12-31
-                </div>
-                <div
-                  class="description"
-                >
-                  <div>
-                    Fixed description 1
-                  </div>
-                  <div>
-                    Fixed city 1, Fixed venue 1
-                  </div>
-                </div>
-                <div
-                  class="extra"
-                >
-                  <button
-                    class="ui blue right floated button"
-                  >
-                    View
-                  </button>
-                  <button
-                    class="ui red right floated button"
-                    name="1"
-                  >
-                    Delete
-                  </button>
-                  <div
-                    class="ui basic label"
-                  >
-                    Fixed category 1
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="item"
-            >
-              <div
-                class="content"
-              >
-                <a
-                  class="header"
-                >
-                  Fixed Title 2
-                </a>
-                <div
-                  class="meta"
-                >
-                  2024-01-01
-                </div>
-                <div
-                  class="description"
-                >
-                  <div>
-                    Fixed description 2
-                  </div>
-                  <div>
-                    Fixed city 2, Fixed venue 2
-                  </div>
-                </div>
-                <div
-                  class="extra"
-                >
-                  <button
-                    class="ui blue right floated button"
-                  >
-                    View
-                  </button>
-                  <button
-                    class="ui red right floated button"
-                    name="2"
-                  >
-                    Delete
-                  </button>
-                  <div
-                    class="ui basic label"
-                  >
-                    Fixed category 2
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div>
+          Mocked ActivityList
         </div>
       </div>
     </div>
     <div
       class="six wide column"
-    />
+    >
+      <div>
+        Mocked ActivityForm
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;

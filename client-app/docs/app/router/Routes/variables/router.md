@@ -6,7 +6,7 @@
 
 # Variable: router
 
-> `const` **router**: `Router`
+> `const` **router**: `ReturnType`\<*typeof* `createBrowserRouter`\>
 
 ## Constant
 
@@ -25,4 +25,4 @@ const router = createBrowserRouter(routes);
 
 ## Source
 
-[src/app/router/Routes.tsx:44](https://github.com/jimmykurian/Reactivities/blob/437bfc84a722e4dd815015c3076f1080f8a79d46/client-app/src/app/router/Routes.tsx#L44)
+[src/app/router/Routes.tsx:57](https://github.com/jimmykurian/Reactivities/blob/ab68919949da6f10746423fc739292afd2dfa6f7/client-app/src/app/router/Routes.tsx#L57)

@@ -3,12 +3,21 @@ import App from '../../../src/app/layout/App';
 import { Activity } from '../../../src/app/models/activity';
 import { useStore } from '../../../src/app/stores/store';
 import { makeAutoObservable, runInAction } from 'mobx';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Mock the agent and store
 jest.mock('../../../src/app/api/agent');
 jest.mock('../../../src/app/stores/store', () => ({
   useStore: jest.fn(),
 }));
+
+// Mocking ActivityDashboard component
+const MockActivityDashboard = () => (
+  <div>
+    <div>Static Test Activity 1</div>
+    <div>Static Test Activity 2</div>
+  </div>
+);
 
 describe('App', () => {
   const staticMockActivities: Activity[] = [
@@ -67,7 +76,15 @@ describe('App', () => {
 
   test('renders Reactivities heading', async () => {
     // Arrange
-    render(<App />);
+    render(
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="/" element={<MockActivityDashboard />} />
+          </Route>
+        </Routes>
+      </Router>,
+    );
 
     // Act
     const headingElement = await waitFor(() =>
@@ -80,10 +97,22 @@ describe('App', () => {
 
   test('matches snapshot', async () => {
     // Arrange
-    const { asFragment } = render(<App />);
+    const { asFragment } = render(
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="/" element={<MockActivityDashboard />} />
+          </Route>
+        </Routes>
+      </Router>,
+    );
 
     // Act
-    await waitFor(() => screen.getAllByText(/Static Test Activity/i));
+    await waitFor(() => {
+      expect(
+        screen.getAllByText(/Static Test Activity/i).length,
+      ).toBeGreaterThan(0);
+    });
 
     // Assert
     expect(asFragment()).toMatchSnapshot();

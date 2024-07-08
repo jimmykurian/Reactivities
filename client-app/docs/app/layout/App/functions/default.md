@@ -21,30 +21,22 @@ App
 ## Description
 
 The App component serves as the root component for the React application.
-It fetches activities from an API, maintains the activities state, and renders the NavBar and ActivityDashboard components.
-It also utilizes the MobX store for additional state management.
-
-## Remarks
-
-The App component uses the `useEffect` hook to fetch activities from the API when the component mounts.
-It includes the NavBar and ActivityDashboard components for displaying the navigation bar and list of activities, respectively.
-The component also accesses the `activityStore` from the MobX store context to manage the activities.
-If the activities are still loading, it displays a LoadingComponent.
+It renders the NavBar component and uses the Outlet component from react-router-dom to render matched child routes.
 
 ## Example
 
 ```tsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+// App component
+return (
+  <>
+    <NavBar />
+    <Container style={{ marginTop: '7em' }}>
+      <Outlet />
+    </Container>
+  </>
 );
 ```
 
 ## Source
 
-[src/app/layout/App.tsx:63](https://github.com/jimmykurian/Reactivities/blob/437bfc84a722e4dd815015c3076f1080f8a79d46/client-app/src/app/layout/App.tsx#L63)
+[src/app/layout/App.tsx:43](https://github.com/jimmykurian/Reactivities/blob/ab68919949da6f10746423fc739292afd2dfa6f7/client-app/src/app/layout/App.tsx#L43)

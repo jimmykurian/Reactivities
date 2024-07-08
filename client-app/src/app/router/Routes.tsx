@@ -1,11 +1,14 @@
 /**
- * @file Router.tsx
+ * @file Routes.tsx
  * @author Jimmy Kurian
  * @fileoverview This file defines the routing configuration for the application using react-router-dom.
  */
 
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import App from '../layout/App';
+import ActivityDashboard from '../features/activities/dashboard/ActivityDashboard';
+import HomePage from '../features/home/HomePage';
+import ActivityForm from '../features/activities/form/ActivityForm';
 
 /**
  * @constant routes
@@ -19,6 +22,11 @@ import App from '../layout/App';
  *   {
  *     path: '/',
  *     element: <App />,
+ *     children: [
+ *       { path: '', element: <HomePage /> },
+ *       { path: 'activities', element: <ActivityDashboard /> },
+ *       { path: 'createActivity', element: <ActivityForm /> },
+ *     ],
  *   },
  * ];
  * ```
@@ -27,6 +35,11 @@ export const routes: RouteObject[] = [
   {
     path: '/',
     element: <App />,
+    children: [
+      { path: '', element: <HomePage /> },
+      { path: 'activities', element: <ActivityDashboard /> },
+      { path: 'createActivity', element: <ActivityForm /> },
+    ],
   },
 ];
 
@@ -34,11 +47,12 @@ export const routes: RouteObject[] = [
  * @constant router
  * @description Creates a browser router using the defined routes.
  * This router is used to handle navigation and rendering of components based on the URL path.
- * @returns {BrowserRouter} A browser router instance.
+ * @type {ReturnType<typeof createBrowserRouter>}
  *
  * @example
  * ```tsx
  * const router = createBrowserRouter(routes);
  * ```
  */
-export const router = createBrowserRouter(routes);
+export const router: ReturnType<typeof createBrowserRouter> =
+  createBrowserRouter(routes);
