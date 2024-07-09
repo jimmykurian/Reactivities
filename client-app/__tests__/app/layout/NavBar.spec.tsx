@@ -1,30 +1,22 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import NavBar from '../../../src/app/layout/NavBar';
-import { useStore } from '../../../src/app/stores/store';
-
-// Mock the useStore hook
-jest.mock('../../../src/app/stores/store', () => ({
-  useStore: jest.fn(),
-}));
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // Automatically cleanup after each test
 afterEach(cleanup);
 
 describe('NavBar', () => {
-  const openForm = jest.fn();
-
-  beforeEach(() => {
-    (useStore as jest.Mock).mockReturnValue({
-      activityStore: {
-        openForm,
-      },
-    });
-  });
+  const renderNavBar = () =>
+    render(
+      <Router>
+        <NavBar />
+      </Router>
+    );
 
   test('renders the logo image', () => {
     // Arrange
-    render(<NavBar />);
+    renderNavBar();
 
     // Act
     const logoImage = screen.getByAltText('logo');
@@ -36,7 +28,7 @@ describe('NavBar', () => {
 
   test('renders the header title', () => {
     // Arrange
-    render(<NavBar />);
+    renderNavBar();
 
     // Act
     const headerTitle = screen.getByText(/Reactivities/i);
@@ -47,7 +39,7 @@ describe('NavBar', () => {
 
   test('renders the Activities menu item', () => {
     // Arrange
-    render(<NavBar />);
+    renderNavBar();
 
     // Act
     const activitiesMenuItem = screen.getByRole('menuitem', {
@@ -60,7 +52,7 @@ describe('NavBar', () => {
 
   test('renders the Create Activity button', () => {
     // Arrange
-    render(<NavBar />);
+    renderNavBar();
 
     // Act
     const createActivityButton = screen.getByRole('button', {
@@ -72,23 +64,9 @@ describe('NavBar', () => {
     expect(createActivityButton).toHaveClass('positive');
   });
 
-  test('calls openForm when the Create Activity button is clicked', () => {
-    // Arrange
-    render(<NavBar />);
-
-    // Act
-    const createActivityButton = screen.getByRole('button', {
-      name: /Create Activity/i,
-    });
-    fireEvent.click(createActivityButton);
-
-    // Assert
-    expect(openForm).toHaveBeenCalled();
-  });
-
   test('matches snapshot', () => {
     // Arrange
-    const { asFragment } = render(<NavBar />);
+    const { asFragment } = renderNavBar();
 
     // Act & Assert
     expect(asFragment()).toMatchSnapshot();
