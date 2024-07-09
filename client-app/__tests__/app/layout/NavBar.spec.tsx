@@ -11,7 +11,7 @@ describe('NavBar', () => {
     render(
       <Router>
         <NavBar />
-      </Router>
+      </Router>,
     );
 
   test('renders the logo image', () => {
