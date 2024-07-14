@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { faker } from '@faker-js/faker';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import Router
 import { useStore } from '../../../../../src/app/stores/store';
 import ActivityList from '../../../../../src/app/features/activities/dashboard/ActivityList';
 import { makeAutoObservable, runInAction } from 'mobx';
@@ -101,7 +102,11 @@ describe('ActivityList', () => {
     (useStore as jest.Mock).mockReturnValue(mockStore);
 
     // Act
-    render(<ActivityList />);
+    render(
+      <Router>
+        <ActivityList />
+      </Router>,
+    );
 
     // Assert
     mockActivities.forEach((activity) => {
@@ -119,7 +124,11 @@ describe('ActivityList', () => {
     (useStore as jest.Mock).mockReturnValue(mockStore);
 
     // Act
-    const { asFragment } = render(<ActivityList />);
+    const { asFragment } = render(
+      <Router>
+        <ActivityList />
+      </Router>,
+    );
 
     // Assert
     expect(asFragment()).toMatchSnapshot();

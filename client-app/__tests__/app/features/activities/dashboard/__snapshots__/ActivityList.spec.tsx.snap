@@ -37,11 +37,13 @@ exports[`ActivityList matches snapshot 1`] = `
           <div
             class="extra"
           >
-            <button
+            <a
               class="ui blue right floated button"
+              href="/activities/1"
+              role="button"
             >
               View
-            </button>
+            </a>
             <button
               class="ui red right floated button"
               name="1"
@@ -85,11 +87,13 @@ exports[`ActivityList matches snapshot 1`] = `
           <div
             class="extra"
           >
-            <button
+            <a
               class="ui blue right floated button"
+              href="/activities/2"
+              role="button"
             >
               View
-            </button>
+            </a>
             <button
               class="ui red right floated button"
               name="2"

@@ -7,6 +7,9 @@
 import { Button, Card, Image } from 'semantic-ui-react';
 import { useStore } from '../../../stores/store';
 import LoadingComponent from '../../../layout/LoadingComponent';
+import { observer } from 'mobx-react-lite';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 /**
  * @component ActivityDetails
@@ -17,8 +20,7 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  * @remarks
  * This component uses the Semantic UI React library to create a card layout for displaying activity details.
  * It includes an image, title, date, description, and buttons for editing or canceling the activity.
- * The `cancelSelectedActivity` function is called when the "Cancel" button is clicked.
- * The `openForm` function is called with the activity ID when the "Edit" button is clicked.
+ * The `loadActivity` function is called to fetch the activity details based on the ID from the URL parameters.
  * The component accesses the `activityStore` from the MobX store context to get the selected activity and relevant functions.
  *
  * @example
@@ -34,22 +36,23 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  *   venue: 'Central Park'
  * };
  *
- * <ActivityDetails
- *   activity={activity}
- *   cancelSelectedActivity={() => console.log('Cancel clicked')}
- *   openForm={(id) => console.log(`Edit clicked for activity with id ${id}`)}
- * />
+ * <ActivityDetails />
  * ```
  */
-export default function ActivityDetails(): JSX.Element {
+export default observer(function ActivityDetails(): JSX.Element {
   const { activityStore } = useStore();
   const {
     selectedActivity: activity,
-    openForm,
-    cancelSelectedActivity,
+    loadActivity,
+    loadingInitial,
   } = activityStore;
+  const { id } = useParams();
 
-  if (!activity) return <LoadingComponent />;
+  useEffect(() => {
+    if (id) loadActivity(id);
+  }, [id, loadActivity]);
+
+  if (loadingInitial || !activity) return <LoadingComponent />;
 
   return (
     <Card fluid>
@@ -61,20 +64,10 @@ export default function ActivityDetails(): JSX.Element {
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths="2">
-          <Button
-            onClick={() => openForm(activity.id)}
-            basic
-            color="blue"
-            content="Edit"
-          />
-          <Button
-            onClick={cancelSelectedActivity}
-            basic
-            color="grey"
-            content="Cancel"
-          />
+          <Button basic color="blue" content="Edit" />
+          <Button basic color="grey" content="Cancel" />
         </Button.Group>
       </Card.Content>
     </Card>
   );
-}
+});

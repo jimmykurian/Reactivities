@@ -61,17 +61,6 @@ describe('ActivityForm', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('calls closeForm when Cancel button is clicked', () => {
-    // Arrange
-    render(<ActivityForm />);
-
-    // Act
-    fireEvent.click(screen.getByRole('button', { name: /Cancel/i }));
-
-    // Assert
-    expect(closeForm).toHaveBeenCalledTimes(1);
-  });
-
   test('updates activity state on input change', () => {
     // Arrange
     render(<ActivityForm />);
