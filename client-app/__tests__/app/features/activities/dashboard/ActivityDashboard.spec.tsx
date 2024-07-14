@@ -18,28 +18,13 @@ jest.mock(
   }),
 );
 
-// Mocking ActivityDetails component
-jest.mock(
-  '../../../../../src/app/features/activities/details/ActivityDetails',
-  () => ({
-    __esModule: true,
-    default: () => <div>Mocked ActivityDetails</div>,
-  }),
-);
-
-// Mocking ActivityForm component
-jest.mock(
-  '../../../../../src/app/features/activities/form/ActivityForm',
-  () => ({
-    __esModule: true,
-    default: () => <div>Mocked ActivityForm</div>,
-  }),
-);
-
 // Mocking LoadingComponent component
 jest.mock('../../../../../src/app/layout/LoadingComponent', () => ({
   __esModule: true,
-  default: () => <div>Loading app...</div>,
+  default: ({ content }: { content: string }) => {
+    console.log('Rendering LoadingComponent with content:', content);
+    return <div data-testid="loader">{content}</div>;
+  },
 }));
 
 describe('ActivityDashboard', () => {
@@ -104,30 +89,6 @@ describe('ActivityDashboard', () => {
     // Act & Assert
     await waitFor(() => {
       expect(screen.getByText('Mocked ActivityList')).toBeInTheDocument();
-    });
-  });
-
-  test('displays ActivityDetails when selectedActivity is set and editMode is false', async () => {
-    // Arrange
-    mockStore.activityStore.selectedActivity = staticMockActivities[0];
-
-    render(<ActivityDashboard />);
-
-    // Act & Assert
-    await waitFor(() => {
-      expect(screen.getByText('Mocked ActivityDetails')).toBeInTheDocument();
-    });
-  });
-
-  test('displays ActivityForm when editMode is true', async () => {
-    // Arrange
-    mockStore.activityStore.editMode = true;
-
-    render(<ActivityDashboard />);
-
-    // Act & Assert
-    await waitFor(() => {
-      expect(screen.getByText('Mocked ActivityForm')).toBeInTheDocument();
     });
   });
 

@@ -2,14 +2,12 @@
  * @file ActivityDashboard.tsx
  * @author Jimmy Kurian
  * @fileoverview This file contains the ActivityDashboard component which serves as the main dashboard for managing activities.
- * It conditionally renders the ActivityList, ActivityDetails, and ActivityForm components based on the state from the MobX store.
+ * It conditionally renders the ActivityList, and includes a placeholder for activity filters.
  * If activities are still loading, it displays the LoadingComponent.
  */
 
 import { Grid, List } from 'semantic-ui-react';
 import ActivityList from './ActivityList';
-import ActivityDetails from '../details/ActivityDetails';
-import ActivityForm from '../form/ActivityForm';
 import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
@@ -17,13 +15,13 @@ import LoadingComponent from '../../../layout/LoadingComponent';
 
 /**
  * @component ActivityDashboard
- * @description The ActivityDashboard component displays a list of activities and their details or a form for editing/creating activities.
+ * @description The ActivityDashboard component displays a list of activities and includes a placeholder for activity filters.
  *
  * @returns {JSX.Element} The rendered ActivityDashboard component.
  *
  * @remarks
- * This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`, `ActivityDetails`,
- * and `ActivityForm` components based on the state from the MobX store. If the activities are still loading, it displays a LoadingComponent.
+ * This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`,
+ * and includes a placeholder for activity filters. If the activities are still loading, it displays a LoadingComponent.
  *
  * @example
  * ```tsx
@@ -51,7 +49,6 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  */
 export default observer(function ActivityDashboard(): JSX.Element {
   const { activityStore } = useStore();
-  const { selectedActivity, editMode } = activityStore;
 
   useEffect(() => {
     activityStore.loadActivities();
@@ -69,8 +66,7 @@ export default observer(function ActivityDashboard(): JSX.Element {
         </List>
       </Grid.Column>
       <Grid.Column width={6}>
-        {selectedActivity && !editMode && <ActivityDetails />}
-        {editMode && <ActivityForm />}
+        <h2>Activity Filters</h2>
       </Grid.Column>
     </Grid>
   );

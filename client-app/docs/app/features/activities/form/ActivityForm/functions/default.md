@@ -41,7 +41,7 @@ for collecting activity details such as title, description, category, date, city
 It includes input fields and buttons for submitting or canceling the form.
 The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
 The `handleSubmit` function is used to create or edit the activity when the form is submitted.
-The component accesses the `activityStore` from the MobX store context to get the selected activity, closeForm, createActivity, and updateActivity functions.
+The component accesses the `activityStore` from the MobX store context to get the selected activity, createActivity, updateActivity, and loading functions.
 
 ## Example
 
@@ -62,4 +62,4 @@ const activity = {
 
 ## Source
 
-[src/app/features/activities/form/ActivityForm.tsx:42](https://github.com/jimmykurian/Reactivities/blob/20f7213005ebb1bbbb30d291d5a2013ca64cd45c/client-app/src/app/features/activities/form/ActivityForm.tsx#L42)
+[src/app/features/activities/form/ActivityForm.tsx:42](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/features/activities/form/ActivityForm.tsx#L42)

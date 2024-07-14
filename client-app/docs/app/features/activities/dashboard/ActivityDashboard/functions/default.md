@@ -32,12 +32,12 @@ ActivityDashboard
 
 ## Description
 
-The ActivityDashboard component displays a list of activities and their details or a form for editing/creating activities.
+The ActivityDashboard component displays a list of activities and includes a placeholder for activity filters.
 
 ## Remarks
 
-This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`, `ActivityDetails`,
-and `ActivityForm` components based on the state from the MobX store. If the activities are still loading, it displays a LoadingComponent.
+This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`,
+and includes a placeholder for activity filters. If the activities are still loading, it displays a LoadingComponent.
 
 ## Example
 
@@ -66,4 +66,4 @@ export default App;
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:52](https://github.com/jimmykurian/Reactivities/blob/20f7213005ebb1bbbb30d291d5a2013ca64cd45c/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L52)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:50](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L50)

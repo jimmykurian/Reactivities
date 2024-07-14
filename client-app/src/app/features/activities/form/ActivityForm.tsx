@@ -21,7 +21,7 @@ import { observer } from 'mobx-react-lite';
  * It includes input fields and buttons for submitting or canceling the form.
  * The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
  * The `handleSubmit` function is used to create or edit the activity when the form is submitted.
- * The component accesses the `activityStore` from the MobX store context to get the selected activity, closeForm, createActivity, and updateActivity functions.
+ * The component accesses the `activityStore` from the MobX store context to get the selected activity, createActivity, updateActivity, and loading functions.
  *
  * @example
  * Here is an example of how to use the ActivityForm component:
@@ -41,13 +41,8 @@ import { observer } from 'mobx-react-lite';
  */
 export default observer(function ActivityForm(): JSX.Element {
   const { activityStore } = useStore();
-  const {
-    selectedActivity,
-    closeForm,
-    createActivity,
-    updateActivity,
-    loading,
-  } = activityStore;
+  const { selectedActivity, createActivity, updateActivity, loading } =
+    activityStore;
 
   const initialState = selectedActivity ?? {
     id: '',
@@ -63,7 +58,7 @@ export default observer(function ActivityForm(): JSX.Element {
 
   /**
    * @function handleSubmit
-   * @description Handles form submission.
+   * @description Handles form submission. Calls the create or update function based on the activity ID.
    */
   function handleSubmit(): void {
     activity.id ? updateActivity(activity) : createActivity(activity);
@@ -71,7 +66,7 @@ export default observer(function ActivityForm(): JSX.Element {
 
   /**
    * @function handleInputChange
-   * @description Handles input changes in the form fields.
+   * @description Handles input changes in the form fields and updates the state.
    * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} event - The event triggered by changing the form input fields.
    */
   function handleInputChange(
@@ -128,12 +123,7 @@ export default observer(function ActivityForm(): JSX.Element {
           type="submit"
           content="Submit"
         />
-        <Button
-          onClick={closeForm}
-          floated="right"
-          type="button"
-          content="Cancel"
-        />
+        <Button floated="right" type="button" content="Cancel" />
       </Form>
     </Segment>
   );

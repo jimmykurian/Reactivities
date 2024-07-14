@@ -8,6 +8,7 @@ import { Button, Item, Label, Segment } from 'semantic-ui-react';
 import { SyntheticEvent, useState } from 'react';
 import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
 
 /**
  * @component ActivityList
@@ -18,7 +19,6 @@ import { observer } from 'mobx-react-lite';
  * @remarks
  * This component maps over an array of activities and displays each one with its details using Semantic UI components.
  * Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
- * The `activityStore.selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
  * The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
  * The `loading` state is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
  *
@@ -69,7 +69,8 @@ export default observer(function ActivityList(): JSX.Element {
               </Item.Description>
               <Item.Extra>
                 <Button
-                  onClick={() => activityStore.selectActivity(activity.id)}
+                  as={Link}
+                  to={`/activities/${activity.id}`}
                   floated="right"
                   content="View"
                   color="blue"
