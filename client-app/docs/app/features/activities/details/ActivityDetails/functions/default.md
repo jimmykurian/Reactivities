@@ -6,11 +6,23 @@
 
 # Function: default()
 
-> **default**(): `JSX.Element`
+> **default**(`props`, `deprecatedLegacyContext`?): `ReactNode`
+
+## Parameters
+
+• **props**: `object`
+
+• **deprecatedLegacyContext?**: `any`
+
+**Deprecated**
+
+**See**
+
+[React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods)
 
 ## Returns
 
-`JSX.Element`
+`ReactNode`
 
 The JSX element representing the activity details.
 
@@ -26,8 +38,7 @@ A functional component that displays the details of an activity.
 
 This component uses the Semantic UI React library to create a card layout for displaying activity details.
 It includes an image, title, date, description, and buttons for editing or canceling the activity.
-The `cancelSelectedActivity` function is called when the "Cancel" button is clicked.
-The `openForm` function is called with the activity ID when the "Edit" button is clicked.
+The `loadActivity` function is called to fetch the activity details based on the ID from the URL parameters.
 The component accesses the `activityStore` from the MobX store context to get the selected activity and relevant functions.
 
 ## Example
@@ -44,13 +55,9 @@ const activity = {
   venue: 'Central Park'
 };
 
-<ActivityDetails
-  activity={activity}
-  cancelSelectedActivity={() => console.log('Cancel clicked')}
-  openForm={(id) => console.log(`Edit clicked for activity with id ${id}`)}
-/>
+<ActivityDetails />
 ```
 
 ## Source
 
-[src/app/features/activities/details/ActivityDetails.tsx:44](https://github.com/jimmykurian/Reactivities/blob/20f7213005ebb1bbbb30d291d5a2013ca64cd45c/client-app/src/app/features/activities/details/ActivityDetails.tsx#L44)
+[src/app/features/activities/details/ActivityDetails.tsx:42](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/features/activities/details/ActivityDetails.tsx#L42)

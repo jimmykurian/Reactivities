@@ -38,7 +38,6 @@ The ActivityList component displays a list of activities with options to view an
 
 This component maps over an array of activities and displays each one with its details using Semantic UI components.
 Each activity includes a title, date, description, city, venue, and category, along with "View" and "Delete" buttons.
-The `activityStore.selectActivity` function is called when the "View" button is clicked, passing the activity's ID.
 The `deleteActivity` function is called when the "Delete" button is clicked, passing the activity's ID.
 The `loading` state is used to indicate whether a delete operation is in progress, which disables the delete button for the targeted activity.
 
@@ -57,4 +56,4 @@ const deleteActivity = (id: string) => console.log(`Delete activity with id ${id
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityList.tsx:37](https://github.com/jimmykurian/Reactivities/blob/20f7213005ebb1bbbb30d291d5a2013ca64cd45c/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L37)
+[src/app/features/activities/dashboard/ActivityList.tsx:37](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/features/activities/dashboard/ActivityList.tsx#L37)
