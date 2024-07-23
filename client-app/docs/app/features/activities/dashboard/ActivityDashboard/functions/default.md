@@ -66,4 +66,4 @@ export default App;
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:50](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L50)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:50](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L50)

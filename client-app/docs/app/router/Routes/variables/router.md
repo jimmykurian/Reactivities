@@ -25,4 +25,4 @@ const router = createBrowserRouter(routes);
 
 ## Source
 
-[src/app/router/Routes.tsx:60](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/router/Routes.tsx#L60)
+[src/app/router/Routes.tsx:62](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/router/Routes.tsx#L62)
