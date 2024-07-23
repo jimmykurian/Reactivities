@@ -39,7 +39,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:46](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L46)
+[src/app/stores/activityStore.ts:46](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L46)
 
 ## Properties
 
@@ -49,7 +49,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:27](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L27)
+[src/app/stores/activityStore.ts:27](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L27)
 
 ***
 
@@ -59,7 +59,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:33](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L33)
+[src/app/stores/activityStore.ts:33](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L33)
 
 ***
 
@@ -69,7 +69,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:36](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L36)
+[src/app/stores/activityStore.ts:36](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L36)
 
 ***
 
@@ -79,7 +79,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:39](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L39)
+[src/app/stores/activityStore.ts:39](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L39)
 
 ***
 
@@ -89,7 +89,7 @@ Initializes the observables using MobX's makeAutoObservable.
 
 #### Source
 
-[src/app/stores/activityStore.ts:30](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L30)
+[src/app/stores/activityStore.ts:30](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L30)
 
 ## Accessors
 
@@ -111,7 +111,7 @@ Gets the activities sorted by date.
 
 #### Source
 
-[src/app/stores/activityStore.ts:55](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L55)
+[src/app/stores/activityStore.ts:55](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L55)
 
 ## Methods
 
@@ -141,7 +141,7 @@ Creates a new activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:148](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L148)
+[src/app/stores/activityStore.ts:150](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L150)
 
 ***
 
@@ -171,7 +171,7 @@ Deletes an activity by its ID.
 
 #### Source
 
-[src/app/stores/activityStore.ts:199](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L199)
+[src/app/stores/activityStore.ts:201](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L201)
 
 ***
 
@@ -195,13 +195,13 @@ Loads activities from the API and sets the activities state.
 
 #### Source
 
-[src/app/stores/activityStore.ts:67](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L67)
+[src/app/stores/activityStore.ts:67](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L67)
 
 ***
 
 ### loadActivity()
 
-> **loadActivity**(`id`): `Promise`\<`void`\>
+> **loadActivity**(`id`): `Promise`\<`undefined` \| [`Activity`](../../../models/activity/interfaces/Activity.md)\>
 
 #### Parameters
 
@@ -211,7 +211,7 @@ The ID of the activity to load.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`undefined` \| [`Activity`](../../../models/activity/interfaces/Activity.md)\>
 
 #### Async
 
@@ -225,7 +225,7 @@ Loads a single activity by ID from the API or retrieves it from the local state.
 
 #### Source
 
-[src/app/stores/activityStore.ts:92](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L92)
+[src/app/stores/activityStore.ts:92](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L92)
 
 ***
 
@@ -253,7 +253,7 @@ Sets the loading initial state.
 
 #### Source
 
-[src/app/stores/activityStore.ts:137](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L137)
+[src/app/stores/activityStore.ts:139](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L139)
 
 ***
 
@@ -283,4 +283,4 @@ Updates an existing activity.
 
 #### Source
 
-[src/app/stores/activityStore.ts:174](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/stores/activityStore.ts#L174)
+[src/app/stores/activityStore.ts:176](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/stores/activityStore.ts#L176)

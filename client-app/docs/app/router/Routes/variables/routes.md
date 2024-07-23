@@ -29,6 +29,7 @@ const routes: RouteObject[] = [
       { path: 'activities', element: <ActivityDashboard /> },
       { path: 'activities/:id', element: <ActivityDetails /> },
       { path: 'createActivity', element: <ActivityForm /> },
+      { path: 'manage/:id', element: <ActivityForm /> },
     ],
   },
 ];
@@ -36,4 +37,4 @@ const routes: RouteObject[] = [
 
 ## Source
 
-[src/app/router/Routes.tsx:36](https://github.com/jimmykurian/Reactivities/blob/c2b83f2afb021f3781b26a719c82722d16787bac/client-app/src/app/router/Routes.tsx#L36)
+[src/app/router/Routes.tsx:37](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/router/Routes.tsx#L37)

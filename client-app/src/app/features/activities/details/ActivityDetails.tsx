@@ -8,7 +8,7 @@ import { Button, Card, Image } from 'semantic-ui-react';
 import { useStore } from '../../../stores/store';
 import LoadingComponent from '../../../layout/LoadingComponent';
 import { observer } from 'mobx-react-lite';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 /**
@@ -22,21 +22,25 @@ import { useEffect } from 'react';
  * It includes an image, title, date, description, and buttons for editing or canceling the activity.
  * The `loadActivity` function is called to fetch the activity details based on the ID from the URL parameters.
  * The component accesses the `activityStore` from the MobX store context to get the selected activity and relevant functions.
+ * The `LoadingComponent` is displayed while the activity details are being loaded.
  *
  * @example
  * Here is an example of how to use the ActivityDetails component:
  * ```tsx
- * const activity = {
- *   id: '1',
- *   title: 'Morning Run',
- *   date: '2024-06-12',
- *   description: 'A quick morning run around the park.',
- *   category: 'exercise',
- *   city: 'New York',
- *   venue: 'Central Park'
- * };
+ * import React from 'react';
+ * import ActivityDetails from './features/activities/details/ActivityDetails';
+ * import { BrowserRouter as Router, Route } from 'react-router-dom';
+ * import { StoreProvider } from './stores/store';
  *
- * <ActivityDetails />
+ * const App = () => (
+ *   <StoreProvider>
+ *     <Router>
+ *       <Route path="/activities/:id" component={ActivityDetails} />
+ *     </Router>
+ *   </StoreProvider>
+ * );
+ *
+ * export default App;
  * ```
  */
 export default observer(function ActivityDetails(): JSX.Element {
@@ -52,7 +56,8 @@ export default observer(function ActivityDetails(): JSX.Element {
     if (id) loadActivity(id);
   }, [id, loadActivity]);
 
-  if (loadingInitial || !activity) return <LoadingComponent />;
+  if (loadingInitial || !activity)
+    return <LoadingComponent content="Loading app..." />;
 
   return (
     <Card fluid>
@@ -64,8 +69,20 @@ export default observer(function ActivityDetails(): JSX.Element {
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths="2">
-          <Button basic color="blue" content="Edit" />
-          <Button basic color="grey" content="Cancel" />
+          <Button
+            as={Link}
+            to={`/manage/${activity.id}`}
+            basic
+            color="blue"
+            content="Edit"
+          />
+          <Button
+            as={Link}
+            to="/activities"
+            basic
+            color="grey"
+            content="Cancel"
+          />
         </Button.Group>
       </Card.Content>
     </Card>

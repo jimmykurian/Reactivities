@@ -87,19 +87,21 @@ export default class ActivityStore {
    * @function loadActivity
    * @description Loads a single activity by ID from the API or retrieves it from the local state.
    * @param {string} id - The ID of the activity to load.
-   * @returns {Promise<void>}
+   * @returns {Promise<Activity | undefined>}
    */
-  loadActivity = async (id: string): Promise<void> => {
+  loadActivity = async (id: string): Promise<Activity | undefined> => {
     let activity = this.getActivity(id);
     if (activity) {
       this.selectedActivity = activity;
+      return activity;
     } else {
       this.setLoadingInitial(true);
       try {
         activity = await agent.Activities.details(id);
         this.setActivity;
-        this.selectedActivity = activity;
+        runInAction(() => (this.selectedActivity = activity));
         this.setLoadingInitial(false);
+        return activity;
       } catch (error) {
         console.log(error);
         this.setLoadingInitial(false);
