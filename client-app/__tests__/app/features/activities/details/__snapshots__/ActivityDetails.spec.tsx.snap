@@ -34,16 +34,20 @@ exports[`ActivityDetails matches snapshot 1`] = `
       <div
         class="ui two buttons"
       >
-        <button
+        <a
           class="ui blue basic button"
+          href="/manage/1"
+          role="button"
         >
           Edit
-        </button>
-        <button
+        </a>
+        <a
           class="ui grey basic button"
+          href="/activities"
+          role="button"
         >
           Cancel
-        </button>
+        </a>
       </div>
     </div>
   </div>

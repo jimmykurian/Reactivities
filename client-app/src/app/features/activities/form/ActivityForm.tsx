@@ -5,9 +5,12 @@
  */
 
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
+import { useParams } from 'react-router-dom';
+import { Activity } from '../../../models/activity';
+import LoadingComponent from '../../../layout/LoadingComponent';
 
 /**
  * @component ActivityForm
@@ -22,29 +25,40 @@ import { observer } from 'mobx-react-lite';
  * The form state is managed using the `useState` hook, and the `handleInputChange` function updates the form state.
  * The `handleSubmit` function is used to create or edit the activity when the form is submitted.
  * The component accesses the `activityStore` from the MobX store context to get the selected activity, createActivity, updateActivity, and loading functions.
+ * The `loadActivity` function is used to load the activity details when the component is mounted.
+ * The `LoadingComponent` is displayed while the activity details are being loaded.
  *
  * @example
  * Here is an example of how to use the ActivityForm component:
  * ```tsx
- * const activity = {
- *   id: '1',
- *   title: 'Morning Run',
- *   date: '2024-06-12',
- *   description: 'A quick morning run around the park.',
- *   category: 'exercise',
- *   city: 'New York',
- *   venue: 'Central Park'
- * };
+ * import React from 'react';
+ * import { BrowserRouter as Router, Route } from 'react-router-dom';
+ * import { StoreProvider } from './stores/store';
+ * import ActivityForm from './features/activities/form/ActivityForm';
  *
- * <ActivityForm />
+ * const App = () => (
+ *   <StoreProvider>
+ *     <Router>
+ *       <Route path="/manage/:id?" component={ActivityForm} />
+ *     </Router>
+ *   </StoreProvider>
+ * );
+ *
+ * export default App;
  * ```
  */
 export default observer(function ActivityForm(): JSX.Element {
   const { activityStore } = useStore();
-  const { selectedActivity, createActivity, updateActivity, loading } =
-    activityStore;
+  const {
+    createActivity,
+    updateActivity,
+    loading,
+    loadActivity,
+    loadingInitial,
+  } = activityStore;
+  const { id } = useParams();
 
-  const initialState = selectedActivity ?? {
+  const [activity, setActivity] = useState<Activity>({
     id: '',
     title: '',
     date: '',
@@ -52,9 +66,11 @@ export default observer(function ActivityForm(): JSX.Element {
     category: '',
     city: '',
     venue: '',
-  };
+  });
 
-  const [activity, setActivity] = useState(initialState);
+  useEffect(() => {
+    if (id) loadActivity(id).then((activity) => setActivity(activity!));
+  }, [id, loadActivity]);
 
   /**
    * @function handleSubmit
@@ -75,6 +91,8 @@ export default observer(function ActivityForm(): JSX.Element {
     const { name, value } = event.target;
     setActivity({ ...activity, [name]: value });
   }
+
+  if (loadingInitial) return <LoadingComponent content="Loading activity..." />;
 
   return (
     <Segment clearing>

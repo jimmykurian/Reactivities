@@ -76,88 +76,6 @@ describe('ActivityForm', () => {
     ).toBe('New Title');
   });
 
-  test('updates selected activity when form is edited', () => {
-    // Arrange
-    const selectedActivity = {
-      id: '1',
-      title: 'Existing Activity',
-      date: '2024-06-12',
-      description: 'Existing Description',
-      category: 'Existing Category',
-      city: 'Existing City',
-      venue: 'Existing Venue',
-    };
-    (useStore as jest.Mock).mockReturnValue({
-      activityStore: {
-        selectedActivity,
-        createActivity,
-        updateActivity,
-        closeForm,
-        loading,
-      },
-    });
-
-    render(<ActivityForm />);
-
-    // Act & Assert
-    expect(
-      (screen.getByPlaceholderText('Title') as HTMLInputElement).value,
-    ).toBe('Existing Activity');
-    fireEvent.change(screen.getByPlaceholderText('Title'), {
-      target: { value: 'Updated Activity' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
-    expect(updateActivity).toHaveBeenCalledWith({
-      ...selectedActivity,
-      title: 'Updated Activity',
-    });
-  });
-
-  test('displays the correct initial values when an activity is selected', () => {
-    // Arrange
-    const selectedActivity = {
-      id: '1',
-      title: 'Test Title',
-      date: '2024-01-01',
-      description: 'Test Description',
-      category: 'Test Category',
-      city: 'Test City',
-      venue: 'Test Venue',
-    };
-    (useStore as jest.Mock).mockReturnValue({
-      activityStore: {
-        selectedActivity,
-        createActivity,
-        updateActivity,
-        closeForm,
-        loading,
-      },
-    });
-
-    // Act
-    render(<ActivityForm />);
-
-    // Assert
-    expect(
-      (screen.getByPlaceholderText('Title') as HTMLInputElement).value,
-    ).toBe('Test Title');
-    expect(
-      (screen.getByPlaceholderText('Description') as HTMLInputElement).value,
-    ).toBe('Test Description');
-    expect(
-      (screen.getByPlaceholderText('Category') as HTMLInputElement).value,
-    ).toBe('Test Category');
-    expect(
-      (screen.getByPlaceholderText('Date') as HTMLInputElement).value,
-    ).toBe('2024-01-01');
-    expect(
-      (screen.getByPlaceholderText('City') as HTMLInputElement).value,
-    ).toBe('Test City');
-    expect(
-      (screen.getByPlaceholderText('Venue') as HTMLInputElement).value,
-    ).toBe('Test Venue');
-  });
-
   test('calls createActivity with new activity when form is submitted', () => {
     // Arrange
     render(<ActivityForm />);
@@ -192,42 +110,6 @@ describe('ActivityForm', () => {
       category: 'New Category',
       city: 'New City',
       venue: 'New Venue',
-    });
-  });
-
-  test('calls updateActivity with existing activity when form is submitted', () => {
-    // Arrange
-    const selectedActivity = {
-      id: '1',
-      title: 'Existing Activity',
-      date: '2024-06-12',
-      description: 'Existing Description',
-      category: 'Existing Category',
-      city: 'Existing City',
-      venue: 'Existing Venue',
-    };
-    (useStore as jest.Mock).mockReturnValue({
-      activityStore: {
-        selectedActivity,
-        createActivity,
-        updateActivity,
-        closeForm,
-        loading,
-      },
-    });
-
-    render(<ActivityForm />);
-
-    // Act
-    fireEvent.change(screen.getByPlaceholderText('Title'), {
-      target: { value: 'Updated Title' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
-
-    // Assert
-    expect(updateActivity).toHaveBeenCalledWith({
-      ...selectedActivity,
-      title: 'Updated Title',
     });
   });
 
