@@ -16,6 +16,7 @@ router
 
 Creates a browser router using the defined routes.
 This router is used to handle navigation and rendering of components based on the URL path.
+The router enables single-page application (SPA) behavior by updating the URL and rendering the corresponding components without reloading the page.
 
 ## Example
 
@@ -25,4 +26,4 @@ const router = createBrowserRouter(routes);
 
 ## Source
 
-[src/app/router/Routes.tsx:62](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/router/Routes.tsx#L62)
+[src/app/router/Routes.tsx:66](https://github.com/jimmykurian/Reactivities/blob/633810562ac0154bf2188296ae36469e6b58f86e/client-app/src/app/router/Routes.tsx#L66)

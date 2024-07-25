@@ -16,6 +16,9 @@ routes
 
 An array of route objects defining the routes for the application.
 Each route object contains a path and the corresponding component to render.
+The routes include paths for the home page, activity dashboard, activity details, and activity form.
+The ActivityForm component is used for both creating and managing activities.
+The `key` prop is used to differentiate between the create and manage routes for the ActivityForm component.
 
 ## Example
 
@@ -28,8 +31,8 @@ const routes: RouteObject[] = [
       { path: '', element: <HomePage /> },
       { path: 'activities', element: <ActivityDashboard /> },
       { path: 'activities/:id', element: <ActivityDetails /> },
-      { path: 'createActivity', element: <ActivityForm /> },
-      { path: 'manage/:id', element: <ActivityForm /> },
+      { path: 'createActivity', element: <ActivityForm key="create" /> },
+      { path: 'manage/:id', element: <ActivityForm key="manage" /> },
     ],
   },
 ];
@@ -37,4 +40,4 @@ const routes: RouteObject[] = [
 
 ## Source
 
-[src/app/router/Routes.tsx:37](https://github.com/jimmykurian/Reactivities/blob/cfc61f80c2e285635750ab2aa8eddddc51c9a938/client-app/src/app/router/Routes.tsx#L37)
+[src/app/router/Routes.tsx:40](https://github.com/jimmykurian/Reactivities/blob/633810562ac0154bf2188296ae36469e6b58f86e/client-app/src/app/router/Routes.tsx#L40)
