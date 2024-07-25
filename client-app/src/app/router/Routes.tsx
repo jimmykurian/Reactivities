@@ -15,6 +15,9 @@ import ActivityDetails from '../features/activities/details/ActivityDetails';
  * @constant routes
  * @description An array of route objects defining the routes for the application.
  * Each route object contains a path and the corresponding component to render.
+ * The routes include paths for the home page, activity dashboard, activity details, and activity form.
+ * The ActivityForm component is used for both creating and managing activities.
+ * The `key` prop is used to differentiate between the create and manage routes for the ActivityForm component.
  * @type {RouteObject[]}
  *
  * @example
@@ -27,8 +30,8 @@ import ActivityDetails from '../features/activities/details/ActivityDetails';
  *       { path: '', element: <HomePage /> },
  *       { path: 'activities', element: <ActivityDashboard /> },
  *       { path: 'activities/:id', element: <ActivityDetails /> },
- *       { path: 'createActivity', element: <ActivityForm /> },
- *       { path: 'manage/:id', element: <ActivityForm /> },
+ *       { path: 'createActivity', element: <ActivityForm key="create" /> },
+ *       { path: 'manage/:id', element: <ActivityForm key="manage" /> },
  *     ],
  *   },
  * ];
@@ -42,8 +45,8 @@ export const routes: RouteObject[] = [
       { path: '', element: <HomePage /> },
       { path: 'activities', element: <ActivityDashboard /> },
       { path: 'activities/:id', element: <ActivityDetails /> },
-      { path: 'createActivity', element: <ActivityForm /> },
-      { path: 'manage/:id', element: <ActivityForm /> },
+      { path: 'createActivity', element: <ActivityForm key="create" /> },
+      { path: 'manage/:id', element: <ActivityForm key="manage" /> },
     ],
   },
 ];
@@ -52,6 +55,7 @@ export const routes: RouteObject[] = [
  * @constant router
  * @description Creates a browser router using the defined routes.
  * This router is used to handle navigation and rendering of components based on the URL path.
+ * The router enables single-page application (SPA) behavior by updating the URL and rendering the corresponding components without reloading the page.
  * @type {ReturnType<typeof createBrowserRouter>}
  *
  * @example
