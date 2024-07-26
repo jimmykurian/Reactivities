@@ -44,6 +44,8 @@ The `handleSubmit` function is used to create or edit the activity when the form
 The component accesses the `activityStore` from the MobX store context to get the selected activity, createActivity, updateActivity, and loading functions.
 The `loadActivity` function is used to load the activity details when the component is mounted.
 The `LoadingComponent` is displayed while the activity details are being loaded.
+The `useNavigate` hook from `react-router-dom` is used to navigate to the activity details page upon form submission.
+The `uuid` library is used to generate a unique ID for new activities.
 
 ## Example
 
@@ -67,4 +69,4 @@ export default App;
 
 ## Source
 
-[src/app/features/activities/form/ActivityForm.tsx:50](https://github.com/jimmykurian/Reactivities/blob/633810562ac0154bf2188296ae36469e6b58f86e/client-app/src/app/features/activities/form/ActivityForm.tsx#L50)
+[src/app/features/activities/form/ActivityForm.tsx:53](https://github.com/jimmykurian/Reactivities/blob/f19dbe6eeef2d0968af80c70ca59448062698db4/client-app/src/app/features/activities/form/ActivityForm.tsx#L53)

@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { useStore } from '../../../../../src/app/stores/store';
 import ActivityForm from '../../../../../src/app/features/activities/form/ActivityForm';
 
@@ -8,10 +9,18 @@ jest.mock('../../../../../src/app/stores/store', () => ({
 }));
 
 describe('ActivityForm', () => {
-  const createActivity = jest.fn();
-  const updateActivity = jest.fn();
-  const closeForm = jest.fn();
+  const createActivity = jest.fn().mockResolvedValue({});
+  const updateActivity = jest.fn().mockResolvedValue({});
   const loading = false;
+  const loadActivity = jest.fn().mockResolvedValue({
+    id: '1',
+    title: 'Existing Activity',
+    date: '2024-06-12',
+    description: 'Existing Description',
+    category: 'Existing Category',
+    city: 'Existing City',
+    venue: 'Existing Venue',
+  });
 
   beforeEach(() => {
     (useStore as jest.Mock).mockReturnValue({
@@ -19,17 +28,23 @@ describe('ActivityForm', () => {
         selectedActivity: null,
         createActivity,
         updateActivity,
-        closeForm,
+        loadActivity,
         loading,
+        loadingInitial: false,
       },
     });
     createActivity.mockClear();
     updateActivity.mockClear();
+    loadActivity.mockClear();
   });
 
   test('renders the ActivityForm component', () => {
     // Arrange
-    render(<ActivityForm />);
+    render(
+      <MemoryRouter>
+        <ActivityForm />
+      </MemoryRouter>,
+    );
 
     // Act & Assert
     expect(screen.getByPlaceholderText('Title')).toBeInTheDocument();
@@ -44,7 +59,11 @@ describe('ActivityForm', () => {
 
   test('calls submit handler when form is submitted', () => {
     // Arrange
-    render(<ActivityForm />);
+    render(
+      <MemoryRouter>
+        <ActivityForm />
+      </MemoryRouter>,
+    );
 
     // Act
     fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
@@ -55,7 +74,11 @@ describe('ActivityForm', () => {
 
   test('matches snapshot', () => {
     // Arrange
-    const { asFragment } = render(<ActivityForm />);
+    const { asFragment } = render(
+      <MemoryRouter>
+        <ActivityForm />
+      </MemoryRouter>,
+    );
 
     // Act & Assert
     expect(asFragment()).toMatchSnapshot();
@@ -63,7 +86,11 @@ describe('ActivityForm', () => {
 
   test('updates activity state on input change', () => {
     // Arrange
-    render(<ActivityForm />);
+    render(
+      <MemoryRouter>
+        <ActivityForm />
+      </MemoryRouter>,
+    );
 
     // Act
     fireEvent.change(screen.getByPlaceholderText('Title'), {
@@ -78,7 +105,11 @@ describe('ActivityForm', () => {
 
   test('calls createActivity with new activity when form is submitted', () => {
     // Arrange
-    render(<ActivityForm />);
+    render(
+      <MemoryRouter>
+        <ActivityForm />
+      </MemoryRouter>,
+    );
 
     // Act
     fireEvent.change(screen.getByPlaceholderText('Title'), {
@@ -103,7 +134,7 @@ describe('ActivityForm', () => {
 
     // Assert
     expect(createActivity).toHaveBeenCalledWith({
-      id: '',
+      id: expect.any(String),
       title: 'New Title',
       date: '2024-01-01',
       description: 'New Description',
@@ -115,7 +146,11 @@ describe('ActivityForm', () => {
 
   test('does not call createActivity or updateActivity if form is not submitted', () => {
     // Arrange
-    render(<ActivityForm />);
+    render(
+      <MemoryRouter>
+        <ActivityForm />
+      </MemoryRouter>,
+    );
 
     // Act
     fireEvent.change(screen.getByPlaceholderText('Title'), {

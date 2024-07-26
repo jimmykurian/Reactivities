@@ -8,9 +8,10 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import { useEffect, useState } from 'react';
 import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Activity } from '../../../models/activity';
 import LoadingComponent from '../../../layout/LoadingComponent';
+import { v4 as uuid } from 'uuid';
 
 /**
  * @component ActivityForm
@@ -27,6 +28,8 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  * The component accesses the `activityStore` from the MobX store context to get the selected activity, createActivity, updateActivity, and loading functions.
  * The `loadActivity` function is used to load the activity details when the component is mounted.
  * The `LoadingComponent` is displayed while the activity details are being loaded.
+ * The `useNavigate` hook from `react-router-dom` is used to navigate to the activity details page upon form submission.
+ * The `uuid` library is used to generate a unique ID for new activities.
  *
  * @example
  * Here is an example of how to use the ActivityForm component:
@@ -57,6 +60,7 @@ export default observer(function ActivityForm(): JSX.Element {
     loadingInitial,
   } = activityStore;
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [activity, setActivity] = useState<Activity>({
     id: '',
@@ -77,7 +81,16 @@ export default observer(function ActivityForm(): JSX.Element {
    * @description Handles form submission. Calls the create or update function based on the activity ID.
    */
   function handleSubmit(): void {
-    activity.id ? updateActivity(activity) : createActivity(activity);
+    if (!activity.id) {
+      activity.id = uuid();
+      createActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`),
+      );
+    } else {
+      updateActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`),
+      );
+    }
   }
 
   /**
