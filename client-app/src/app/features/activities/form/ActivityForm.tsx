@@ -28,6 +28,8 @@ import { v4 as uuid } from 'uuid';
  * The component accesses the `activityStore` from the MobX store context to get the selected activity, createActivity, updateActivity, and loading functions.
  * The `loadActivity` function is used to load the activity details when the component is mounted.
  * The `LoadingComponent` is displayed while the activity details are being loaded.
+ * The `useNavigate` hook from `react-router-dom` is used to navigate to the activity details page upon form submission.
+ * The `uuid` library is used to generate a unique ID for new activities.
  *
  * @example
  * Here is an example of how to use the ActivityForm component:
