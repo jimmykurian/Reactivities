@@ -8,9 +8,10 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import { useEffect, useState } from 'react';
 import { useStore } from '../../../stores/store';
 import { observer } from 'mobx-react-lite';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Activity } from '../../../models/activity';
 import LoadingComponent from '../../../layout/LoadingComponent';
+import { v4 as uuid } from 'uuid';
 
 /**
  * @component ActivityForm
@@ -57,6 +58,7 @@ export default observer(function ActivityForm(): JSX.Element {
     loadingInitial,
   } = activityStore;
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [activity, setActivity] = useState<Activity>({
     id: '',
@@ -77,7 +79,16 @@ export default observer(function ActivityForm(): JSX.Element {
    * @description Handles form submission. Calls the create or update function based on the activity ID.
    */
   function handleSubmit(): void {
-    activity.id ? updateActivity(activity) : createActivity(activity);
+    if (!activity.id) {
+      activity.id = uuid();
+      createActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`),
+      );
+    } else {
+      updateActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`),
+      );
+    }
   }
 
   /**
