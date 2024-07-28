@@ -9,8 +9,7 @@ exports[`App matches snapshot 1`] = `
       class="ui container"
     >
       <a
-        aria-current="page"
-        class="header item active"
+        class="header item"
         href="/"
       >
         <img
@@ -21,7 +20,8 @@ exports[`App matches snapshot 1`] = `
         Reactivities
       </a>
       <a
-        class="item"
+        aria-current="page"
+        class="item active"
         href="/activities"
         role="menuitem"
       >

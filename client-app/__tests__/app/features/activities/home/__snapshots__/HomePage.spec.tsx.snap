@@ -8,6 +8,14 @@ exports[`HomePage matches snapshot 1`] = `
     <h1>
       Home page
     </h1>
+    <h3>
+      Go to 
+      <a
+        href="/activities"
+      >
+        Activities
+      </a>
+    </h3>
   </div>
 </DocumentFragment>
 `;
