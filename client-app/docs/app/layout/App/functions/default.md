@@ -21,22 +21,33 @@ App
 ## Description
 
 The App component serves as the root component for the React application.
-It renders the NavBar component and uses the Outlet component from react-router-dom to render matched child routes.
+It conditionally renders the HomePage component when the user is at the root path ('/').
+For all other paths, it renders the NavBar component and uses the Outlet component from react-router-dom to render matched child routes.
 
 ## Example
 
+Here is an example of how to use the App component:
 ```tsx
-// App component
-return (
-  <>
-    <NavBar />
-    <Container style={{ marginTop: '7em' }}>
-      <Outlet />
-    </Container>
-  </>
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import App from './App';
+import HomePage from '../features/home/HomePage';
+import ActivityDashboard from '../features/activities/dashboard/ActivityDashboard';
+
+const MainApp = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<HomePage />} />
+        <Route path="activities" element={<ActivityDashboard />} />
+      </Route>
+    </Routes>
+  </Router>
 );
+
+export default MainApp;
 ```
 
 ## Source
 
-[src/app/layout/App.tsx:43](https://github.com/jimmykurian/Reactivities/blob/f19dbe6eeef2d0968af80c70ca59448062698db4/client-app/src/app/layout/App.tsx#L43)
+[src/app/layout/App.tsx:63](https://github.com/jimmykurian/Reactivities/blob/0508ba222a20e8a381c3bd4c99db6fa50d56eeb3/client-app/src/app/layout/App.tsx#L63)
