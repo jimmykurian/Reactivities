@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import App from '../../../src/app/layout/App';
 import { Activity } from '../../../src/app/models/activity';
 import { useStore } from '../../../src/app/stores/store';
 import { makeAutoObservable, runInAction } from 'mobx';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Mock the agent and store
 jest.mock('../../../src/app/api/agent');
@@ -74,37 +74,79 @@ describe('App', () => {
     jest.clearAllMocks();
   });
 
-  test('renders Reactivities heading', async () => {
+  test('renders Home page heading', async () => {
     // Arrange
     render(
-      <Router>
+      <MemoryRouter initialEntries={['/']}>
         <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="/" element={<MockActivityDashboard />} />
-          </Route>
+          <Route path="/" element={<App />} />
         </Routes>
-      </Router>,
+      </MemoryRouter>,
     );
 
     // Act
-    const headingElement = await waitFor(() =>
-      screen.getByText(/Reactivities/i),
-    );
+    const headingElement = await waitFor(() => screen.getByText(/Home page/i));
 
     // Assert
     expect(headingElement).toBeInTheDocument();
   });
 
+  test('renders Activities link on Home page', async () => {
+    // Arrange
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<App />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    // Act
+    const linkElement = await waitFor(() =>
+      screen.getByText(
+        (content, element) =>
+          element?.tagName.toLowerCase() === 'a' && /activities/i.test(content),
+      ),
+    );
+
+    // Assert
+    expect(linkElement).toBeInTheDocument();
+  });
+
+  test('renders ActivityDashboard when navigating to /activities', async () => {
+    // Arrange
+    render(
+      <MemoryRouter initialEntries={['/activities']}>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="activities" element={<MockActivityDashboard />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    // Act
+    await waitFor(() => {
+      expect(
+        screen.getAllByText(/Static Test Activity/i).length,
+      ).toBeGreaterThan(0);
+    });
+
+    // Assert
+    expect(screen.getByText(/Static Test Activity 1/i)).toBeInTheDocument();
+    expect(screen.getByText(/Static Test Activity 2/i)).toBeInTheDocument();
+  });
+
   test('matches snapshot', async () => {
     // Arrange
     const { asFragment } = render(
-      <Router>
+      <MemoryRouter initialEntries={['/activities']}>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="/" element={<MockActivityDashboard />} />
+            <Route path="activities" element={<MockActivityDashboard />} />
           </Route>
         </Routes>
-      </Router>,
+      </MemoryRouter>,
     );
 
     // Act

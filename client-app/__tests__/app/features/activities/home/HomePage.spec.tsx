@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Container } from 'semantic-ui-react';
+import { BrowserRouter } from 'react-router-dom';
 import HomePage from '../../../../../src/app/features/home/HomePage';
 
 // Mocking semantic-ui-react's Container component
@@ -17,20 +17,24 @@ describe('HomePage', () => {
 
   test('renders the HomePage component with heading', () => {
     // Arrange & Act
-    render(<HomePage />);
+    render(
+      <BrowserRouter>
+        <HomePage />
+      </BrowserRouter>,
+    );
 
     // Assert
     const headingElement = screen.getByText(/Home page/i);
     expect(headingElement).toBeInTheDocument();
-    expect(Container).toHaveBeenCalledWith(
-      expect.objectContaining({ style: { marginTop: '7em' } }),
-      expect.anything(),
-    );
   });
 
   test('matches snapshot', () => {
     // Arrange & Act
-    const { asFragment } = render(<HomePage />);
+    const { asFragment } = render(
+      <BrowserRouter>
+        <HomePage />
+      </BrowserRouter>,
+    );
 
     // Assert
     expect(asFragment()).toMatchSnapshot();
