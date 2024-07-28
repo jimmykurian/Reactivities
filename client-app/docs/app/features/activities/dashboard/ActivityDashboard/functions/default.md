@@ -38,6 +38,7 @@ The ActivityDashboard component displays a list of activities and includes a pla
 
 This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`,
 and includes a placeholder for activity filters. If the activities are still loading, it displays a LoadingComponent.
+The `loadActivities` function is called to fetch the activity list if the `activityRegistry` has one or fewer activities.
 
 ## Example
 
@@ -51,7 +52,7 @@ const App = observer(() => {
   const { activityStore } = useStore();
 
   useEffect(() => {
-    activityStore.loadActivities();
+    if (activityStore.activityRegistry.size <= 1) activityStore.loadActivities();
   }, [activityStore]);
 
   if (activityStore.loadingInitial) {
@@ -66,4 +67,4 @@ export default App;
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityDashboard.tsx:50](https://github.com/jimmykurian/Reactivities/blob/0508ba222a20e8a381c3bd4c99db6fa50d56eeb3/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L50)
+[src/app/features/activities/dashboard/ActivityDashboard.tsx:51](https://github.com/jimmykurian/Reactivities/blob/a4b5efe88c2db41764abd27d4a076942eeadfc02/client-app/src/app/features/activities/dashboard/ActivityDashboard.tsx#L51)
