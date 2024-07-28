@@ -22,6 +22,7 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  * @remarks
  * This component serves as the main dashboard for managing activities. It conditionally renders the `ActivityList`,
  * and includes a placeholder for activity filters. If the activities are still loading, it displays a LoadingComponent.
+ * The `loadActivities` function is called to fetch the activity list if the `activityRegistry` has one or fewer activities.
  *
  * @example
  * ```tsx
@@ -34,7 +35,7 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  *   const { activityStore } = useStore();
  *
  *   useEffect(() => {
- *     activityStore.loadActivities();
+ *     if (activityStore.activityRegistry.size <= 1) activityStore.loadActivities();
  *   }, [activityStore]);
  *
  *   if (activityStore.loadingInitial) {
@@ -49,10 +50,11 @@ import LoadingComponent from '../../../layout/LoadingComponent';
  */
 export default observer(function ActivityDashboard(): JSX.Element {
   const { activityStore } = useStore();
+  const { loadActivities, activityRegistry } = activityStore;
 
   useEffect(() => {
-    activityStore.loadActivities();
-  }, [activityStore]);
+    if (activityRegistry.size <= 1) loadActivities();
+  }, [activityRegistry.size, loadActivities]);
 
   if (activityStore.loadingInitial) {
     return <LoadingComponent content="Loading app..." />;

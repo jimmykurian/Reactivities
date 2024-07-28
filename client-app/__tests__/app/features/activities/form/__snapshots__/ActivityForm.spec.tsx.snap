@@ -94,12 +94,14 @@ exports[`ActivityForm matches snapshot 1`] = `
       >
         Submit
       </button>
-      <button
+      <a
         class="ui right floated button"
+        href="/activities"
+        role="button"
         type="button"
       >
         Cancel
-      </button>
+      </a>
     </form>
   </div>
 </DocumentFragment>

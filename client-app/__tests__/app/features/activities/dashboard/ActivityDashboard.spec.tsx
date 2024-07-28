@@ -50,22 +50,23 @@ describe('ActivityDashboard', () => {
   ];
 
   class MockActivityStore {
-    activities: Activity[] = [];
+    activityRegistry = new Map<string, Activity>();
     selectedActivity: Activity | undefined = undefined;
     editMode = false;
     loading = false;
     loadingInitial = true;
     loadActivities = jest.fn().mockImplementation(async () => {
       runInAction(() => {
-        this.activities = staticMockActivities;
+        this.activityRegistry.set('1', staticMockActivities[0]);
+        this.activityRegistry.set('2', staticMockActivities[1]);
         this.loadingInitial = false;
       });
     });
 
     get activitiesByDate() {
-      return this.activities
-        .slice()
-        .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+      return Array.from(this.activityRegistry.values()).sort(
+        (a, b) => Date.parse(a.date) - Date.parse(b.date),
+      );
     }
 
     constructor() {
