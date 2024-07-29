@@ -24,8 +24,6 @@ export interface Props {
  * @description A functional component that renders an individual activity item.
  *
  * @param {Props} props - The props object containing the activity data.
- * @param {Activity} props.activity - The activity to display.
- *
  * @returns {JSX.Element} The JSX element representing an individual activity item.
  *
  * @remarks

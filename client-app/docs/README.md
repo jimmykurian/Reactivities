@@ -9,6 +9,7 @@
 - [app/api/agent](app/api/agent/README.md)
 - [app/features/activities/dashboard/ActivityDashboard](app/features/activities/dashboard/ActivityDashboard/README.md)
 - [app/features/activities/dashboard/ActivityList](app/features/activities/dashboard/ActivityList/README.md)
+- [app/features/activities/dashboard/ActivityListItem](app/features/activities/dashboard/ActivityListItem/README.md)
 - [app/features/activities/details/ActivityDetails](app/features/activities/details/ActivityDetails/README.md)
 - [app/features/activities/form/ActivityForm](app/features/activities/form/ActivityForm/README.md)
 - [app/features/home/HomePage](app/features/home/HomePage/README.md)
