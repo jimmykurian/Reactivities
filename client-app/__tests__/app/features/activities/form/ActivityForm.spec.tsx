@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { useStore } from '../../../../../src/app/stores/store';
 import ActivityForm from '../../../../../src/app/features/activities/form/ActivityForm';
@@ -38,15 +38,17 @@ describe('ActivityForm', () => {
     loadActivity.mockClear();
   });
 
-  test('renders the ActivityForm component', () => {
+  test('renders the ActivityForm component', async () => {
     // Arrange
-    render(
-      <MemoryRouter>
-        <ActivityForm />
-      </MemoryRouter>,
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+    });
 
-    // Act & Assert
+    // Assert
     expect(screen.getByPlaceholderText('Title')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Description')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Category')).toBeInTheDocument();
@@ -57,40 +59,51 @@ describe('ActivityForm', () => {
     expect(screen.getByRole('button', { name: /Cancel/i })).toBeInTheDocument();
   });
 
-  test('calls submit handler when form is submitted', () => {
+  test('calls submit handler when form is submitted', async () => {
     // Arrange
-    render(
-      <MemoryRouter>
-        <ActivityForm />
-      </MemoryRouter>,
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+    });
 
     // Act
-    fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
+    });
 
     // Assert
     expect(createActivity).toHaveBeenCalledTimes(1);
   });
 
-  test('matches snapshot', () => {
+  test('matches snapshot', async () => {
     // Arrange
-    const { asFragment } = render(
-      <MemoryRouter>
-        <ActivityForm />
-      </MemoryRouter>,
-    );
+    let fragment: (() => DocumentFragment) | undefined;
+    await act(async () => {
+      const { asFragment } = render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+      fragment = asFragment;
+    });
 
-    // Act & Assert
-    expect(asFragment()).toMatchSnapshot();
+    // Assert
+    expect(fragment).toBeDefined();
+    expect(fragment!()).toMatchSnapshot();
   });
 
-  test('updates activity state on input change', () => {
+  test('updates activity state on input change', async () => {
     // Arrange
-    render(
-      <MemoryRouter>
-        <ActivityForm />
-      </MemoryRouter>,
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+    });
 
     // Act
     fireEvent.change(screen.getByPlaceholderText('Title'), {
@@ -103,34 +116,39 @@ describe('ActivityForm', () => {
     ).toBe('New Title');
   });
 
-  test('calls createActivity with new activity when form is submitted', () => {
+  test('calls createActivity with new activity when form is submitted', async () => {
     // Arrange
-    render(
-      <MemoryRouter>
-        <ActivityForm />
-      </MemoryRouter>,
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+    });
 
     // Act
-    fireEvent.change(screen.getByPlaceholderText('Title'), {
-      target: { value: 'New Title' },
+    await act(async () => {
+      fireEvent.change(screen.getByPlaceholderText('Title'), {
+        target: { value: 'New Title' },
+      });
+      fireEvent.change(screen.getByPlaceholderText('Description'), {
+        target: { value: 'New Description' },
+      });
+      fireEvent.change(screen.getByPlaceholderText('Category'), {
+        target: { value: 'New Category' },
+      });
+      fireEvent.change(screen.getByPlaceholderText('Date'), {
+        target: { value: '2024-01-01' },
+      });
+      fireEvent.change(screen.getByPlaceholderText('City'), {
+        target: { value: 'New City' },
+      });
+      fireEvent.change(screen.getByPlaceholderText('Venue'), {
+        target: { value: 'New Venue' },
+      });
+
+      fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
     });
-    fireEvent.change(screen.getByPlaceholderText('Description'), {
-      target: { value: 'New Description' },
-    });
-    fireEvent.change(screen.getByPlaceholderText('Category'), {
-      target: { value: 'New Category' },
-    });
-    fireEvent.change(screen.getByPlaceholderText('Date'), {
-      target: { value: '2024-01-01' },
-    });
-    fireEvent.change(screen.getByPlaceholderText('City'), {
-      target: { value: 'New City' },
-    });
-    fireEvent.change(screen.getByPlaceholderText('Venue'), {
-      target: { value: 'New Venue' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
 
     // Assert
     expect(createActivity).toHaveBeenCalledWith({
@@ -144,13 +162,15 @@ describe('ActivityForm', () => {
     });
   });
 
-  test('does not call createActivity or updateActivity if form is not submitted', () => {
+  test('does not call createActivity or updateActivity if form is not submitted', async () => {
     // Arrange
-    render(
-      <MemoryRouter>
-        <ActivityForm />
-      </MemoryRouter>,
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+    });
 
     // Act
     fireEvent.change(screen.getByPlaceholderText('Title'), {
