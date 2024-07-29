@@ -22,7 +22,6 @@ jest.mock(
 jest.mock('../../../../../src/app/layout/LoadingComponent', () => ({
   __esModule: true,
   default: ({ content }: { content: string }) => {
-    console.log('Rendering LoadingComponent with content:', content);
     return <div data-testid="loader">{content}</div>;
   },
 }));

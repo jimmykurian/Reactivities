@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityListItem matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="item"
+  >
+    <div
+      class="content"
+    >
+      <a
+        class="header"
+      >
+        Static Activity
+      </a>
+      <div
+        class="meta"
+      >
+        2024-07-28T00:00:00.000Z
+      </div>
+      <div
+        class="description"
+      >
+        <div>
+          This is a static activity description.
+        </div>
+        <div>
+          Static City, Static Venue
+        </div>
+      </div>
+      <div
+        class="extra"
+      >
+        <a
+          class="ui blue right floated button"
+          href="/activities/1"
+          role="button"
+        >
+          View
+        </a>
+        <button
+          class="ui red right floated button"
+          name="1"
+        >
+          Delete
+        </button>
+        <div
+          class="ui basic label"
+        >
+          Static Category
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import App from '../../../src/app/layout/App';
 import { Activity } from '../../../src/app/models/activity';
@@ -76,13 +76,15 @@ describe('App', () => {
 
   test('renders Home page heading', async () => {
     // Arrange
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <Routes>
-          <Route path="/" element={<App />} />
-        </Routes>
-      </MemoryRouter>,
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter initialEntries={['/']}>
+          <Routes>
+            <Route path="/" element={<App />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+    });
 
     // Act
     const headingElement = await waitFor(() => screen.getByText(/Home page/i));
@@ -93,13 +95,15 @@ describe('App', () => {
 
   test('renders Activities link on Home page', async () => {
     // Arrange
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <Routes>
-          <Route path="/" element={<App />} />
-        </Routes>
-      </MemoryRouter>,
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter initialEntries={['/']}>
+          <Routes>
+            <Route path="/" element={<App />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+    });
 
     // Act
     const linkElement = await waitFor(() =>
@@ -115,48 +119,53 @@ describe('App', () => {
 
   test('renders ActivityDashboard when navigating to /activities', async () => {
     // Arrange
-    render(
-      <MemoryRouter initialEntries={['/activities']}>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="activities" element={<MockActivityDashboard />} />
-          </Route>
-        </Routes>
-      </MemoryRouter>,
-    );
-
-    // Act
-    await waitFor(() => {
-      expect(
-        screen.getAllByText(/Static Test Activity/i).length,
-      ).toBeGreaterThan(0);
+    await act(async () => {
+      render(
+        <MemoryRouter initialEntries={['/activities']}>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="activities" element={<MockActivityDashboard />} />
+            </Route>
+          </Routes>
+        </MemoryRouter>,
+      );
     });
 
+    // Act
+    const activities = await waitFor(() =>
+      screen.getAllByText(/Static Test Activity/i),
+    );
+
     // Assert
+    expect(activities.length).toBeGreaterThan(0);
     expect(screen.getByText(/Static Test Activity 1/i)).toBeInTheDocument();
     expect(screen.getByText(/Static Test Activity 2/i)).toBeInTheDocument();
   });
 
   test('matches snapshot', async () => {
     // Arrange
-    const { asFragment } = render(
-      <MemoryRouter initialEntries={['/activities']}>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="activities" element={<MockActivityDashboard />} />
-          </Route>
-        </Routes>
-      </MemoryRouter>,
-    );
-
-    // Act
-    await waitFor(() => {
-      expect(
-        screen.getAllByText(/Static Test Activity/i).length,
-      ).toBeGreaterThan(0);
+    let fragment: (() => DocumentFragment) | undefined;
+    await act(async () => {
+      const { asFragment } = render(
+        <MemoryRouter initialEntries={['/activities']}>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="activities" element={<MockActivityDashboard />} />
+            </Route>
+          </Routes>
+        </MemoryRouter>,
+      );
+      fragment = asFragment;
     });
 
+    // Act
+    const activities = await waitFor(() =>
+      screen.getAllByText(/Static Test Activity/i),
+    );
+
     // Assert
-    expect(asFragment()).toMatchSnapshot();
+    expect(activities.length).toBeGreaterThan(0);
+    expect(fragment).toBeDefined();
+    expect(fragment!()).toMatchSnapshot();
   });
 });
