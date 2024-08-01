@@ -3,6 +3,11 @@
 exports[`ActivityList matches snapshot 1`] = `
 <DocumentFragment>
   <div
+    class="ui teal sub header"
+  >
+    2023-12-31
+  </div>
+  <div
     class="ui segment"
   >
     <div
@@ -58,6 +63,19 @@ exports[`ActivityList matches snapshot 1`] = `
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div
+    class="ui teal sub header"
+  >
+    2024-01-01
+  </div>
+  <div
+    class="ui segment"
+  >
+    <div
+      class="ui divided items"
+    >
       <div
         class="item"
       >

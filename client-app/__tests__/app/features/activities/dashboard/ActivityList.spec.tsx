@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { faker } from '@faker-js/faker';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import Router
+import { BrowserRouter as Router } from 'react-router-dom';
 import { useStore } from '../../../../../src/app/stores/store';
 import ActivityList from '../../../../../src/app/features/activities/dashboard/ActivityList';
 import { makeAutoObservable, runInAction } from 'mobx';
@@ -12,7 +12,6 @@ jest.mock('../../../../../src/app/stores/store', () => ({
 }));
 
 describe('ActivityList', () => {
-  // Generate mock activities using Faker.js
   const generateMockActivity = (): Activity => ({
     id: faker.string.uuid(),
     title: faker.lorem.words(3),
@@ -23,13 +22,11 @@ describe('ActivityList', () => {
     venue: faker.location.streetAddress(),
   });
 
-  // Generate mock activities dynamically for other tests
   const mockActivities: Activity[] = Array.from(
     { length: 2 },
     generateMockActivity,
   );
 
-  // Fixed mock activities for snapshot test
   const fixedMockActivities: Activity[] = [
     {
       id: '1',
@@ -70,10 +67,22 @@ describe('ActivityList', () => {
       makeAutoObservable(this);
     }
 
-    get activitiesByDate() {
-      return this.activities
+    get groupedActivities() {
+      const sortedActivities = this.activities
         .slice()
         .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+      return Object.entries(
+        sortedActivities.reduce(
+          (activities, activity) => {
+            const date = activity.date;
+            activities[date] = activities[date]
+              ? [...activities[date], activity]
+              : [activity];
+            return activities;
+          },
+          {} as { [key: string]: Activity[] },
+        ),
+      );
     }
 
     setLoadingInitial = (state: boolean) => {
