@@ -68,13 +68,20 @@ describe('ActivityList', () => {
     }
 
     get groupedActivities() {
-      const sortedActivities = this.activities.slice().sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+      const sortedActivities = this.activities
+        .slice()
+        .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
       return Object.entries(
-        sortedActivities.reduce((activities, activity) => {
-          const date = activity.date;
-          activities[date] = activities[date] ? [...activities[date], activity] : [activity];
-          return activities;
-        }, {} as { [key: string]: Activity[] })
+        sortedActivities.reduce(
+          (activities, activity) => {
+            const date = activity.date;
+            activities[date] = activities[date]
+              ? [...activities[date], activity]
+              : [activity];
+            return activities;
+          },
+          {} as { [key: string]: Activity[] },
+        ),
       );
     }
 
