@@ -59,6 +59,26 @@ export default class ActivityStore {
   }
 
   /**
+   * @getter groupedActivities
+   * @description Gets the activities grouped by date.
+   * @returns {[string, Activity[]][]}
+   */
+  get groupedActivities(): [string, Activity[]][] {
+    return Object.entries(
+      this.activitiesByDate.reduce(
+        (activities, activity) => {
+          const date = activity.date;
+          activities[date] = activities[date]
+            ? [...activities[date], activity]
+            : [activity];
+          return activities;
+        },
+        {} as { [key: string]: Activity[] },
+      ),
+    );
+  }
+
+  /**
    * @async
    * @function loadActivities
    * @description Loads activities from the API and sets the activities state.
