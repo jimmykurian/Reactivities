@@ -8,61 +8,82 @@ exports[`ActivityList matches snapshot 1`] = `
     2023-12-31
   </div>
   <div
-    class="ui segment"
+    class="ui segments"
   >
     <div
-      class="ui divided items"
+      class="ui segment"
     >
       <div
-        class="item"
+        class="ui items"
       >
         <div
-          class="content"
+          class="item"
         >
-          <a
-            class="header"
-          >
-            Fixed Title 1
-          </a>
           <div
-            class="meta"
+            class="ui tiny circular image"
           >
-            2023-12-31
+            <img
+              src="/assets/user.png"
+            />
           </div>
           <div
-            class="description"
-          >
-            <div>
-              Fixed description 1
-            </div>
-            <div>
-              Fixed city 1, Fixed venue 1
-            </div>
-          </div>
-          <div
-            class="extra"
+            class="content"
           >
             <a
-              class="ui blue right floated button"
+              class="header"
               href="/activities/1"
-              role="button"
             >
-              View
+              Fixed Title 1
             </a>
-            <button
-              class="ui red right floated button"
-              name="1"
-            >
-              Delete
-            </button>
             <div
-              class="ui basic label"
+              class="description"
             >
-              Fixed category 1
+              Hosted by Bob
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      class="ui segment"
+    >
+      <span>
+        <i
+          aria-hidden="true"
+          class="clock icon"
+        />
+         2023-12-31
+        <i
+          aria-hidden="true"
+          class="marker icon"
+        />
+         Fixed venue 1
+      </span>
+    </div>
+    <div
+      class="ui secondary segment"
+    >
+      Attendees will go here
+    </div>
+    <div
+      class="ui clearing segment"
+    >
+      <span>
+        Fixed description 1
+      </span>
+      <a
+        class="ui teal right floated button"
+        href="/activities/1"
+        role="button"
+      >
+        View
+      </a>
+      <button
+        class="ui red right floated button"
+        name="1"
+      >
+        Delete
+      </button>
     </div>
   </div>
   <div
@@ -71,61 +92,82 @@ exports[`ActivityList matches snapshot 1`] = `
     2024-01-01
   </div>
   <div
-    class="ui segment"
+    class="ui segments"
   >
     <div
-      class="ui divided items"
+      class="ui segment"
     >
       <div
-        class="item"
+        class="ui items"
       >
         <div
-          class="content"
+          class="item"
         >
-          <a
-            class="header"
-          >
-            Fixed Title 2
-          </a>
           <div
-            class="meta"
+            class="ui tiny circular image"
           >
-            2024-01-01
+            <img
+              src="/assets/user.png"
+            />
           </div>
           <div
-            class="description"
-          >
-            <div>
-              Fixed description 2
-            </div>
-            <div>
-              Fixed city 2, Fixed venue 2
-            </div>
-          </div>
-          <div
-            class="extra"
+            class="content"
           >
             <a
-              class="ui blue right floated button"
+              class="header"
               href="/activities/2"
-              role="button"
             >
-              View
+              Fixed Title 2
             </a>
-            <button
-              class="ui red right floated button"
-              name="2"
-            >
-              Delete
-            </button>
             <div
-              class="ui basic label"
+              class="description"
             >
-              Fixed category 2
+              Hosted by Bob
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      class="ui segment"
+    >
+      <span>
+        <i
+          aria-hidden="true"
+          class="clock icon"
+        />
+         2024-01-01
+        <i
+          aria-hidden="true"
+          class="marker icon"
+        />
+         Fixed venue 2
+      </span>
+    </div>
+    <div
+      class="ui secondary segment"
+    >
+      Attendees will go here
+    </div>
+    <div
+      class="ui clearing segment"
+    >
+      <span>
+        Fixed description 2
+      </span>
+      <a
+        class="ui teal right floated button"
+        href="/activities/2"
+        role="button"
+      >
+        View
+      </a>
+      <button
+        class="ui red right floated button"
+        name="2"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </DocumentFragment>
