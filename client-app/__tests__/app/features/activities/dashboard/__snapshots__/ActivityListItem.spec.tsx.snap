@@ -3,53 +3,82 @@
 exports[`ActivityListItem matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="item"
+    class="ui segments"
   >
     <div
-      class="content"
+      class="ui segment"
     >
-      <a
-        class="header"
-      >
-        Static Activity
-      </a>
       <div
-        class="meta"
+        class="ui items"
       >
-        2024-07-28T00:00:00.000Z
-      </div>
-      <div
-        class="description"
-      >
-        <div>
-          This is a static activity description.
-        </div>
-        <div>
-          Static City, Static Venue
-        </div>
-      </div>
-      <div
-        class="extra"
-      >
-        <a
-          class="ui blue right floated button"
-          href="/activities/1"
-          role="button"
-        >
-          View
-        </a>
-        <button
-          class="ui red right floated button"
-          name="1"
-        >
-          Delete
-        </button>
         <div
-          class="ui basic label"
+          class="item"
         >
-          Static Category
+          <div
+            class="ui tiny circular image"
+          >
+            <img
+              src="/assets/user.png"
+            />
+          </div>
+          <div
+            class="content"
+          >
+            <a
+              class="header"
+              href="/activities/1"
+            >
+              Static Activity
+            </a>
+            <div
+              class="description"
+            >
+              Hosted by Bob
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <div
+      class="ui segment"
+    >
+      <span>
+        <i
+          aria-hidden="true"
+          class="clock icon"
+        />
+         2024-07-28
+        <i
+          aria-hidden="true"
+          class="marker icon"
+        />
+         Static Venue
+      </span>
+    </div>
+    <div
+      class="ui secondary segment"
+    >
+      Attendees will go here
+    </div>
+    <div
+      class="ui clearing segment"
+    >
+      <span>
+        This is a static activity description.
+      </span>
+      <a
+        class="ui teal right floated button"
+        href="/activities/1"
+        role="button"
+      >
+        View
+      </a>
+      <button
+        class="ui red right floated button"
+        name="1"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </DocumentFragment>
