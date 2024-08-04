@@ -80,9 +80,14 @@ describe('ActivityDetails', () => {
     await waitFor(() => {
       expect(screen.getByText(mockActivity.title)).toBeInTheDocument();
       expect(screen.getByText(mockActivity.description)).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /Edit/i })).toBeInTheDocument();
       expect(
-        screen.getByRole('button', { name: /Cancel/i }),
+        screen.getByRole('button', { name: /Manage Event/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /Join Activity/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /Cancel attendance/i }),
       ).toBeInTheDocument();
     });
   });
@@ -111,11 +116,13 @@ describe('ActivityDetails', () => {
 
     // Assert
     await waitFor(() => {
-      const imgElement = screen.getByRole('img');
-      expect(imgElement).toHaveAttribute(
-        'src',
-        `/assets/categoryImages/${mockActivity.category}.jpg`,
+      const imgElements = screen.getAllByRole('img');
+      const categoryImage = imgElements.find((img) =>
+        img
+          .getAttribute('src')
+          ?.includes(`/assets/categoryImages/${mockActivity.category}.jpg`),
       );
+      expect(categoryImage).toBeInTheDocument();
     });
   });
 

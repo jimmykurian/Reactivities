@@ -4,12 +4,16 @@
  * @fileoverview This file contains the ActivityDetails component.
  */
 
-import { Button, Card, Image } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import { useStore } from '../../../stores/store';
 import LoadingComponent from '../../../layout/LoadingComponent';
 import { observer } from 'mobx-react-lite';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import ActivityDetailedChat from './ActivityDetailedChat';
+import ActivityDetailedHeader from './ActivityDetailedHeader';
+import ActivityDetailedInfo from './ActivityDetailedInfo';
+import ActivityDetailedSidebar from './ActivityDetailedSidebar';
 
 /**
  * @component ActivityDetails
@@ -18,8 +22,8 @@ import { useEffect } from 'react';
  * @returns {JSX.Element} The JSX element representing the activity details.
  *
  * @remarks
- * This component uses the Semantic UI React library to create a card layout for displaying activity details.
- * It includes an image, title, date, description, and buttons for editing or canceling the activity.
+ * This component uses the Semantic UI React library to create a layout for displaying detailed information about an activity.
+ * It includes a header, detailed information, a chat section, and a sidebar.
  * The `loadActivity` function is called to fetch the activity details based on the ID from the URL parameters.
  * The component accesses the `activityStore` from the MobX store context to get the selected activity and relevant functions.
  * The `LoadingComponent` is displayed while the activity details are being loaded.
@@ -60,31 +64,15 @@ export default observer(function ActivityDetails(): JSX.Element {
     return <LoadingComponent content="Loading app..." />;
 
   return (
-    <Card fluid>
-      <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
-      <Card.Content>
-        <Card.Header>{activity.title}</Card.Header>
-        <Card.Meta>{activity.date}</Card.Meta>
-        <Card.Description>{activity.description}</Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <Button.Group widths="2">
-          <Button
-            as={Link}
-            to={`/manage/${activity.id}`}
-            basic
-            color="blue"
-            content="Edit"
-          />
-          <Button
-            as={Link}
-            to="/activities"
-            basic
-            color="grey"
-            content="Cancel"
-          />
-        </Button.Group>
-      </Card.Content>
-    </Card>
+    <Grid>
+      <Grid.Column width={10}>
+        <ActivityDetailedHeader activity={activity} />
+        <ActivityDetailedInfo activity={activity} />
+        <ActivityDetailedChat />
+      </Grid.Column>
+      <Grid.Column width={6}>
+        <ActivityDetailedSidebar />
+      </Grid.Column>
+    </Grid>
   );
 });

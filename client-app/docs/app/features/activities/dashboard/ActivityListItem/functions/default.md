@@ -58,4 +58,4 @@ const activity: Activity = {
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityListItem.tsx:55](https://github.com/jimmykurian/Reactivities/blob/25239b27572015f28b805cc64267cdbee9f4c7b1/client-app/src/app/features/activities/dashboard/ActivityListItem.tsx#L55)
+[src/app/features/activities/dashboard/ActivityListItem.tsx:55](https://github.com/jimmykurian/Reactivities/blob/af72bfec8c51b7602f492bc9e60a71a5f447d0af/client-app/src/app/features/activities/dashboard/ActivityListItem.tsx#L55)
