@@ -36,8 +36,8 @@ A functional component that displays the details of an activity.
 
 ## Remarks
 
-This component uses the Semantic UI React library to create a card layout for displaying activity details.
-It includes an image, title, date, description, and buttons for editing or canceling the activity.
+This component uses the Semantic UI React library to create a layout for displaying detailed information about an activity.
+It includes a header, detailed information, a chat section, and a sidebar.
 The `loadActivity` function is called to fetch the activity details based on the ID from the URL parameters.
 The component accesses the `activityStore` from the MobX store context to get the selected activity and relevant functions.
 The `LoadingComponent` is displayed while the activity details are being loaded.
@@ -64,4 +64,4 @@ export default App;
 
 ## Source
 
-[src/app/features/activities/details/ActivityDetails.tsx:46](https://github.com/jimmykurian/Reactivities/blob/25239b27572015f28b805cc64267cdbee9f4c7b1/client-app/src/app/features/activities/details/ActivityDetails.tsx#L46)
+[src/app/features/activities/details/ActivityDetails.tsx:50](https://github.com/jimmykurian/Reactivities/blob/af72bfec8c51b7602f492bc9e60a71a5f447d0af/client-app/src/app/features/activities/details/ActivityDetails.tsx#L50)
