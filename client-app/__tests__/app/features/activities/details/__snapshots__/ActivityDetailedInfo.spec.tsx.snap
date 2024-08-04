@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityDetailedInfo matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ui segments"
+  >
+    <div
+      class="ui top attached segment"
+    >
+      <div
+        class="ui grid"
+      >
+        <div
+          class="one wide column"
+        >
+          <i
+            aria-hidden="true"
+            class="teal info large icon"
+          />
+        </div>
+        <div
+          class="fifteen wide column"
+        >
+          <p>
+            This is a static description for testing.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ui attached segment"
+    >
+      <div
+        class="ui middle aligned grid"
+      >
+        <div
+          class="one wide column"
+        >
+          <i
+            aria-hidden="true"
+            class="teal calendar large icon"
+          />
+        </div>
+        <div
+          class="fifteen wide column"
+        >
+          <span>
+            2024-06-12T00:00:00.000Z
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ui attached segment"
+    >
+      <div
+        class="ui middle aligned grid"
+      >
+        <div
+          class="one wide column"
+        >
+          <i
+            aria-hidden="true"
+            class="teal marker large icon"
+          />
+        </div>
+        <div
+          class="eleven wide column"
+        >
+          <span>
+            Static Venue, Static City
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

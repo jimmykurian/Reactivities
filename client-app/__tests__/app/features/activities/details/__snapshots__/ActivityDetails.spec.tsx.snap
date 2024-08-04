@@ -3,51 +3,369 @@
 exports[`ActivityDetails matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ui fluid card"
+    class="ui grid"
   >
-    <img
-      class="ui image"
-      src="/assets/categoryImages/static-category.jpg"
-    />
     <div
-      class="content"
+      class="ten wide column"
     >
       <div
-        class="header"
+        class="ui segments"
       >
-        Static Title
+        <div
+          class="ui basic top attached segment"
+          style="padding: 0px;"
+        >
+          <img
+            class="ui fluid image"
+            src="/assets/categoryImages/static-category.jpg"
+            style="filter: brightness(30%);"
+          />
+          <div
+            class="ui basic segment"
+            style="position: absolute; bottom: 5%; left: 5%; width: 100%; height: auto; color: white;"
+          >
+            <div
+              class="ui items"
+            >
+              <div
+                class="item"
+              >
+                <div
+                  class="content"
+                >
+                  <div
+                    class="ui huge header"
+                    style="color: white;"
+                  >
+                    Static Title
+                  </div>
+                  <p>
+                    2024-06-12T00:00:00.000Z
+                  </p>
+                  <p>
+                    Hosted by 
+                    <strong>
+                      Bob
+                    </strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ui clearing bottom attached segment"
+        >
+          <button
+            class="ui teal button"
+          >
+            Join Activity
+          </button>
+          <button
+            class="ui button"
+          >
+            Cancel attendance
+          </button>
+          <button
+            class="ui orange right floated button"
+          >
+            Manage Event
+          </button>
+        </div>
       </div>
       <div
-        class="meta"
+        class="ui segments"
       >
-        2024-06-12T00:00:00.000Z
+        <div
+          class="ui top attached segment"
+        >
+          <div
+            class="ui grid"
+          >
+            <div
+              class="one wide column"
+            >
+              <i
+                aria-hidden="true"
+                class="teal info large icon"
+              />
+            </div>
+            <div
+              class="fifteen wide column"
+            >
+              <p>
+                This is a static description for testing.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ui attached segment"
+        >
+          <div
+            class="ui middle aligned grid"
+          >
+            <div
+              class="one wide column"
+            >
+              <i
+                aria-hidden="true"
+                class="teal calendar large icon"
+              />
+            </div>
+            <div
+              class="fifteen wide column"
+            >
+              <span>
+                2024-06-12T00:00:00.000Z
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ui attached segment"
+        >
+          <div
+            class="ui middle aligned grid"
+          >
+            <div
+              class="one wide column"
+            >
+              <i
+                aria-hidden="true"
+                class="teal marker large icon"
+              />
+            </div>
+            <div
+              class="eleven wide column"
+            >
+              <span>
+                Static Venue, Static City
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
       <div
-        class="description"
+        class="ui teal inverted top attached center aligned segment"
       >
-        This is a static description for testing.
+        <div
+          class="ui header"
+        >
+          Chat about this event
+        </div>
+      </div>
+      <div
+        class="ui attached segment"
+      >
+        <div
+          class="ui comments"
+        >
+          <div
+            class="comment"
+          >
+            <div
+              class="avatar"
+            >
+              <img
+                src="/assets/user.png"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              <a
+                class="author"
+              >
+                Matt
+              </a>
+              <div
+                class="metadata"
+              >
+                <div>
+                  Today at 5:42PM
+                </div>
+              </div>
+              <div
+                class="text"
+              >
+                How artistic!
+              </div>
+              <div
+                class="actions"
+              >
+                <a
+                  class=""
+                >
+                  Reply
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="comment"
+          >
+            <div
+              class="avatar"
+            >
+              <img
+                src="/assets/user.png"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              <a
+                class="author"
+              >
+                Joe Henderson
+              </a>
+              <div
+                class="metadata"
+              >
+                <div>
+                  5 days ago
+                </div>
+              </div>
+              <div
+                class="text"
+              >
+                Dude, this is awesome. Thanks so much
+              </div>
+              <div
+                class="actions"
+              >
+                <a
+                  class=""
+                >
+                  Reply
+                </a>
+              </div>
+            </div>
+          </div>
+          <form
+            class="ui reply form"
+          >
+            <div
+              class="field"
+            >
+              <textarea
+                rows="3"
+              />
+            </div>
+            <button
+              class="ui icon primary left labeled button"
+            >
+              <i
+                aria-hidden="true"
+                class="edit icon"
+              />
+              Add Reply
+            </button>
+          </form>
+        </div>
       </div>
     </div>
     <div
-      class="extra content"
+      class="six wide column"
     >
       <div
-        class="ui two buttons"
+        class="ui teal inverted secondary top attached center aligned segment"
       >
-        <a
-          class="ui blue basic button"
-          href="/manage/1"
-          role="button"
+        3 People Going
+      </div>
+      <div
+        class="ui attached segment"
+      >
+        <div
+          class="ui divided relaxed list"
+          role="list"
         >
-          Edit
-        </a>
-        <a
-          class="ui grey basic button"
-          href="/activities"
-          role="button"
-        >
-          Cancel
-        </a>
+          <div
+            class="item"
+            style="position: relative;"
+          >
+            <div
+              class="ui orange right ribbon label"
+              style="position: absolute;"
+            >
+              Host
+            </div>
+            <img
+              class="ui tiny image"
+              src="/assets/user.png"
+            />
+            <div
+              class="middle aligned content"
+            >
+              <h3
+                class="header"
+              >
+                <a
+                  href="/activities/1"
+                >
+                  Bob
+                </a>
+              </h3>
+              <div
+                class="extra"
+                style="color: orange;"
+              >
+                Following
+              </div>
+            </div>
+          </div>
+          <div
+            class="item"
+            style="position: relative;"
+          >
+            <img
+              class="ui tiny image"
+              src="/assets/user.png"
+            />
+            <div
+              class="middle aligned content"
+            >
+              <h3
+                class="header"
+              >
+                <a
+                  href="/activities/1"
+                >
+                  Tom
+                </a>
+              </h3>
+              <div
+                class="extra"
+                style="color: orange;"
+              >
+                Following
+              </div>
+            </div>
+          </div>
+          <div
+            class="item"
+            style="position: relative;"
+          >
+            <img
+              class="ui tiny image"
+              src="/assets/user.png"
+            />
+            <div
+              class="middle aligned content"
+            >
+              <h3
+                class="header"
+              >
+                <a
+                  href="/activities/1"
+                >
+                  Sally
+                </a>
+              </h3>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

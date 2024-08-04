@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import HomePage from '../../../../../src/app/features/home/HomePage';
+import HomePage from '../../../../src/app/features/home/HomePage';
 
 // Mocking semantic-ui-react's Container component
 jest.mock('semantic-ui-react', () => ({
