@@ -27,7 +27,6 @@ describe('ActivityFilters', () => {
     renderComponent();
 
     // Assert
-    // Check if the calendar weekdays are present
     expect(screen.getByText('Mon')).toBeInTheDocument();
     expect(screen.getByText('Tue')).toBeInTheDocument();
     expect(screen.getByText('Wed')).toBeInTheDocument();
