@@ -20,12 +20,13 @@ HomePage
 
 ## Description
 
-The HomePage component serves as the home page of the application. It displays a heading and a link to the activities page within a container.
+The HomePage component serves as the home page of the application. It displays a heading, a welcome message, and a button that links to the activities page within a container.
 
 ## Remarks
 
 This component uses the Semantic UI React library to create a styled container.
-The container includes a heading and a link that navigates to the activities page.
+The container includes a heading, a welcome message, and a button that navigates to the activities page.
+The component is styled with an inverted segment and centered text.
 
 ## Example
 
@@ -45,4 +46,4 @@ export default App;
 
 ## Source
 
-[src/app/features/home/HomePage.tsx:35](https://github.com/jimmykurian/Reactivities/blob/c193146f41fb278d3aa689957dee7f5206c157e3/client-app/src/app/features/home/HomePage.tsx#L35)
+[src/app/features/home/HomePage.tsx:36](https://github.com/jimmykurian/Reactivities/blob/53b13a08b38b7d13db7685da19b0f30adc1de6b5/client-app/src/app/features/home/HomePage.tsx#L36)
