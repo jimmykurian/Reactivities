@@ -3,19 +3,33 @@
 exports[`HomePage matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    style="margin-top: 7em;"
+    class="ui inverted vertical center aligned segment masthead"
   >
-    <h1>
-      Home page
-    </h1>
-    <h3>
-      Go to 
-      <a
-        href="/activities"
+    <div>
+      <h1
+        class="ui inverted header"
       >
-        Activities
+        <img
+          alt="logo"
+          class="ui massive image"
+          src="/assets/logo.png"
+          style="margin-bottom: 12px;"
+        />
+        Reactivities
+      </h1>
+      <h2
+        class="ui inverted header"
+      >
+        Welcome to Reactivities
+      </h2>
+      <a
+        class="ui huge inverted button"
+        href="/activities"
+        role="button"
+      >
+        Take me to the Activities!
       </a>
-    </h3>
+    </div>
   </div>
 </DocumentFragment>
 `;

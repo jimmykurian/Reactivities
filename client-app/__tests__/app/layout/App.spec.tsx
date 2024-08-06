@@ -87,7 +87,9 @@ describe('App', () => {
     });
 
     // Act
-    const headingElement = await waitFor(() => screen.getByText(/Home page/i));
+    const headingElement = await waitFor(() =>
+      screen.getByText(/Welcome to Reactivities/i),
+    );
 
     // Assert
     expect(headingElement).toBeInTheDocument();

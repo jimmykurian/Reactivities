@@ -5,17 +5,18 @@
  */
 
 import { Link } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
+import { Container, Header, Segment, Image, Button } from 'semantic-ui-react';
 
 /**
  * @component HomePage
- * @description The HomePage component serves as the home page of the application. It displays a heading and a link to the activities page within a container.
+ * @description The HomePage component serves as the home page of the application. It displays a heading, a welcome message, and a button that links to the activities page within a container.
  *
  * @returns {JSX.Element} The rendered HomePage component.
  *
  * @remarks
  * This component uses the Semantic UI React library to create a styled container.
- * The container includes a heading and a link that navigates to the activities page.
+ * The container includes a heading, a welcome message, and a button that navigates to the activities page.
+ * The component is styled with an inverted segment and centered text.
  *
  * @example
  * Here is an example of how to use the HomePage component:
@@ -34,11 +35,22 @@ import { Container } from 'semantic-ui-react';
  */
 export default function HomePage(): JSX.Element {
   return (
-    <Container style={{ marginTop: '7em' }}>
-      <h1>Home page</h1>
-      <h3>
-        Go to <Link to="/activities">Activities</Link>
-      </h3>
-    </Container>
+    <Segment inverted textAlign="center" vertical className="masthead">
+      <Container text>
+        <Header as="h1" inverted>
+          <Image
+            size="massive"
+            src="/assets/logo.png"
+            alt="logo"
+            style={{ marginBottom: 12 }}
+          />
+          Reactivities
+        </Header>
+        <Header as="h2" inverted content="Welcome to Reactivities" />
+        <Button as={Link} to="/activities" size="huge" inverted>
+          Take me to the Activities!
+        </Button>
+      </Container>
+    </Segment>
   );
 }
