@@ -1,10 +1,4 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  within,
-} from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import ActivityListItem from '../../../../../src/app/features/activities/dashboard/ActivityListItem';
 import { faker } from '@faker-js/faker';
 import { Activity } from '../../../../../src/app/models/activity';
@@ -80,49 +74,6 @@ describe('ActivityListItem', () => {
       );
       expect(venueElement).toBeInTheDocument();
     }
-  });
-
-  test('calls deleteActivity when delete button is clicked', async () => {
-    // Arrange
-    const mockActivity = generateMockActivity();
-    render(
-      <MemoryRouter>
-        <ActivityListItem activity={mockActivity} />
-      </MemoryRouter>,
-    );
-
-    const deleteButton = screen.getByRole('button', { name: /delete/i });
-
-    // Act
-    fireEvent.click(deleteButton);
-
-    // Assert
-    await waitFor(() => {
-      expect(deleteActivity).toHaveBeenCalledWith(mockActivity.id);
-    });
-  });
-
-  test('displays loading state when delete button is clicked', async () => {
-    // Arrange
-    const mockActivity = generateMockActivity();
-    mockStore.activityStore.loading = true;
-    (useStore as jest.Mock).mockReturnValue(mockStore);
-
-    render(
-      <MemoryRouter>
-        <ActivityListItem activity={mockActivity} />
-      </MemoryRouter>,
-    );
-
-    const deleteButton = screen.getByRole('button', { name: /delete/i });
-
-    // Act
-    fireEvent.click(deleteButton);
-
-    // Assert
-    await waitFor(() => {
-      expect(deleteButton).toHaveClass('loading');
-    });
   });
 
   test('matches snapshot', () => {

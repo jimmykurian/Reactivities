@@ -1,14 +1,12 @@
 /**
  * @file ActivityListItem.tsx
  * @author Jimmy Kurian
- * @fileoverview This file contains the ActivityListItem component.
+ * @fileoverview This file contains the ActivityListItem component which renders an individual activity item.
  */
 
 import { Link } from 'react-router-dom';
 import { Item, Button, Segment, Icon } from 'semantic-ui-react';
 import { Activity } from '../../../models/activity';
-import { useState, SyntheticEvent } from 'react';
-import { useStore } from '../../../stores/store';
 
 /**
  * @interface Props
@@ -29,8 +27,8 @@ export interface Props {
  * @remarks
  * This component uses the Semantic UI React library to create a styled item layout
  * for displaying individual activity details such as title, date, description, city, and venue.
- * It includes buttons for viewing and deleting the activity. The deletion process is handled
- * by the `handleActivityDelete` function which interacts with the MobX store's deleteActivity function.
+ * It includes buttons for viewing the activity. The component is designed to integrate with
+ * the MobX store for managing activity data and state.
  *
  * @example
  * Here is an example of how to use the ActivityListItem component:
@@ -53,24 +51,6 @@ export interface Props {
  * ```
  */
 export default function ActivityListItem({ activity }: Props): JSX.Element {
-  const { activityStore } = useStore();
-  const { deleteActivity, loading } = activityStore;
-  const [target, setTarget] = useState('');
-
-  /**
-   * @function handleActivityDelete
-   * @description Handles the deletion of an activity.
-   * @param {SyntheticEvent<HTMLButtonElement>} e - The synthetic event triggered by clicking the delete button.
-   * @param {string} id - The ID of the activity to delete.
-   */
-  function handleActivityDelete(
-    e: SyntheticEvent<HTMLButtonElement>,
-    id: string,
-  ): void {
-    setTarget(e.currentTarget.name);
-    deleteActivity(id);
-  }
-
   return (
     <Segment.Group>
       <Segment>
@@ -101,14 +81,6 @@ export default function ActivityListItem({ activity }: Props): JSX.Element {
           color="teal"
           floated="right"
           content="View"
-        />
-        <Button
-          name={activity.id}
-          loading={loading && target === activity.id}
-          onClick={(e) => handleActivityDelete(e, activity.id)}
-          color="red"
-          floated="right"
-          content="Delete"
         />
       </Segment>
     </Segment.Group>

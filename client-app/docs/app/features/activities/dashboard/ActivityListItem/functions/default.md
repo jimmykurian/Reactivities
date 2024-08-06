@@ -32,8 +32,8 @@ A functional component that renders an individual activity item.
 
 This component uses the Semantic UI React library to create a styled item layout
 for displaying individual activity details such as title, date, description, city, and venue.
-It includes buttons for viewing and deleting the activity. The deletion process is handled
-by the `handleActivityDelete` function which interacts with the MobX store's deleteActivity function.
+It includes buttons for viewing the activity. The component is designed to integrate with
+the MobX store for managing activity data and state.
 
 ## Example
 
@@ -58,4 +58,4 @@ const activity: Activity = {
 
 ## Source
 
-[src/app/features/activities/dashboard/ActivityListItem.tsx:55](https://github.com/jimmykurian/Reactivities/blob/c193146f41fb278d3aa689957dee7f5206c157e3/client-app/src/app/features/activities/dashboard/ActivityListItem.tsx#L55)
+[src/app/features/activities/dashboard/ActivityListItem.tsx:53](https://github.com/jimmykurian/Reactivities/blob/53b13a08b38b7d13db7685da19b0f30adc1de6b5/client-app/src/app/features/activities/dashboard/ActivityListItem.tsx#L53)

@@ -78,12 +78,6 @@ exports[`ActivityList matches snapshot 1`] = `
       >
         View
       </a>
-      <button
-        class="ui red right floated button"
-        name="1"
-      >
-        Delete
-      </button>
     </div>
   </div>
   <div
@@ -162,12 +156,6 @@ exports[`ActivityList matches snapshot 1`] = `
       >
         View
       </a>
-      <button
-        class="ui red right floated button"
-        name="2"
-      >
-        Delete
-      </button>
     </div>
   </div>
 </DocumentFragment>

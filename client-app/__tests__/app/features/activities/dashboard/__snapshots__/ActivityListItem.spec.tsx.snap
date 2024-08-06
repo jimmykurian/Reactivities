@@ -73,12 +73,6 @@ exports[`ActivityListItem matches snapshot 1`] = `
       >
         View
       </a>
-      <button
-        class="ui red right floated button"
-        name="1"
-      >
-        Delete
-      </button>
     </div>
   </div>
 </DocumentFragment>

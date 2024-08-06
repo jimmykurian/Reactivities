@@ -24,7 +24,7 @@ describe('HomePage', () => {
     );
 
     // Assert
-    const headingElement = screen.getByText(/Home page/i);
+    const headingElement = screen.getByText(/Welcome to Reactivities/i);
     expect(headingElement).toBeInTheDocument();
   });
 
