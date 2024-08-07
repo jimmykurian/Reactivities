@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import ActivityFilters from '../../../../../src/app/features/activities/dashboard/ActivityFilters';
 import { MemoryRouter } from 'react-router-dom';
+import { default as MockedActivityFilters } from '../../../../../src/app/features/activities/dashboard/ActivityFilters';
 
 describe('ActivityFilters', () => {
   const renderComponent = () => {
@@ -37,14 +38,24 @@ describe('ActivityFilters', () => {
   });
 
   test('matches snapshot', () => {
-    // Arrange & Act
-    const { asFragment } = render(
-      <MemoryRouter>
-        <ActivityFilters />
-      </MemoryRouter>,
-    );
+    jest.isolateModules(() => {
+      jest.resetModules();
+      jest.doMock('react-calendar', () => ({
+        __esModule: true,
+        default: () => {
+          return <div>Mocked Calendar</div>;
+        },
+      }));
 
-    // Assert
-    expect(asFragment()).toMatchSnapshot();
+      // Arrange & Act
+      const { asFragment } = render(
+        <MemoryRouter>
+          <MockedActivityFilters />
+        </MemoryRouter>,
+      );
+
+      // Assert
+      expect(asFragment()).toMatchSnapshot();
+    });
   });
 });
