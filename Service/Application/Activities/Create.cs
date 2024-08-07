@@ -4,7 +4,10 @@
 
 namespace Application.Activities
 {
+    using System.Threading;
+    using System.Threading.Tasks;
     using Domain;
+    using FluentValidation;
     using MediatR;
     using Persistence;
 
@@ -22,6 +25,20 @@ namespace Application.Activities
             /// Gets or sets the activity to be created.
             /// </summary>
             public Activity Activity { get; set; }
+        }
+
+        /// <summary>
+        /// Represents the validator for the create activity command.
+        /// </summary>
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="CommandValidator"/> class.
+            /// </summary>
+            public CommandValidator()
+            {
+                this.RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+            }
         }
 
         /// <summary>
