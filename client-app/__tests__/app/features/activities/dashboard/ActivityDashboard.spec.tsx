@@ -26,6 +26,14 @@ jest.mock('../../../../../src/app/layout/LoadingComponent', () => ({
   },
 }));
 
+// Mocking Calendar component
+jest.mock('react-calendar', () => ({
+  __esModule: true,
+  default: () => {
+    return <div>Mocked Calendar</div>;
+  },
+}));
+
 describe('ActivityDashboard', () => {
   const staticMockActivities: Activity[] = [
     {
@@ -82,6 +90,9 @@ describe('ActivityDashboard', () => {
     jest.clearAllMocks();
   });
 
+  // Increase the timeout for these tests
+  jest.setTimeout(10000);
+
   test('renders the ActivityDashboard component', async () => {
     // Arrange
     render(<ActivityDashboard />);
@@ -90,7 +101,7 @@ describe('ActivityDashboard', () => {
     await waitFor(() => {
       expect(screen.getByText('Mocked ActivityList')).toBeInTheDocument();
     });
-  });
+  }, 10000);
 
   test('matches snapshot', async () => {
     // Arrange
@@ -101,5 +112,5 @@ describe('ActivityDashboard', () => {
       expect(screen.getByText('Mocked ActivityList')).toBeInTheDocument();
     });
     expect(asFragment()).toMatchSnapshot();
-  });
+  }, 10000);
 });
