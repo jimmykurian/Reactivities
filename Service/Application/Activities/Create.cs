@@ -4,9 +4,8 @@
 
 namespace Application.Activities
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Domain;
+    using FluentResults;
     using FluentValidation;
     using MediatR;
     using Persistence;
@@ -19,7 +18,7 @@ namespace Application.Activities
         /// <summary>
         /// Represents the command to create a new activity.
         /// </summary>
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             /// <summary>
             /// Gets or sets the activity to be created.
@@ -44,7 +43,7 @@ namespace Application.Activities
         /// <summary>
         /// Handles the command to create a new activity.
         /// </summary>
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext context;
 
@@ -60,13 +59,20 @@ namespace Application.Activities
             /// <summary>
             /// Handles the request to create a new activity.
             /// </summary>
-            /// <param name="request">The command request.</param>
-            /// <param name="cancellationToken">The cancellation token.</param>
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1615:Element return value should be documented", Justification = "MediatR 12 does not require returns for request with no responses.")]
-            public async Task Handle(Command request, CancellationToken cancellationToken)
+            /// <param name="request">The command request containing the activity to be created.</param>
+            /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+            /// <returns>A <see cref="Task"/> representing the asynchronous operation, containing the result of the operation.</returns>
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 this.context.Activities.Add(request.Activity);
-                await this.context.SaveChangesAsync(cancellationToken);
+                var result = await this.context.SaveChangesAsync(cancellationToken) > 0;
+
+                if (!result)
+                {
+                    return Result.Fail<Unit>("Failed to create activity.");
+                }
+
+                return Result.Ok(Unit.Value);
             }
         }
     }
