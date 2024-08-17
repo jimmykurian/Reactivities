@@ -8,6 +8,7 @@ namespace API.Controllers
     using Bogus;
     using Domain;
     using FluentAssertions;
+    using FluentResults;
     using MediatR;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -64,17 +65,20 @@ namespace API.Controllers
         public async Task GetActivities_ShouldReturnListOfActivities()
         {
             // Arrange
-            var activities = this.faker!.Generate(2);
-            this.mediatorMock!
+            var activities = this.faker?.Generate(2) ?? new List<Activity>();
+            var result = Result.Ok<List<Activity>>(activities);
+            this.mediatorMock?
                 .Setup(m => m.Send(It.IsAny<List.Query>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(activities);
+                .ReturnsAsync(result);
 
             // Act
-            var result = await this.controller!.GetActivities();
+            var actionResult = await this.controller!.GetActivities();
 
             // Assert
-            result.Should().NotBeNull();
-            result.Value.Should().BeEquivalentTo(activities);
+            actionResult.Should().NotBeNull();
+            var okResult = actionResult as OkObjectResult;
+            okResult.Should().NotBeNull();
+            okResult?.Value.Should().BeEquivalentTo(activities);
         }
 
         /// <summary>
@@ -86,79 +90,138 @@ namespace API.Controllers
         {
             // Arrange
             var activity = this.faker!.Generate();
-            this.mediatorMock!
+            var result = Result.Ok(activity);
+            this.mediatorMock?
                 .Setup(m => m.Send(It.IsAny<Details.Query>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(activity);
+                .ReturnsAsync(result);
 
             // Act
-            var result = await this.controller!.GetActivity(activity.Id);
+            var actionResult = await this.controller!.GetActivity(activity.Id);
 
             // Assert
-            result.Should().NotBeNull();
-            result.Value.Should().BeEquivalentTo(activity);
+            actionResult.Should().NotBeNull();
+            var okResult = actionResult as OkObjectResult;
+            okResult.Should().NotBeNull();
+            okResult?.Value.Should().BeEquivalentTo(activity);
         }
 
         /// <summary>
-        /// Tests that CreateActivity returns Ok.
+        /// Tests that GetActivity returns NotFound when the activity is not found.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
-        public async Task CreateActivity_ShouldReturnOk()
+        public async Task GetActivity_ShouldReturnNotFound_WhenActivityIsNotFound()
         {
             // Arrange
-            var activity = this.faker!.Generate();
-            this.mediatorMock!
+            var result = Result.Fail<Activity>("Activity not found");
+            this.mediatorMock?
+                .Setup(m => m.Send(It.IsAny<Details.Query>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(result);
+
+            // Act
+            var actionResult = await this.controller!.GetActivity(Guid.NewGuid());
+
+            // Assert
+            actionResult.Should().NotBeNull();
+            actionResult.Should().BeOfType<NotFoundResult>();
+        }
+
+        /// <summary>
+        /// Tests that CreateActivity returns CreatedAtAction.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task CreateActivity_ShouldReturnCreatedAtAction()
+        {
+            // Arrange
+            var activity = this.faker?.Generate();
+            var result = Result.Ok(Unit.Value);
+            this.mediatorMock?
                 .Setup(m => m.Send(It.IsAny<Create.Command>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(Unit.Value));
+                .ReturnsAsync(result);
 
             // Act
-            var result = await this.controller!.CreateActivity(activity);
+            var actionResult = await this.controller!.CreateActivity(activity);
 
             // Assert
-            result.Should().NotBeNull();
-            result.Should().BeOfType<OkResult>();
+            actionResult.Should().NotBeNull();
+            var createdResult = actionResult as CreatedResult;
+            createdResult.Should().NotBeNull();
+            createdResult?.Location.Should().BeEmpty();
         }
 
         /// <summary>
-        /// Tests that EditActivity returns Ok.
+        /// Tests that EditActivity returns the expected result.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
-        public async Task EditActivity_ShouldReturnOk()
+        public async Task EditActivity_ShouldReturnExpectedResult()
         {
             // Arrange
-            var activity = this.faker!.Generate();
-            this.mediatorMock!
+            var activity = this.faker?.Generate();
+            var result = Result.Ok(Unit.Value);
+            this.mediatorMock?
                 .Setup(m => m.Send(It.IsAny<Edit.Command>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(Unit.Value));
+                .ReturnsAsync(result);
 
             // Act
-            var result = await this.controller!.EditActivity(activity.Id, activity);
+            var actionResult = await this.controller!.EditActivity(activity!.Id, activity);
 
             // Assert
-            result.Should().NotBeNull();
-            result.Should().BeOfType<OkResult>();
+            actionResult.Should().NotBeNull();
+
+            if (activity == null)
+            {
+                actionResult.Should().BeOfType<NotFoundResult>();
+            }
+            else
+            {
+                actionResult.Should().BeOfType<OkObjectResult>();
+            }
         }
 
         /// <summary>
-        /// Tests that DeleteActivity returns Ok.
+        /// Tests that DeleteActivity returns NoContentResult.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
-        public async Task DeleteActivity_ShouldReturnOk()
+        public async Task DeleteActivity_ShouldReturnNoContentResult()
         {
             // Arrange
             var activityId = Guid.NewGuid();
-            this.mediatorMock!
+            var result = Result.Ok(Unit.Value);
+            this.mediatorMock?
                 .Setup(m => m.Send(It.IsAny<Delete.Command>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(Unit.Value));
+                .ReturnsAsync(result);
 
             // Act
-            var result = await this.controller!.DeleteActivity(activityId);
+            var actionResult = await this.controller!.DeleteActivity(activityId);
 
             // Assert
-            result.Should().NotBeNull();
-            result.Should().BeOfType<OkResult>();
+            actionResult.Should().NotBeNull();
+            var noContentResult = actionResult as NoContentResult;
+            noContentResult.Should().NotBeNull();
+        }
+
+        /// <summary>
+        /// Tests that DeleteActivity returns NotFound when the activity is not found.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task DeleteActivity_ShouldReturnNotFound_WhenActivityIsNotFound()
+        {
+            // Arrange
+            var result = Result.Fail<Unit>("Activity not found");
+            this.mediatorMock?
+                .Setup(m => m.Send(It.IsAny<Delete.Command>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(result);
+
+            // Act
+            var actionResult = await this.controller!.DeleteActivity(Guid.NewGuid());
+
+            // Assert
+            actionResult.Should().NotBeNull();
+            actionResult.Should().BeOfType<NotFoundResult>();
         }
     }
 }

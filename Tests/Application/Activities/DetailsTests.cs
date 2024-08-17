@@ -69,15 +69,16 @@ namespace Application.Activities
 
             // Assert
             result.Should().NotBeNull();
-            result.Should().BeEquivalentTo(activity, options => options.Excluding(a => a.Id));
+            result.IsSuccess.Should().BeTrue();
+            result.Value.Should().BeEquivalentTo(activity, options => options.Excluding(a => a.Id));
         }
 
         /// <summary>
-        /// Tests that Handle returns null when the activity does not exist.
+        /// Tests that Handle returns a zero result when the activity does not exist.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
-        public async Task Handle_ShouldReturnNullWhenActivityDoesNotExist()
+        public async Task Handle_ShouldReturnZeroResultWhenActivityDoesNotExist()
         {
             // Arrange
             var query = new Query { Id = Guid.NewGuid() };
@@ -86,7 +87,8 @@ namespace Application.Activities
             var result = await this.handler!.Handle(query, CancellationToken.None);
 
             // Assert
-            result.Should().BeNull();
+            result.Should().NotBeNull();
+            result.Successes.Count.Should().Be(0);
         }
 
         /// <summary>

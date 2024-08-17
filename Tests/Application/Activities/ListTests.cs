@@ -63,10 +63,11 @@ namespace Application.Activities
 
             // Assert
             result.Should().NotBeNull();
-            result.Should().HaveCount(this.seededActivities!.Count);
-            result.Should().BeEquivalentTo(this.seededActivities, options => options
-                .Excluding(activity => activity.Id)
-                .ComparingByMembers<Activity>());
+            result.IsSuccess.Should().BeTrue();
+            result.Value.Should().HaveCount(this.seededActivities!.Count);
+            result.Value.Should().BeEquivalentTo(this.seededActivities, options => options
+               .Excluding(activity => activity.Id)
+               .ComparingByMembers<Activity>());
         }
 
         /// <summary>

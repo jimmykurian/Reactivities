@@ -16,35 +16,55 @@ namespace API.Controllers
         /// <summary>
         /// Retrieves a list of activities.
         /// </summary>
-        /// <returns>The list of activities.</returns>
+        /// <returns>
+        /// An <see cref="IActionResult"/> containing the list of activities.
+        /// </returns>
+        /// <response code="200">Returns the list of activities.</response>
+        /// <response code="400">If the request is invalid.</response>
+        /// <response code="404">If no activities are found.</response>
         [HttpGet]
-        public async Task<ActionResult<List<Activity>>> GetActivities()
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetActivities()
         {
-            return await this.Mediator.Send(new List.Query());
+            return this.HandleResult(await this.Mediator.Send(new List.Query()));
         }
 
         /// <summary>
         /// Retrieves an activity by its ID.
         /// </summary>
         /// <param name="id">The ID of the activity.</param>
-        /// <returns>The activity.</returns>
+        /// <returns>
+        /// An <see cref="IActionResult"/> containing the activity.
+        /// </returns>
+        /// <response code="200">Returns the activity.</response>
+        /// <response code="400">If the request is invalid.</response>
+        /// <response code="404">If the activity is not found.</response>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Activity>> GetActivity(Guid id)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetActivity(Guid id)
         {
-            return await this.Mediator.Send(new Details.Query { Id = id });
+            return this.HandleResult(await this.Mediator.Send(new Details.Query { Id = id }));
         }
 
         /// <summary>
         /// Creates a new activity.
         /// </summary>
         /// <param name="activity">The activity to be created.</param>
-        /// <returns>An <see cref="ActionResult"/> representing the result of the action.</returns>
+        /// <returns>
+        /// An <see cref="ActionResult"/> representing the result of the action.
+        /// </returns>
+        /// <response code="201">If the activity was created successfully.</response>
+        /// <response code="400">If the request is invalid.</response>
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult> CreateActivity(Activity activity)
         {
-            await this.Mediator.Send(new Create.Command { Activity = activity });
-
-            return this.Ok();
+            return this.HandleResult(await this.Mediator.Send(new Create.Command { Activity = activity }), true);
         }
 
         /// <summary>
@@ -52,28 +72,39 @@ namespace API.Controllers
         /// </summary>
         /// <param name="id">The ID of the activity to be edited.</param>
         /// <param name="activity">The updated activity details.</param>
-        /// <returns>An <see cref="IActionResult"/> representing the result of the action.</returns>
+        /// <returns>
+        /// An <see cref="IActionResult"/> representing the result of the action.
+        /// </returns>
+        /// <response code="200">If the activity was updated successfully.</response>
+        /// <response code="400">If the request is invalid.</response>
+        /// <response code="404">If the activity is not found.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> EditActivity(Guid id, Activity activity)
         {
-            // TODO: Add Null check and exception handling for activity object.
             activity.Id = id;
-            await this.Mediator.Send(new Edit.Command { Activity = activity });
-
-            return this.Ok();
+            return this.HandleResult(await this.Mediator.Send(new Edit.Command { Activity = activity }));
         }
 
         /// <summary>
         /// Deletes an existing activity.
         /// </summary>
         /// <param name="id">The ID of the activity to be deleted.</param>
-        /// <returns>An <see cref="IActionResult"/> representing the result of the action.</returns>
+        /// <returns>
+        /// An <see cref="IActionResult"/> representing the result of the action.
+        /// </returns>
+        /// <response code="204">If the activity was deleted successfully.</response>
+        /// <response code="400">If the request is invalid.</response>
+        /// <response code="404">If the activity is not found.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteActivity(Guid id)
         {
-            await this.Mediator.Send(new Delete.Command { Id = id });
-
-            return this.Ok();
+            return this.HandleResult(await this.Mediator.Send(new Delete.Command { Id = id }), false, true);
         }
     }
 }
