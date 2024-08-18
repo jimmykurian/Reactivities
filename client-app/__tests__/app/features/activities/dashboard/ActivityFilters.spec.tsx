@@ -1,9 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import ActivityFilters from '../../../../../src/app/features/activities/dashboard/ActivityFilters';
 import { MemoryRouter } from 'react-router-dom';
-import { default as MockedActivityFilters } from '../../../../../src/app/features/activities/dashboard/ActivityFilters';
 
 describe('ActivityFilters', () => {
+  const fixedDate = new Date('2024-08-15T00:00:00Z');
+
+  beforeAll(() => {
+    jest.useFakeTimers();
+    jest.setSystemTime(fixedDate);
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   const renderComponent = () => {
     render(
       <MemoryRouter>
@@ -13,10 +23,10 @@ describe('ActivityFilters', () => {
   };
 
   test('renders ActivityFilters component', () => {
-    // Act
+    // Arrange
     renderComponent();
 
-    // Assert
+    // Act & Assert
     expect(screen.getByText('Filters')).toBeInTheDocument();
     expect(screen.getByText('All Activities')).toBeInTheDocument();
     expect(screen.getByText("I'm going")).toBeInTheDocument();
@@ -24,10 +34,10 @@ describe('ActivityFilters', () => {
   });
 
   test('renders Calendar component', () => {
-    // Act
+    // Arrange
     renderComponent();
 
-    // Assert
+    // Act & Assert
     expect(screen.getByText('Mon')).toBeInTheDocument();
     expect(screen.getByText('Tue')).toBeInTheDocument();
     expect(screen.getByText('Wed')).toBeInTheDocument();
@@ -38,24 +48,22 @@ describe('ActivityFilters', () => {
   });
 
   test('matches snapshot', () => {
-    jest.isolateModules(() => {
-      jest.resetModules();
-      jest.doMock('react-calendar', () => ({
+    // Arrange
+    jest.mock('react-calendar', () => {
+      return {
         __esModule: true,
-        default: () => {
-          return <div>Mocked Calendar</div>;
-        },
-      }));
-
-      // Arrange & Act
-      const { asFragment } = render(
-        <MemoryRouter>
-          <MockedActivityFilters />
-        </MemoryRouter>,
-      );
-
-      // Assert
-      expect(asFragment()).toMatchSnapshot();
+        default: () => <div>Mocked Calendar</div>,
+      };
     });
+
+    // Act
+    const { asFragment } = render(
+      <MemoryRouter>
+        <ActivityFilters />
+      </MemoryRouter>,
+    );
+
+    // Assert
+    expect(asFragment()).toMatchSnapshot();
   });
 });
