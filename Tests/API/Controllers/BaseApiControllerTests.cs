@@ -8,6 +8,7 @@ namespace API.Controllers
     using MediatR;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
     using Moq;
 
     /// <summary>
@@ -18,6 +19,7 @@ namespace API.Controllers
     {
         private Mock<IServiceProvider>? serviceProviderMock;
         private Mock<IMediator>? mediatorMock;
+        private Mock<ILogger<BaseApiController>>? loggerMock;
         private DefaultHttpContext? httpContext;
         private BaseApiController? controller;
 
@@ -29,6 +31,7 @@ namespace API.Controllers
         {
             this.serviceProviderMock = new Mock<IServiceProvider>();
             this.mediatorMock = new Mock<IMediator>();
+            this.loggerMock = new Mock<ILogger<BaseApiController>>();
 
             // Setup the service provider to return the mocked IMediator instance
             this.serviceProviderMock.Setup(sp => sp.GetService(typeof(IMediator)))
@@ -41,7 +44,7 @@ namespace API.Controllers
             };
 
             // Create a concrete implementation of BaseApiController to test
-            this.controller = new TestableBaseApiController
+            this.controller = new TestableBaseApiController(this.loggerMock.Object)
             {
                 ControllerContext = new ControllerContext
                 {
@@ -65,10 +68,34 @@ namespace API.Controllers
         }
 
         /// <summary>
+        /// Tests that the logger is properly injected and can be used.
+        /// </summary>
+        [TestMethod]
+        public void Logger_ShouldBeInjected()
+        {
+            // Act
+            this.controller!.HandleResult<string>(FluentResults.Result.Ok("Test"));
+
+            // Assert
+            this.loggerMock!.Verify(
+                x => x.Log(
+                    It.IsAny<LogLevel>(),
+                    It.IsAny<EventId>(),
+                    It.IsAny<It.IsAnyType>(),
+                    It.IsAny<Exception>(),
+                    (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+                Times.AtLeastOnce);
+        }
+
+        /// <summary>
         /// Concrete implementation of BaseApiController for testing purposes.
         /// </summary>
         private class TestableBaseApiController : BaseApiController
         {
+            public TestableBaseApiController(ILogger<BaseApiController> logger)
+                : base(logger)
+            {
+            }
         }
     }
 }
