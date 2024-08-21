@@ -1,13 +1,11 @@
-﻿// <copyright file="DeleteTests.cs" company="Jimmy Kurian">
-// Copyright (c) Jimmy Kurian. All rights reserved.
-// </copyright>
-
-namespace Application.Activities
+﻿namespace Application.Activities
 {
     using Bogus;
     using Domain;
     using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+    using Moq;
     using Persistence;
     using static Application.Activities.Delete;
 
@@ -20,6 +18,7 @@ namespace Application.Activities
         private DataContext? context;
         private Handler? handler;
         private Faker<Activity>? faker;
+        private Mock<ILogger<Handler>>? loggerMock;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -32,7 +31,8 @@ namespace Application.Activities
                 .Options;
 
             this.context = new DataContext(options);
-            this.handler = new Handler(this.context);
+            this.loggerMock = new Mock<ILogger<Handler>>();
+            this.handler = new Handler(this.context, this.loggerMock.Object);
 
             // Initialize the Faker instance for Activity
             this.faker = new Faker<Activity>()
@@ -55,16 +55,61 @@ namespace Application.Activities
             // Arrange
             var activity = this.faker!.Generate();
             this.context!.Activities.Add(activity);
-            await this.context!.SaveChangesAsync();
+            await this.context.SaveChangesAsync();
 
             var command = new Command { Id = activity.Id };
 
             // Act
-            await this.handler!.Handle(command, CancellationToken.None);
+            var result = await this.handler!.Handle(command, CancellationToken.None);
 
             // Assert
+            result.IsSuccess.Should().BeTrue();
             var deletedActivity = await this.context.Activities.FindAsync(activity.Id);
             deletedActivity.Should().BeNull();
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Attempting to delete activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Successfully deleted activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
+        }
+
+        /// <summary>
+        /// Tests that the Handle method returns null if the activity is not found.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task Handle_ShouldReturnNullIfActivityNotFound()
+        {
+            // Arrange
+            var command = new Command { Id = Guid.NewGuid() };
+
+            // Act
+            var result = await this.handler!.Handle(command, CancellationToken.None);
+
+            // Assert
+            result.Should().BeNull();
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Warning,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
         }
 
         /// <summary>

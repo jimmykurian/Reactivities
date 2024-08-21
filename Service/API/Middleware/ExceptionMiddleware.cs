@@ -7,6 +7,7 @@ namespace API.Middleware
     using System.Net;
     using System.Text.Json;
     using Application.Core;
+    using Serilog.Context;
 
     /// <summary>
     /// Middleware for handling exceptions globally in the application.
@@ -43,7 +44,15 @@ namespace API.Middleware
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, ex.Message);
+                // Capture the correlation ID or other relevant context if available
+                var correlationId = context.TraceIdentifier;
+
+                // Log the exception with Serilog, including structured data
+                LogContext.PushProperty("CorrelationId", correlationId);
+                LogContext.PushProperty("RequestPath", context.Request.Path);
+
+                this.logger.LogError(ex, "An unhandled exception occurred while processing the request. CorrelationId: {CorrelationId}", correlationId);
+
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 

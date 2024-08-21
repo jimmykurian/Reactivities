@@ -8,6 +8,7 @@ namespace Application.Activities
     using FluentResults;
     using FluentValidation;
     using MediatR;
+    using Microsoft.Extensions.Logging;
     using Persistence;
 
     /// <summary>
@@ -46,14 +47,17 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext context;
+            private readonly ILogger<Create.Handler> logger;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler"/> class.
             /// </summary>
             /// <param name="context">The data context.</param>
-            public Handler(DataContext context)
+            /// <param name="logger">The logger instance.</param>
+            public Handler(DataContext context, ILogger<Create.Handler> logger)
             {
                 this.context = context;
+                this.logger = logger;
             }
 
             /// <summary>
@@ -64,14 +68,31 @@ namespace Application.Activities
             /// <returns>A <see cref="Task"/> representing the asynchronous operation, containing the result of the operation.</returns>
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                this.context.Activities.Add(request.Activity);
-                var result = await this.context.SaveChangesAsync(cancellationToken) > 0;
+                this.logger.LogInformation("Creating a new activity with ID: {ActivityId}", request.Activity.Id);
+
+                var result = false;
+                var validator = new ActivityValidator();
+
+                var validatedActivity = validator.Validate(request.Activity);
+
+                if (!validatedActivity.IsValid)
+                {
+                    this.logger.LogWarning("Validation failed for activity with ID: {ActivityId}", request.Activity.Id);
+                    result = false;
+                }
+                else
+                {
+                    this.context.Activities.Add(request.Activity);
+                    result = await this.context.SaveChangesAsync(cancellationToken) > 0;
+                }
 
                 if (!result)
                 {
+                    this.logger.LogWarning("Failed to create activity with ID: {ActivityId}", request.Activity.Id);
                     return Result.Fail<Unit>("Failed to create activity.");
                 }
 
+                this.logger.LogInformation("Successfully created activity with ID: {ActivityId}", request.Activity.Id);
                 return Result.Ok(Unit.Value);
             }
         }

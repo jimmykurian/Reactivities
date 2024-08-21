@@ -8,6 +8,8 @@ namespace Application.Activities
     using Domain;
     using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+    using Moq;
     using Persistence;
     using static Application.Activities.List;
 
@@ -19,6 +21,7 @@ namespace Application.Activities
     {
         private DataContext? context;
         private Handler? handler;
+        private Mock<ILogger<Handler>>? loggerMock;
         private Faker<Activity>? faker;
         private List<Activity>? seededActivities;
 
@@ -33,7 +36,8 @@ namespace Application.Activities
                 .Options;
 
             this.context = new DataContext(options);
-            this.handler = new Handler(this.context);
+            this.loggerMock = new Mock<ILogger<Handler>>();
+            this.handler = new Handler(this.context, this.loggerMock.Object);
 
             // Initialize the Faker instance for Activity
             this.faker = new Faker<Activity>()
@@ -68,6 +72,25 @@ namespace Application.Activities
             result.Value.Should().BeEquivalentTo(this.seededActivities, options => options
                .Excluding(activity => activity.Id)
                .ComparingByMembers<Activity>());
+
+            // Verify that logging occurred
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Fetching list of activities")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains($"Successfully fetched {this.seededActivities!.Count} activities")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
         }
 
         /// <summary>

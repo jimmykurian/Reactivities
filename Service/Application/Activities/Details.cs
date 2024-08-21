@@ -7,6 +7,7 @@ namespace Application.Activities
     using Domain;
     using FluentResults;
     using MediatR;
+    using Microsoft.Extensions.Logging;
     using Persistence;
 
     /// <summary>
@@ -31,14 +32,17 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Query, Result<Activity>>
         {
             private readonly DataContext context;
+            private readonly ILogger<Handler> logger;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler"/> class.
             /// </summary>
             /// <param name="context">The data context.</param>
-            public Handler(DataContext context)
+            /// <param name="logger">The logger instance.</param>
+            public Handler(DataContext context, ILogger<Handler> logger)
             {
                 this.context = context;
+                this.logger = logger;
             }
 
             /// <summary>
@@ -52,8 +56,17 @@ namespace Application.Activities
             /// </returns>
             public async Task<Result<Activity>> Handle(Query request, CancellationToken cancellationToken)
             {
+                this.logger.LogInformation("Fetching details for activity with ID: {ActivityId}", request.Id);
+
                 var activity = await this.context.Activities.FindAsync(request.Id);
 
+                if (activity == null)
+                {
+                    this.logger.LogWarning("Activity with ID: {ActivityId} was not found", request.Id);
+                    return Result.Fail<Activity>("Activity not found.");
+                }
+
+                this.logger.LogInformation("Successfully fetched details for activity with ID: {ActivityId}", request.Id);
                 return Result.Ok(activity);
             }
         }

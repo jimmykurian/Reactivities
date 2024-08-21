@@ -13,6 +13,7 @@ namespace API.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using Moq;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace API.Controllers
     public class ActivitiesControllerTests
     {
         private Mock<IMediator>? mediatorMock;
+        private Mock<ILogger<ActivitiesController>>? loggerMock;
         private ActivitiesController? controller;
         private Faker<Activity>? faker;
 
@@ -32,8 +34,9 @@ namespace API.Controllers
         public void TestInitialize()
         {
             this.mediatorMock = new Mock<IMediator>();
+            this.loggerMock = new Mock<ILogger<ActivitiesController>>();
 
-            this.controller = new ActivitiesController
+            this.controller = new ActivitiesController(this.loggerMock.Object)
             {
                 ControllerContext = new ControllerContext
                 {
@@ -41,6 +44,7 @@ namespace API.Controllers
                     {
                         RequestServices = new ServiceCollection()
                             .AddSingleton(this.mediatorMock.Object)
+                            .AddSingleton(this.loggerMock.Object)
                             .BuildServiceProvider(),
                     },
                 },

@@ -4,7 +4,6 @@
 
 namespace API.Middleware
 {
-    using System.IO;
     using System.Net;
     using System.Text.Json;
     using Application.Core;
@@ -62,12 +61,6 @@ namespace API.Middleware
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
 
-            var expectedResponse = new AppException(
-                (int)HttpStatusCode.InternalServerError,
-                exceptionMessage,
-                exception.StackTrace);
-            var expectedJson = JsonSerializer.Serialize(expectedResponse, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-
             // Act
             await this.middleware!.InvokeAsync(context);
 
@@ -85,7 +78,7 @@ namespace API.Middleware
                 logger => logger.Log(
                 It.Is<LogLevel>(logLevel => logLevel == LogLevel.Error),
                 It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains(exception.Message)),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("An unhandled exception occurred while processing the request")),
                 exception,
                 It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
                 Times.Once);
@@ -132,7 +125,7 @@ namespace API.Middleware
                 logger => logger.Log(
                 It.Is<LogLevel>(logLevel => logLevel == LogLevel.Error),
                 It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains(exception.Message)),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("An unhandled exception occurred while processing the request")),
                 exception,
                 It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
                 Times.Once);

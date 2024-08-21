@@ -7,12 +7,15 @@ namespace API.Controllers
     using Application.Activities;
     using Domain;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Controller for managing activities.
     /// </summary>
-    public class ActivitiesController : BaseApiController
+    public class ActivitiesController(ILogger<ActivitiesController> logger) : BaseApiController(logger)
     {
+        private readonly ILogger<ActivitiesController> logger = logger;
+
         /// <summary>
         /// Retrieves a list of activities.
         /// </summary>
@@ -28,6 +31,7 @@ namespace API.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetActivities()
         {
+            this.logger.LogInformation("Retrieving all activities at {Time}", DateTime.UtcNow);
             return this.HandleResult(await this.Mediator.Send(new List.Query()));
         }
 
@@ -47,6 +51,7 @@ namespace API.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetActivity(Guid id)
         {
+            this.logger.LogInformation("Retrieving activity with ID {ActivityId} at {Time}", id, DateTime.UtcNow);
             return this.HandleResult(await this.Mediator.Send(new Details.Query { Id = id }));
         }
 
@@ -64,6 +69,7 @@ namespace API.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult> CreateActivity(Activity activity)
         {
+            this.logger.LogInformation("Creating a new activity at {Time}", DateTime.UtcNow);
             return this.HandleResult(await this.Mediator.Send(new Create.Command { Activity = activity }), true);
         }
 
@@ -85,6 +91,7 @@ namespace API.Controllers
         public async Task<IActionResult> EditActivity(Guid id, Activity activity)
         {
             activity.Id = id;
+            this.logger.LogInformation("Editing activity with ID {ActivityId} at {Time}", id, DateTime.UtcNow);
             return this.HandleResult(await this.Mediator.Send(new Edit.Command { Activity = activity }));
         }
 
@@ -104,6 +111,7 @@ namespace API.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteActivity(Guid id)
         {
+            this.logger.LogInformation("Deleting activity with ID {ActivityId} at {Time}", id, DateTime.UtcNow);
             return this.HandleResult(await this.Mediator.Send(new Delete.Command { Id = id }), false, true);
         }
     }

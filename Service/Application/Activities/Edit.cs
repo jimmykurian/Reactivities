@@ -9,6 +9,7 @@ namespace Application.Activities
     using FluentResults;
     using FluentValidation;
     using MediatR;
+    using Microsoft.Extensions.Logging;
     using Persistence;
 
     /// <summary>
@@ -48,16 +49,19 @@ namespace Application.Activities
         {
             private readonly DataContext context;
             private readonly IMapper mapper;
+            private readonly ILogger<Handler> logger;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler"/> class.
             /// </summary>
             /// <param name="context">The data context.</param>
             /// <param name="mapper">The AutoMapper instance used for mapping data.</param>
-            public Handler(DataContext context, IMapper mapper)
+            /// <param name="logger">The logger instance for structured logging.</param>
+            public Handler(DataContext context, IMapper mapper, ILogger<Handler> logger)
             {
                 this.context = context;
                 this.mapper = mapper;
+                this.logger = logger;
             }
 
             /// <summary>
@@ -70,10 +74,13 @@ namespace Application.Activities
             /// </returns>
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                this.logger.LogInformation("Attempting to update activity with ID: {ActivityId}", request.Activity.Id);
+
                 var activity = await this.context.Activities.FindAsync(request.Activity.Id);
 
                 if (activity == null)
                 {
+                    this.logger.LogWarning("Activity with ID: {ActivityId} was not found.", request.Activity.Id);
                     return null;
                 }
 
@@ -83,9 +90,11 @@ namespace Application.Activities
 
                 if (!result)
                 {
+                    this.logger.LogError("Failed to update activity with ID: {ActivityId}", request.Activity.Id);
                     return Result.Fail<Unit>("Failed to update the activity.");
                 }
 
+                this.logger.LogInformation("Successfully updated activity with ID: {ActivityId}", request.Activity.Id);
                 return Result.Ok(Unit.Value);
             }
         }

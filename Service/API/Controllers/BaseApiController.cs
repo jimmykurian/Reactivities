@@ -7,6 +7,7 @@ namespace API.Controllers
     using FluentResults;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Represents the base API controller providing common functionality to other API controllers.
@@ -15,7 +16,17 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class BaseApiController : ControllerBase
     {
+        private readonly ILogger<BaseApiController> logger;
         private IMediator mediator;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseApiController"/> class.
+        /// </summary>
+        /// <param name="logger">The logger instance to use for logging.</param>
+        public BaseApiController(ILogger<BaseApiController> logger)
+        {
+            this.logger = logger;
+        }
 
         /// <summary>
         /// Gets the Mediator instance used for handling requests.
@@ -34,30 +45,40 @@ namespace API.Controllers
         {
             if (result == null)
             {
+                this.logger.LogWarning("HandleResult was called with a null result.");
                 return this.NotFound();
             }
             else if (result.IsFailed && result.Errors.Any(e => e.Message.Contains("not found", StringComparison.OrdinalIgnoreCase)))
             {
+                this.logger.LogWarning("Resource not found: {Errors}", result.Errors.Select(e => e.Message));
                 return this.NotFound();
             }
-            else if (result.IsSuccess && result.Value != null && !created && !deleted)
+            else if (result.IsSuccess && result.Value != null)
             {
-                return this.Ok(result.Value);
-            }
-            else if (result.IsSuccess && result.Value != null && created)
-            {
-                return this.Created(string.Empty, result.Value);
-            }
-            else if (result.IsSuccess && result.Value != null && deleted)
-            {
-                return this.NoContent();
+                if (created)
+                {
+                    this.logger.LogInformation("Resource created successfully: {Value}", result.Value);
+                    return this.Created(string.Empty, result.Value);
+                }
+                else if (deleted)
+                {
+                    this.logger.LogInformation("Resource deleted successfully: {Value}", result.Value);
+                    return this.NoContent();
+                }
+                else
+                {
+                    this.logger.LogInformation("Operation successful: {Value}", result.Value);
+                    return this.Ok(result.Value);
+                }
             }
             else if (result.IsSuccess && result.Value == null)
             {
+                this.logger.LogWarning("Operation succeeded, but no resource was found.");
                 return this.NotFound();
             }
             else
             {
+                this.logger.LogError("Operation failed: {Errors}", result.Errors.Select(e => e.Message));
                 return this.BadRequest(result.Errors);
             }
         }
