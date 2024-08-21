@@ -70,8 +70,21 @@ namespace Application.Activities
             {
                 this.logger.LogInformation("Creating a new activity with ID: {ActivityId}", request.Activity.Id);
 
-                this.context.Activities.Add(request.Activity);
-                var result = await this.context.SaveChangesAsync(cancellationToken) > 0;
+                var result = false;
+                var validator = new ActivityValidator();
+
+                var validatedActivity = validator.Validate(request.Activity);
+
+                if (!validatedActivity.IsValid)
+                {
+                    this.logger.LogWarning("Validation failed for activity with ID: {ActivityId}", request.Activity.Id);
+                    result = false;
+                }
+                else
+                {
+                    this.context.Activities.Add(request.Activity);
+                    result = await this.context.SaveChangesAsync(cancellationToken) > 0;
+                }
 
                 if (!result)
                 {

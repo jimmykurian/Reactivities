@@ -79,6 +79,33 @@ namespace Application.Activities
         }
 
         /// <summary>
+        /// Tests that the Handle method logs an error if the activity is not added.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task Handle_ShouldLogErrorIfActivityNotAdded()
+        {
+            // Arrange
+            var activity = new Activity();
+            var command = new Command { Activity = activity };
+
+            // Act
+            var result = await this.handler!.Handle(command, CancellationToken.None);
+
+            // Assert
+            result.IsSuccess.Should().BeFalse(); 
+
+            this.loggerMock!.Verify(
+                x => x.Log(
+                LogLevel.Warning,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Failed to create activity")),
+                It.IsAny<Exception>(),
+                It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
+        }
+
+        /// <summary>
         /// Cleans up the test environment after each test.
         /// </summary>
         [TestCleanup]

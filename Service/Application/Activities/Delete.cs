@@ -6,6 +6,7 @@ namespace Application.Activities
 {
     using FluentResults;
     using MediatR;
+    using Microsoft.Extensions.Logging;
     using Persistence;
 
     /// <summary>
@@ -30,14 +31,17 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext context;
+            private readonly ILogger<Handler> logger;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler"/> class.
             /// </summary>
             /// <param name="context">The data context.</param>
-            public Handler(DataContext context)
+            /// <param name="logger">The logger instance.</param>
+            public Handler(DataContext context, ILogger<Handler> logger)
             {
                 this.context = context;
+                this.logger = logger;
             }
 
             /// <summary>
@@ -50,10 +54,13 @@ namespace Application.Activities
             /// </returns>
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                this.logger.LogInformation("Attempting to delete activity with ID: {ActivityId}", request.Id);
+
                 var activity = await this.context.Activities.FindAsync(request.Id);
 
                 if (activity == null)
                 {
+                    this.logger.LogWarning("Activity with ID: {ActivityId} was not found.", request.Id);
                     return null;
                 }
 
@@ -62,9 +69,11 @@ namespace Application.Activities
 
                 if (!result)
                 {
+                    this.logger.LogError("Failed to delete activity with ID: {ActivityId}", request.Id);
                     return Result.Fail<Unit>("Failed to delete the activity.");
                 }
 
+                this.logger.LogInformation("Successfully deleted activity with ID: {ActivityId}", request.Id);
                 return Result.Ok(Unit.Value);
             }
         }

@@ -1,13 +1,11 @@
-﻿// <copyright file="DetailsTests.cs" company="Jimmy Kurian">
-// Copyright (c) Jimmy Kurian. All rights reserved.
-// </copyright>
-
-namespace Application.Activities
+﻿namespace Application.Activities
 {
     using Bogus;
     using Domain;
     using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+    using Moq;
     using Persistence;
     using static Application.Activities.Details;
 
@@ -20,6 +18,7 @@ namespace Application.Activities
         private DataContext? context;
         private Handler? handler;
         private Faker<Activity>? faker;
+        private Mock<ILogger<Handler>>? loggerMock;
 
         /// <summary>
         /// Initializes the test environment before each test.
@@ -32,7 +31,8 @@ namespace Application.Activities
                 .Options;
 
             this.context = new DataContext(options);
-            this.handler = new Handler(this.context);
+            this.loggerMock = new Mock<ILogger<Handler>>();
+            this.handler = new Handler(this.context, this.loggerMock.Object);
 
             // Initialize the Faker instance for Activity
             this.faker = new Faker<Activity>()
@@ -71,14 +71,32 @@ namespace Application.Activities
             result.Should().NotBeNull();
             result.IsSuccess.Should().BeTrue();
             result.Value.Should().BeEquivalentTo(activity, options => options.Excluding(a => a.Id));
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Fetching details for activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Successfully fetched details for activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
         }
 
         /// <summary>
-        /// Tests that Handle returns a zero result when the activity does not exist.
+        /// Tests that Handle returns a failure result when the activity does not exist.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
         [TestMethod]
-        public async Task Handle_ShouldReturnZeroResultWhenActivityDoesNotExist()
+        public async Task Handle_ShouldReturnFailureResultWhenActivityDoesNotExist()
         {
             // Arrange
             var query = new Query { Id = Guid.NewGuid() };
@@ -88,7 +106,17 @@ namespace Application.Activities
 
             // Assert
             result.Should().NotBeNull();
-            result.Successes.Count.Should().Be(0);
+            result.IsSuccess.Should().BeFalse();
+            result.Errors.Should().Contain(e => e.Message == "Activity not found.");
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Warning,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
         }
 
         /// <summary>

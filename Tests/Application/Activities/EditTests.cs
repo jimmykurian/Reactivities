@@ -9,6 +9,7 @@ namespace Application.Activities
     using Domain;
     using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
     using Moq;
     using Persistence;
     using static Application.Activities.Edit;
@@ -22,6 +23,7 @@ namespace Application.Activities
         private DataContext? context;
         private Handler? handler;
         private Mock<IMapper>? mapperMock;
+        private Mock<ILogger<Handler>>? loggerMock;
         private Faker<Activity>? faker;
 
         /// <summary>
@@ -36,7 +38,8 @@ namespace Application.Activities
 
             this.context = new DataContext(options);
             this.mapperMock = new Mock<IMapper>();
-            this.handler = new Handler(this.context, this.mapperMock.Object);
+            this.loggerMock = new Mock<ILogger<Handler>>();
+            this.handler = new Handler(this.context, this.mapperMock.Object, this.loggerMock.Object);
 
             // Initialize the Faker instance for Activity
             this.faker = new Faker<Activity>()
@@ -80,13 +83,63 @@ namespace Application.Activities
                 });
 
             // Act
-            await this.handler!.Handle(command, CancellationToken.None);
+            var result = await this.handler!.Handle(command, CancellationToken.None);
 
             // Assert
+            result.Should().NotBeNull();
+            result.IsSuccess.Should().BeTrue();
+
             var activity = await this.context.Activities.FindAsync(existingActivity.Id);
             activity.Should().NotBeNull();
             activity.Should().BeEquivalentTo(updatedActivity, options => options
                 .Excluding(a => a.Id));
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Attempting to update activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Information,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Successfully updated activity with ID")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
+        }
+
+        /// <summary>
+        /// Tests that the Handle method returns null when the activity is not found.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
+        [TestMethod]
+        public async Task Handle_ShouldReturnNullIfActivityNotFound()
+        {
+            // Arrange
+            var nonExistentId = Guid.NewGuid();
+            var updatedActivity = this.faker!.Generate();
+            updatedActivity.Id = nonExistentId;
+            var command = new Command { Activity = updatedActivity };
+
+            // Act
+            var result = await this.handler!.Handle(command, CancellationToken.None);
+
+            // Assert
+            result.Should().BeNull();
+
+            this.loggerMock!.Verify(
+                logger => logger.Log(
+                    LogLevel.Warning,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Activity with ID:") && v.ToString()!.Contains("was not found")),
+                    null,
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
+                Times.Once);
         }
 
         /// <summary>

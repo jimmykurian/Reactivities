@@ -8,6 +8,7 @@ namespace Application.Activities
     using FluentResults;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
     using Persistence;
 
     /// <summary>
@@ -28,14 +29,17 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Query, Result<List<Activity>>>
         {
             private readonly DataContext context;
+            private readonly ILogger<Handler> logger;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler"/> class.
             /// </summary>
             /// <param name="context">The data context.</param>
-            public Handler(DataContext context)
+            /// <param name="logger">The logger instance for structured logging.</param>
+            public Handler(DataContext context, ILogger<Handler> logger)
             {
                 this.context = context;
+                this.logger = logger;
             }
 
             /// <summary>
@@ -49,7 +53,13 @@ namespace Application.Activities
             /// </returns>
             public async Task<Result<List<Activity>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return Result.Ok(await this.context.Activities.ToListAsync(cancellationToken));
+                this.logger.LogInformation("Fetching list of activities.");
+
+                var activities = await this.context.Activities.ToListAsync(cancellationToken);
+
+                this.logger.LogInformation("Successfully fetched {Count} activities.", activities.Count);
+
+                return Result.Ok(activities);
             }
         }
     }
