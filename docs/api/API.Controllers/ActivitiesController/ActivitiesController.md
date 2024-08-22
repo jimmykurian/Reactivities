@@ -1,9 +1,9 @@
 # ActivitiesController constructor
 
-The default constructor.
+Controller for managing activities.
 
 ```csharp
-public ActivitiesController()
+public ActivitiesController(ILogger<ActivitiesController> logger)
 ```
 
 ## See Also

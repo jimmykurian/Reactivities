@@ -3,7 +3,7 @@
 Handles the query to get the details of an activity.
 
 ```csharp
-public class Handler : IRequestHandler<Query, Activity>
+public class Handler : IRequestHandler<Query, Result<Activity>>
 ```
 
 ## Public Members

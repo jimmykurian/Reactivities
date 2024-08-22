@@ -1,6 +1,6 @@
 # BaseApiController.Mediator property
 
-Gets the Mediator instance.
+Gets the Mediator instance used for handling requests.
 
 ```csharp
 protected IMediator Mediator { get; }

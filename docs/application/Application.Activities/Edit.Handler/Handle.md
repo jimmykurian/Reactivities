@@ -3,17 +3,17 @@
 Handles the request to edit an existing activity.
 
 ```csharp
-public Task Handle(Command request, CancellationToken cancellationToken)
+public Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
 ```
 
 | parameter | description |
 | --- | --- |
-| request | The command request. |
-| cancellationToken | The cancellation token. |
+| request | The command request containing the updated activity details. |
+| cancellationToken | A token to monitor for cancellation requests. |
 
 ## Return Value
 
-A task that represents the asynchronous operation.
+A Task representing the asynchronous operation. The task result contains the outcome of the edit operation.
 
 ## See Also
 

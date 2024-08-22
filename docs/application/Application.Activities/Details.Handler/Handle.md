@@ -3,17 +3,17 @@
 Handles the request to get the details of an activity.
 
 ```csharp
-public Task<Activity> Handle(Query request, CancellationToken cancellationToken)
+public Task<Result<Activity>> Handle(Query request, CancellationToken cancellationToken)
 ```
 
 | parameter | description |
 | --- | --- |
-| request | The query request. |
-| cancellationToken | The cancellation token. |
+| request | The query request containing the ID of the activity. |
+| cancellationToken | A token to monitor for cancellation requests. |
 
 ## Return Value
 
-A task that represents the asynchronous operation. The task result contains the activity details.
+A Task representing the asynchronous operation, containing the result of the query. The result includes the activity details if found.
 
 ## See Also
 

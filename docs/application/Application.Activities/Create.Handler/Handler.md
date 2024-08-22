@@ -3,12 +3,13 @@
 Initializes a new instance of the [`Handler`](../Create.Handler.md) class.
 
 ```csharp
-public Handler(DataContext context)
+public Handler(DataContext context, ILogger<Handler> logger)
 ```
 
 | parameter | description |
 | --- | --- |
 | context | The data context. |
+| logger | The logger instance. |
 
 ## See Also
 

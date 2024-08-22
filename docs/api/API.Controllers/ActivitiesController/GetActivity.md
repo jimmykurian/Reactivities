@@ -3,7 +3,7 @@
 Retrieves an activity by its ID.
 
 ```csharp
-public Task<ActionResult<Activity>> GetActivity(Guid id)
+public Task<IActionResult> GetActivity(Guid id)
 ```
 
 | parameter | description |
@@ -12,7 +12,7 @@ public Task<ActionResult<Activity>> GetActivity(Guid id)
 
 ## Return Value
 
-The activity.
+An IActionResult containing the activity.
 
 ## See Also
 

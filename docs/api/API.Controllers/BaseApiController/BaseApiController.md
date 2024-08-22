@@ -1,10 +1,14 @@
 # BaseApiController constructor
 
-The default constructor.
+Initializes a new instance of the [`BaseApiController`](../BaseApiController.md) class.
 
 ```csharp
-public BaseApiController()
+public BaseApiController(ILogger<BaseApiController> logger)
 ```
+
+| parameter | description |
+| --- | --- |
+| logger | The logger instance to use for logging. |
 
 ## See Also
 

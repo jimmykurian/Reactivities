@@ -3,17 +3,17 @@
 Handles the request to delete an activity.
 
 ```csharp
-public Task Handle(Command request, CancellationToken cancellationToken)
+public Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
 ```
 
 | parameter | description |
 | --- | --- |
-| request | The command request. |
-| cancellationToken | The cancellation token. |
+| request | The command containing the ID of the activity to be deleted. |
+| cancellationToken | A token to monitor for cancellation requests. |
 
 ## Return Value
 
-A task that represents the asynchronous operation.
+A Task representing the asynchronous operation, containing the result of the delete operation.
 
 ## See Also
 
