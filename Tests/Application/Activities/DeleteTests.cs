@@ -1,4 +1,8 @@
-﻿namespace Application.Activities
+﻿// <copyright file="DeleteTests.cs" company="Jimmy Kurian">
+// Copyright (c) Jimmy Kurian. All rights reserved.
+// </copyright>
+
+namespace Application.Activities
 {
     using Bogus;
     using Domain;

@@ -93,7 +93,7 @@ namespace Application.Activities
             var result = await this.handler!.Handle(command, CancellationToken.None);
 
             // Assert
-            result.IsSuccess.Should().BeFalse(); 
+            result.IsSuccess.Should().BeFalse();
 
             this.loggerMock!.Verify(
                 x => x.Log(
