@@ -3,12 +3,12 @@
 Retrieves a list of activities.
 
 ```csharp
-public Task<ActionResult<List<Activity>>> GetActivities()
+public Task<IActionResult> GetActivities()
 ```
 
 ## Return Value
 
-The list of activities.
+An IActionResult containing the list of activities.
 
 ## See Also
 

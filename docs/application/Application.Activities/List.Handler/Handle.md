@@ -3,17 +3,17 @@
 Handles the request to list activities.
 
 ```csharp
-public Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
+public Task<Result<List<Activity>>> Handle(Query request, CancellationToken cancellationToken)
 ```
 
 | parameter | description |
 | --- | --- |
 | request | The query request. |
-| cancellationToken | The cancellation token. |
+| cancellationToken | A token to monitor for cancellation requests. |
 
 ## Return Value
 
-A task that represents the asynchronous operation. The task result contains the list of activities.
+A Task representing the asynchronous operation, containing the result of the query. The result includes the list of activities.
 
 ## See Also
 

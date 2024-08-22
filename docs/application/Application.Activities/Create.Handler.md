@@ -3,7 +3,7 @@
 Handles the command to create a new activity.
 
 ```csharp
-public class Handler : IRequestHandler<Command>
+public class Handler : IRequestHandler<Command, Result<Unit>>
 ```
 
 ## Public Members

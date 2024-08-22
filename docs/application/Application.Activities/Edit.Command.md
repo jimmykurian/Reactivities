@@ -3,7 +3,7 @@
 Represents the command to edit an existing activity.
 
 ```csharp
-public class Command : IRequest
+public class Command : IRequest<Result<Unit>>
 ```
 
 ## Public Members

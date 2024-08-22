@@ -3,7 +3,7 @@
 Handles the command to edit an existing activity.
 
 ```csharp
-public class Handler : IRequestHandler<Command>
+public class Handler : IRequestHandler<Command, Result<Unit>>
 ```
 
 ## Public Members

@@ -3,13 +3,17 @@
 Handles the request to create a new activity.
 
 ```csharp
-public Task Handle(Command request, CancellationToken cancellationToken)
+public Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
 ```
 
 | parameter | description |
 | --- | --- |
-| request | The command request. |
-| cancellationToken | The cancellation token. |
+| request | The command request containing the activity to be created. |
+| cancellationToken | A token to monitor for cancellation requests. |
+
+## Return Value
+
+A Task representing the asynchronous operation, containing the result of the operation.
 
 ## See Also
 

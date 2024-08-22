@@ -3,13 +3,14 @@
 Initializes a new instance of the [`Handler`](../Edit.Handler.md) class.
 
 ```csharp
-public Handler(DataContext context, IMapper mapper)
+public Handler(DataContext context, IMapper mapper, ILogger<Handler> logger)
 ```
 
 | parameter | description |
 | --- | --- |
 | context | The data context. |
-| mapper | The AutoMapper context. |
+| mapper | The AutoMapper instance used for mapping data. |
+| logger | The logger instance for structured logging. |
 
 ## See Also
 

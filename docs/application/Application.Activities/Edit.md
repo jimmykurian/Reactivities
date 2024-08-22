@@ -12,6 +12,7 @@ public class Edit
 | --- | --- |
 | [Edit](Edit/Edit.md)() | The default constructor. |
 | class [Command](Edit.Command.md) | Represents the command to edit an existing activity. |
+| class [CommandValidator](Edit.CommandValidator.md) | Represents the validator for the edit activity command. |
 | class [Handler](Edit.Handler.md) | Handles the command to edit an existing activity. |
 
 ## See Also

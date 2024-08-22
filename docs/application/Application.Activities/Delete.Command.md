@@ -3,7 +3,7 @@
 Represents the command to delete an activity.
 
 ```csharp
-public class Command : IRequest
+public class Command : IRequest<Result<Unit>>
 ```
 
 ## Public Members

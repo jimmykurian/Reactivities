@@ -3,7 +3,7 @@
 Represents the query to get the details of an activity.
 
 ```csharp
-public class Query : IRequest<Activity>
+public class Query : IRequest<Result<Activity>>
 ```
 
 ## Public Members

@@ -12,6 +12,7 @@ public class Create
 | --- | --- |
 | [Create](Create/Create.md)() | The default constructor. |
 | class [Command](Create.Command.md) | Represents the command to create a new activity. |
+| class [CommandValidator](Create.CommandValidator.md) | Represents the validator for the create activity command. |
 | class [Handler](Create.Handler.md) | Handles the command to create a new activity. |
 
 ## See Also
