@@ -27,6 +27,13 @@ exports[`NavBar matches snapshot 1`] = `
       >
         Activities
       </a>
+      <a
+        class="item"
+        href="/errors"
+        role="menuitem"
+      >
+        Errors
+      </a>
       <div
         class="item"
       >

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestErrors Component renders all buttons 1`] = `
+<div>
+  <h1
+    class="ui header"
+  >
+    Test Error component
+  </h1>
+  <div
+    class="ui segment"
+  >
+    <div
+      class="ui seven buttons"
+    >
+      <button
+        class="ui basic primary button"
+      >
+        Not Found
+      </button>
+      <button
+        class="ui basic primary button"
+      >
+        Bad Request
+      </button>
+      <button
+        class="ui basic primary button"
+      >
+        Validation Error
+      </button>
+      <button
+        class="ui basic primary button"
+      >
+        Server Error
+      </button>
+      <button
+        class="ui basic primary button"
+      >
+        Unauthorised
+      </button>
+      <button
+        class="ui basic primary button"
+      >
+        Bad Guid
+      </button>
+    </div>
+  </div>
+</div>
+`;
