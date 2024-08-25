@@ -22,4 +22,4 @@ The activity to display.
 
 #### Source
 
-[src/app/features/activities/dashboard/ActivityListItem.tsx:17](https://github.com/jimmykurian/Reactivities/blob/53b13a08b38b7d13db7685da19b0f30adc1de6b5/client-app/src/app/features/activities/dashboard/ActivityListItem.tsx#L17)
+[src/app/features/activities/dashboard/ActivityListItem.tsx:17](https://github.com/jimmykurian/Reactivities/blob/2ac04b3bd2078e178d4132d39af05e6bd9aa429e/client-app/src/app/features/activities/dashboard/ActivityListItem.tsx#L17)
