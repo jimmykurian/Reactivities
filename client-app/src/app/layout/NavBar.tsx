@@ -49,6 +49,7 @@ export default function NavBar(): JSX.Element {
           name="Activities"
           role="menuitem"
         />
+        <Menu.Item as={NavLink} to="/errors" name="Errors" role="menuitem" />
         <Menu.Item>
           <Button
             as={NavLink}

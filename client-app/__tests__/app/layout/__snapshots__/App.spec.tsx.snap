@@ -3,6 +3,9 @@
 exports[`App matches snapshot 1`] = `
 <DocumentFragment>
   <div
+    class="Toastify"
+  />
+  <div
     class="ui inverted top fixed menu"
   >
     <div
@@ -26,6 +29,13 @@ exports[`App matches snapshot 1`] = `
         role="menuitem"
       >
         Activities
+      </a>
+      <a
+        class="item"
+        href="/errors"
+        role="menuitem"
+      >
+        Errors
       </a>
       <div
         class="item"
