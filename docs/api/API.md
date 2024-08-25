@@ -6,6 +6,7 @@
 | --- | --- |
 | class [ActivitiesController](./API.Controllers/ActivitiesController.md) | Controller for managing activities. |
 | class [BaseApiController](./API.Controllers/BaseApiController.md) | Represents the base API controller providing common functionality to other API controllers. |
+| class [BuggyController](./API.Controllers/BuggyController.md) | Controller to simulate different types of HTTP responses for testing purposes. |
 
 ## API.Extensions namespace
 
