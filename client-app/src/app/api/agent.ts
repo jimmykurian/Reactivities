@@ -4,8 +4,9 @@
  * @fileoverview This module provides an API client for interacting with activity-related endpoints using axios.
  */
 
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Activity } from '../models/activity';
+import { toast } from 'react-toastify';
 
 /**
  * @module Agent
@@ -27,15 +28,33 @@ const sleep = (delay: number): Promise<void> => {
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
-axios.interceptors.response.use(async (response) => {
-  try {
+axios.interceptors.response.use(
+  async (response) => {
     await sleep(1000);
     return response;
-  } catch (error) {
-    console.log(error);
-    return await Promise.reject(error);
-  }
-});
+  },
+  (error: AxiosError) => {
+    const { status } = error.response!;
+    switch (status) {
+      case 400:
+        toast.error('Bad Request');
+        break;
+      case 401:
+        toast.error('Unauthorized');
+        break;
+      case 403:
+        toast.error('Forbidden');
+        break;
+      case 404:
+        toast.error('Not Found');
+        break;
+      case 500:
+        toast.error('Server Error');
+        break;
+    }
+    return Promise.reject(error);
+  },
+);
 
 /**
  * @constant responseBody
