@@ -17,6 +17,7 @@
 - [app/features/activities/details/ActivityDetailedSidebar](app/features/activities/details/ActivityDetailedSidebar/README.md)
 - [app/features/activities/details/ActivityDetails](app/features/activities/details/ActivityDetails/README.md)
 - [app/features/activities/form/ActivityForm](app/features/activities/form/ActivityForm/README.md)
+- [app/features/errors/NotFound](app/features/errors/NotFound/README.md)
 - [app/features/errors/TestErrors](app/features/errors/TestErrors/README.md)
 - [app/features/home/HomePage](app/features/home/HomePage/README.md)
 - [app/layout/App](app/layout/App/README.md)
