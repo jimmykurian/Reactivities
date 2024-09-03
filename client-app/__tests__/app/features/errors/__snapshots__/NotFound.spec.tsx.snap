@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Component should match the snapshot 1`] = `
+<div>
+  <div
+    class="ui placeholder segment"
+  >
+    <div
+      class="ui icon header"
+    >
+      <i
+        aria-hidden="true"
+        class="search icon"
+      />
+      Oops - we've looked everywhere and could not find what you are looking for!
+    </div>
+    <div
+      class="inline"
+    >
+      <a
+        class="ui primary button"
+        href="/activities"
+        role="button"
+      >
+        Return to activities page
+      </a>
+    </div>
+  </div>
+</div>
+`;
