@@ -21,7 +21,6 @@ export interface Props {
  *
  * @component
  * @param {Props} props - The props for the ValidationError component.
- * @param {string[]} props.errors - An array of error messages to be displayed.
  * @returns {JSX.Element} The rendered ValidationError component.
  *
  * @example
