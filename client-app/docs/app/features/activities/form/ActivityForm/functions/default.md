@@ -69,4 +69,4 @@ export default App;
 
 ## Source
 
-[src/app/features/activities/form/ActivityForm.tsx:53](https://github.com/jimmykurian/Reactivities/blob/3f805628d10ff0a50931fec09e965ef4a2576e55/client-app/src/app/features/activities/form/ActivityForm.tsx#L53)
+[src/app/features/activities/form/ActivityForm.tsx:53](https://github.com/jimmykurian/Reactivities/blob/5706c36bcf0d6b31b6711b289307934f1dd8355e/client-app/src/app/features/activities/form/ActivityForm.tsx#L53)

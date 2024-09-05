@@ -19,6 +19,7 @@
 - [app/features/activities/form/ActivityForm](app/features/activities/form/ActivityForm/README.md)
 - [app/features/errors/NotFound](app/features/errors/NotFound/README.md)
 - [app/features/errors/TestErrors](app/features/errors/TestErrors/README.md)
+- [app/features/errors/ValidationError](app/features/errors/ValidationError/README.md)
 - [app/features/home/HomePage](app/features/home/HomePage/README.md)
 - [app/layout/App](app/layout/App/README.md)
 - [app/layout/LoadingComponent](app/layout/LoadingComponent/README.md)
