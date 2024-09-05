@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidationError Component matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ui error message"
+  >
+    <ul
+      class="list"
+    >
+      <li
+        class="content"
+      >
+        Email is required
+      </li>
+      <li
+        class="content"
+      >
+        Password must be at least 6 characters
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

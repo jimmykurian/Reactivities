@@ -6,6 +6,8 @@
 
 import { Button, Header, Segment } from 'semantic-ui-react';
 import axios from 'axios';
+import { useState } from 'react';
+import ValidationError from './ValidationError';
 
 /**
  * TestErrors component provides buttons to trigger various types of HTTP errors for testing purposes.
@@ -16,6 +18,7 @@ import axios from 'axios';
  */
 export default function TestErrors() {
   const baseUrl = 'http://localhost:5000/api/';
+  const [errors, setErrors] = useState(null);
 
   /**
    * Handles a 404 Not Found error by sending a GET request to a non-existent endpoint.
@@ -66,9 +69,7 @@ export default function TestErrors() {
    * Handles validation errors by sending a POST request with invalid data to trigger validation error responses.
    */
   function handleValidationError() {
-    axios
-      .post(baseUrl + 'activities', {})
-      .catch((err) => console.log(err.response));
+    axios.post(baseUrl + 'activities', {}).catch((err) => setErrors(err));
   }
 
   return (
@@ -104,6 +105,7 @@ export default function TestErrors() {
           <Button onClick={handleBadGuid} content="Bad Guid" basic primary />
         </Button.Group>
       </Segment>
+      {errors && <ValidationError errors={errors} />}
     </>
   );
 }

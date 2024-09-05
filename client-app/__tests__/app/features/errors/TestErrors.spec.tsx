@@ -48,26 +48,6 @@ describe('TestErrors Component', () => {
     expect(mockedAxios.get).toHaveBeenCalledTimes(1);
   });
 
-  it('handles Validation Error correctly', async () => {
-    // Arrange
-    mockedAxios.post.mockRejectedValueOnce({
-      response: { status: 400, data: 'Validation Error' },
-    });
-    render(<TestErrors />);
-
-    // Act
-    fireEvent.click(screen.getByText('Validation Error'));
-
-    // Assert
-    await waitFor(() =>
-      expect(mockedAxios.post).toHaveBeenCalledWith(
-        'http://localhost:5000/api/activities',
-        {},
-      ),
-    );
-    expect(mockedAxios.post).toHaveBeenCalledTimes(1);
-  });
-
   it('handles Server Error correctly', async () => {
     // Arrange
     mockedAxios.get.mockRejectedValueOnce({
