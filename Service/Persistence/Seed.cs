@@ -9,14 +9,14 @@ namespace Persistence
     /// <summary>
     /// Provides methods to seed the database with initial data.
     /// </summary>
-    public sealed class Seed
+    internal sealed class Seed
     {
         /// <summary>
         /// Seeds the DataContext with default activity data.
         /// </summary>
         /// <param name="context">The database context to seed.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
-        public static async Task SeedData(DataContext context)
+        internal static async Task SeedData(DataContext context)
         {
             if (context.Activities.Any())
             {
