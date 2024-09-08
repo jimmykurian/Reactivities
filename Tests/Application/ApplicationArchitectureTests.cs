@@ -2,7 +2,7 @@
 // Copyright (c) Jimmy Kurian. All rights reserved.
 // </copyright>
 
-namespace Application.Tests
+namespace Application
 {
     using FluentAssertions;
     using NetArchTest.Rules;
