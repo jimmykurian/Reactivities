@@ -18,4 +18,4 @@ The React context for the store.
 
 ## Source
 
-[src/app/stores/store.ts:34](https://github.com/jimmykurian/Reactivities/blob/5706c36bcf0d6b31b6711b289307934f1dd8355e/client-app/src/app/stores/store.ts#L34)
+[src/app/stores/store.ts:37](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/stores/store.ts#L37)
