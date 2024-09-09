@@ -8,6 +8,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Activity } from '../models/activity';
 import { toast } from 'react-toastify';
 import { router } from '../router/Routes';
+import { store } from '../stores/store';
 
 /**
  * @module Agent
@@ -60,7 +61,8 @@ axios.interceptors.response.use(
         router.navigate('/not-found');
         break;
       case 500:
-        toast.error('Server Error');
+        store.commonStore.setServerError(data);
+        router.navigate('/server-error');
         break;
     }
     return Promise.reject(error);
