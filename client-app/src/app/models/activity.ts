@@ -1,6 +1,8 @@
 /**
+ * @file activity.ts
  * @author Jimmy Kurian
- * @name Activity
+ * @fileoverview This file defines the Activity interface, which represents the structure of an activity object in the Reactivities application.
+ * It includes properties such as id, title, date, description, category, city, and venue.
  */
 
 /**

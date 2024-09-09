@@ -22,4 +22,14 @@ Instance of ActivityStore for managing activity-related state.
 
 #### Source
 
-[src/app/stores/store.ts:17](https://github.com/jimmykurian/Reactivities/blob/5706c36bcf0d6b31b6711b289307934f1dd8355e/client-app/src/app/stores/store.ts#L17)
+[src/app/stores/store.ts:18](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/stores/store.ts#L18)
+
+***
+
+### commonStore
+
+> **commonStore**: [`default`](../../commonStore/classes/default.md)
+
+#### Source
+
+[src/app/stores/store.ts:19](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/stores/store.ts#L19)

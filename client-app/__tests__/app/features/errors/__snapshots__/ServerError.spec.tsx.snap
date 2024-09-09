@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ServerError Component should render correctly with static data (snapshot) 1`] = `
+<div>
+  <div
+    class="ui container"
+  >
+    <h1
+      class="ui header"
+    >
+      Server Error
+    </h1>
+    <h5
+      class="ui red sub header"
+    />
+  </div>
+</div>
+`;
