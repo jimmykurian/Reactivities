@@ -41,7 +41,7 @@ axios.interceptors.response.use(
       case 400:
         if (
           config.method === 'get' &&
-          Object.prototype.hasOwnProperty.call(data.erros, 'id')
+          Object.prototype.hasOwnProperty.call(data.errors, 'id')
         ) {
           router.navigate('/not-found');
         }
