@@ -8,9 +8,31 @@ jest.mock('../../../../../src/app/stores/store', () => ({
   useStore: jest.fn(),
 }));
 
+// Mock console.log to verify form submission
+globalThis.console = {
+  log: jest.fn(),
+  assert: jest.fn(),
+  clear: jest.fn(),
+  count: jest.fn(),
+  countReset: jest.fn(),
+  debug: jest.fn(),
+  dir: jest.fn(),
+  dirxml: jest.fn(),
+  error: jest.fn(),
+  group: jest.fn(),
+  groupCollapsed: jest.fn(),
+  groupEnd: jest.fn(),
+  info: jest.fn(),
+  table: jest.fn(),
+  time: jest.fn(),
+  timeEnd: jest.fn(),
+  timeLog: jest.fn(),
+  timeStamp: jest.fn(),
+  trace: jest.fn(),
+  warn: jest.fn(),
+} as Console;
+
 describe('ActivityForm', () => {
-  const createActivity = jest.fn().mockResolvedValue({});
-  const updateActivity = jest.fn().mockResolvedValue({});
   const loading = false;
   const loadActivity = jest.fn().mockResolvedValue({
     id: '1',
@@ -25,17 +47,13 @@ describe('ActivityForm', () => {
   beforeEach(() => {
     (useStore as jest.Mock).mockReturnValue({
       activityStore: {
-        selectedActivity: null,
-        createActivity,
-        updateActivity,
         loadActivity,
         loading,
         loadingInitial: false,
       },
     });
-    createActivity.mockClear();
-    updateActivity.mockClear();
     loadActivity.mockClear();
+    (console.log as jest.Mock).mockClear();
   });
 
   test('renders the ActivityForm component', async () => {
@@ -59,64 +77,7 @@ describe('ActivityForm', () => {
     expect(screen.getByRole('button', { name: /Cancel/i })).toBeInTheDocument();
   });
 
-  test('calls submit handler when form is submitted', async () => {
-    // Arrange
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <ActivityForm />
-        </MemoryRouter>,
-      );
-    });
-
-    // Act
-    await act(async () => {
-      fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
-    });
-
-    // Assert
-    expect(createActivity).toHaveBeenCalledTimes(1);
-  });
-
-  test('matches snapshot', async () => {
-    // Arrange
-    let fragment: (() => DocumentFragment) | undefined;
-    await act(async () => {
-      const { asFragment } = render(
-        <MemoryRouter>
-          <ActivityForm />
-        </MemoryRouter>,
-      );
-      fragment = asFragment;
-    });
-
-    // Assert
-    expect(fragment).toBeDefined();
-    expect(fragment!()).toMatchSnapshot();
-  });
-
-  test('updates activity state on input change', async () => {
-    // Arrange
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <ActivityForm />
-        </MemoryRouter>,
-      );
-    });
-
-    // Act
-    fireEvent.change(screen.getByPlaceholderText('Title'), {
-      target: { value: 'New Title' },
-    });
-
-    // Assert
-    expect(
-      (screen.getByPlaceholderText('Title') as HTMLInputElement).value,
-    ).toBe('New Title');
-  });
-
-  test('calls createActivity with new activity when form is submitted', async () => {
+  test('calls console.log with form values when form is submitted', async () => {
     // Arrange
     await act(async () => {
       render(
@@ -151,8 +112,8 @@ describe('ActivityForm', () => {
     });
 
     // Assert
-    expect(createActivity).toHaveBeenCalledWith({
-      id: expect.any(String),
+    expect(console.log).toHaveBeenCalledWith({
+      id: '',
       title: 'New Title',
       date: '2024-01-01',
       description: 'New Description',
@@ -162,7 +123,45 @@ describe('ActivityForm', () => {
     });
   });
 
-  test('does not call createActivity or updateActivity if form is not submitted', async () => {
+  test('matches snapshot', async () => {
+    // Arrange
+    let fragment: (() => DocumentFragment) | undefined;
+    await act(async () => {
+      const { asFragment } = render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+      fragment = asFragment;
+    });
+
+    // Assert
+    expect(fragment).toBeDefined();
+    expect(fragment!()).toMatchSnapshot();
+  });
+
+  test('updates form fields on input change', async () => {
+    // Arrange
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <ActivityForm />
+        </MemoryRouter>,
+      );
+    });
+
+    // Act
+    fireEvent.change(screen.getByPlaceholderText('Title'), {
+      target: { value: 'Updated Title' },
+    });
+
+    // Assert
+    expect(
+      (screen.getByPlaceholderText('Title') as HTMLInputElement).value,
+    ).toBe('Updated Title');
+  });
+
+  test('does not call any store methods if form is not submitted', async () => {
     // Arrange
     await act(async () => {
       render(
@@ -178,7 +177,7 @@ describe('ActivityForm', () => {
     });
 
     // Assert
-    expect(createActivity).not.toHaveBeenCalled();
-    expect(updateActivity).not.toHaveBeenCalled();
+    expect(loadActivity).not.toHaveBeenCalledTimes(1);
+    expect(console.log).not.toHaveBeenCalled();
   });
 });
