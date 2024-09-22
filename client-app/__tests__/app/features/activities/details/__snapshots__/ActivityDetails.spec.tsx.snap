@@ -66,11 +66,13 @@ exports[`ActivityDetails matches snapshot 1`] = `
           >
             Cancel attendance
           </button>
-          <button
+          <a
             class="ui orange right floated button"
+            href="/manage1"
+            role="button"
           >
             Manage Event
-          </button>
+          </a>
         </div>
       </div>
       <div

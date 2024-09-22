@@ -4,6 +4,7 @@ import ActivityDetailedHeader, {
 } from '../../../../../src/app/features/activities/details/ActivityDetailedHeader';
 import { faker } from '@faker-js/faker';
 import { Activity } from '../../../../../src/app/models/activity';
+import { MemoryRouter } from 'react-router-dom';
 
 // Mocking observer from mobx-react-lite
 jest.mock('mobx-react-lite', () => ({
@@ -33,7 +34,11 @@ describe('ActivityDetailedHeader', () => {
   });
 
   const renderComponent = (props: Props) => {
-    render(<ActivityDetailedHeader {...props} />);
+    render(
+      <MemoryRouter>
+        <ActivityDetailedHeader {...props} />
+      </MemoryRouter>,
+    );
   };
 
   test('renders ActivityDetailedHeader component', () => {
@@ -70,7 +75,9 @@ describe('ActivityDetailedHeader', () => {
   test('matches snapshot', () => {
     // Arrange & Act
     const { asFragment } = render(
-      <ActivityDetailedHeader activity={staticMockActivity} />,
+      <MemoryRouter>
+        <ActivityDetailedHeader activity={staticMockActivity} />,
+      </MemoryRouter>,
     );
 
     // Assert

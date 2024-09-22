@@ -6,88 +6,41 @@ exports[`ActivityForm matches snapshot 1`] = `
     class="ui clearing segment"
   >
     <form
+      action="#"
       autocomplete="off"
       class="ui form"
     >
-      <div
-        class="field"
-      >
-        <div
-          class="ui input"
-        >
-          <input
-            name="title"
-            placeholder="Title"
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        class="field"
-      >
-        <textarea
-          name="description"
-          placeholder="Description"
-          rows="3"
-        />
-      </div>
-      <div
-        class="field"
-      >
-        <div
-          class="ui input"
-        >
-          <input
-            name="category"
-            placeholder="Category"
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        class="field"
-      >
-        <div
-          class="ui input"
-        >
-          <input
-            name="date"
-            placeholder="Date"
-            type="date"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        class="field"
-      >
-        <div
-          class="ui input"
-        >
-          <input
-            name="city"
-            placeholder="City"
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        class="field"
-      >
-        <div
-          class="ui input"
-        >
-          <input
-            name="venue"
-            placeholder="Venue"
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
+      <input
+        name="title"
+        placeholder="Title"
+        value=""
+      />
+      <input
+        name="description"
+        placeholder="Description"
+        value=""
+      />
+      <input
+        name="category"
+        placeholder="Category"
+        value=""
+      />
+      <input
+        name="date"
+        placeholder="Date"
+        type="date"
+        value=""
+      />
+      <input
+        name="city"
+        placeholder="City"
+        value=""
+      />
+      <input
+        name="venue"
+        placeholder="Venue"
+        value=""
+      />
       <button
         class="ui positive right floated button"
         type="submit"
