@@ -23,7 +23,7 @@ Initializes a new instance of the `CommonStore` class and makes it observable us
 
 #### Source
 
-[src/app/stores/commonStore.ts:29](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/stores/commonStore.ts#L29)
+[src/app/stores/commonStore.ts:29](https://github.com/jimmykurian/Reactivities/blob/dbc3ed866e1f645e56a07b30e597ad4448fbda7a/client-app/src/app/stores/commonStore.ts#L29)
 
 ## Properties
 
@@ -36,7 +36,7 @@ The `ServerError` model contains the error message and optional stack trace deta
 
 #### Source
 
-[src/app/stores/commonStore.ts:24](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/stores/commonStore.ts#L24)
+[src/app/stores/commonStore.ts:24](https://github.com/jimmykurian/Reactivities/blob/dbc3ed866e1f645e56a07b30e597ad4448fbda7a/client-app/src/app/stores/commonStore.ts#L24)
 
 ## Methods
 
@@ -58,4 +58,4 @@ The server error object containing details of the error.
 
 #### Source
 
-[src/app/stores/commonStore.ts:38](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/stores/commonStore.ts#L38)
+[src/app/stores/commonStore.ts:38](https://github.com/jimmykurian/Reactivities/blob/dbc3ed866e1f645e56a07b30e597ad4448fbda7a/client-app/src/app/stores/commonStore.ts#L38)

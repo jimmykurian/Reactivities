@@ -21,7 +21,7 @@ Additional details or stack trace information about the error (optional).
 
 #### Source
 
-[src/app/models/serverError.ts:20](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/models/serverError.ts#L20)
+[src/app/models/serverError.ts:20](https://github.com/jimmykurian/Reactivities/blob/dbc3ed866e1f645e56a07b30e597ad4448fbda7a/client-app/src/app/models/serverError.ts#L20)
 
 ***
 
@@ -33,7 +33,7 @@ A brief message describing the error.
 
 #### Source
 
-[src/app/models/serverError.ts:19](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/models/serverError.ts#L19)
+[src/app/models/serverError.ts:19](https://github.com/jimmykurian/Reactivities/blob/dbc3ed866e1f645e56a07b30e597ad4448fbda7a/client-app/src/app/models/serverError.ts#L19)
 
 ***
 
@@ -45,4 +45,4 @@ The HTTP status code associated with the error.
 
 #### Source
 
-[src/app/models/serverError.ts:18](https://github.com/jimmykurian/Reactivities/blob/f9f070aaf98b4106e71d50f160dc9e1dc32565f3/client-app/src/app/models/serverError.ts#L18)
+[src/app/models/serverError.ts:18](https://github.com/jimmykurian/Reactivities/blob/dbc3ed866e1f645e56a07b30e597ad4448fbda7a/client-app/src/app/models/serverError.ts#L18)
